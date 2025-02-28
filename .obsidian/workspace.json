@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "f852aeb93404f547",
+        "id": "f56aaa741d38c5d8",
         "type": "tabs",
         "children": [
           {
-            "id": "d3a051f946653f51",
+            "id": "e4bf2b2ee9b900d6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "广州兴业.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "广州兴业"
+              "title": "README"
             }
           }
         ]
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "f9a4f884102898ce",
@@ -143,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "广州兴业.md",
+                "file": "小鹅通以往面试题/2.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "广州兴业 的大纲"
+              "title": "2 的大纲"
             }
           }
         ],
@@ -157,7 +156,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -169,11 +169,23 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "d3a051f946653f51",
+  "active": "e4bf2b2ee9b900d6",
   "lastOpenFiles": [
-    "README.md",
-    "欢迎.md",
+    "英孚.md",
+    "小鹅通以往面试题/5.md",
+    "小鹅通以往面试题/4.md",
+    "小鹅通以往面试题/3.md",
+    "小鹅通以往面试题/2.md",
+    "未命名.md",
     "广州兴业.md",
-    "未命名"
+    "小鹅通以往面试题/1.md",
+    "未命名",
+    "image/Pasted image 20250225153317.png",
+    "image/Pasted image 20250225153300.png",
+    "image/Pasted image 20250225153157.png",
+    "image",
+    "小鹅通以往面试题",
+    "README.md",
+    "欢迎.md"
   ]
 }

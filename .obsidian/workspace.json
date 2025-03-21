@@ -13,29 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "黑马点评常问的内容和黑马点评优化.md",
+                "file": "粤港澳数字经济Idea 研究院.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "黑马点评常问的内容和黑马点评优化"
+              "title": "粤港澳数字经济Idea 研究院"
             }
           },
           {
-            "id": "edd95ace336abe28",
+            "id": "ff5e08b4b075a1b3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "小鹅通二面面经（结果未知）Cider一面面经（通过）.md",
+                "file": "银河智学.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "小鹅通二面面经（结果未知）Cider一面面经（通过）"
+              "title": "银河智学"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -67,7 +68,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "b+",
+                "query": "INNO",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -157,13 +158,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "黑马点评常问的内容和黑马点评优化.md",
+                "file": "Cider面经/1.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "黑马点评常问的内容和黑马点评优化 的大纲"
+              "title": "1 的大纲"
             }
           },
           {
@@ -195,22 +196,30 @@
       "mxmind:Mxmind": false
     }
   },
-  "active": "db4190ca9d4a9602",
+  "active": "ff5e08b4b075a1b3",
   "lastOpenFiles": [
-    "小鹅通二面面经（结果未知）Cider一面面经（通过）.md",
-    "黑马点评常问的内容和黑马点评优化.md",
     "粤港澳数字经济Idea 研究院.md",
+    "英孚.md",
+    "小鹅通二面面经（结果未知）Cider一面面经（通过）.md",
+    "小鹅通往年面经+我的面经/小鹅通一面面经（带答案已OC）.md",
+    "黑马点评常问的内容和黑马点评优化.md",
+    "银河智学.md",
+    "Cider面经/1.md",
+    "广州兴业.md",
     "简历优化.md",
+    "README.md",
+    "小鹅通往年面经+我的面经/1.md",
+    "小鹅通往年面经+我的面经/2.md",
+    "小鹅通往年面经+我的面经/3.md",
+    "小鹅通往年面经+我的面经/4.md",
+    "小鹅通往年面经+我的面经/5.md",
+    "心潮无限往年面经/1.md",
+    "字节-今日头条-财经业务/字节财经一面.md",
     "image/1653320764547.png",
     "Cider面经/2.md",
-    "Cider面经/1.md",
-    "字节-今日头条-财经业务/字节财经一面.md",
-    "广州兴业.md",
-    "英孚.md",
     "欢迎.md",
     "image/Pasted image 20250306135833.png",
     "字节-今日头条-财经业务",
-    "小鹅通往年面经+我的面经/小鹅通一面面经（带答案已OC）.md",
     "Cider面经",
     "Redis实战篇.md",
     "Redis实战篇.assets/image-20220523221428827.png",
@@ -222,15 +231,8 @@
     "Redis实战篇.assets/1653327884526.png",
     "Redis实战篇.assets/1653357522914.png",
     "Redis实战篇.assets",
-    "心潮无限往年面经/1.md",
-    "小鹅通往年面经+我的面经/5.md",
-    "小鹅通往年面经+我的面经/4.md",
     "小鹅通往年面经+我的面经/未命名",
-    "小鹅通往年面经+我的面经/3.md",
     "心潮无限往年面经",
-    "README.md",
-    "小鹅通往年面经+我的面经/2.md",
-    "小鹅通往年面经+我的面经/1.md",
     "image",
     "小鹅通往年面经+我的面经"
   ]

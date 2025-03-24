@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "粤港澳数字经济Idea 研究院.md",
+                "file": "面经较少公司/银河智学.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "粤港澳数字经济Idea 研究院"
+              "title": "银河智学"
             }
           },
           {
@@ -35,8 +35,7 @@
               "title": "快手Java开发日常实习生（支付方向）一面（挂）"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -68,7 +67,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "INNO",
+                "query": "SPI",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -89,7 +88,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -157,13 +157,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Cider面经/1.md",
+                "file": "面经较少公司/银河智学.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "1 的大纲"
+              "title": "银河智学 的大纲"
             }
           },
           {
@@ -181,8 +181,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 376.5,
-    "collapsed": true
+    "width": 376.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -195,13 +194,14 @@
       "mxmind:Mxmind": false
     }
   },
-  "active": "71de882f8a167c7e",
+  "active": "1a7a821c08517928",
   "lastOpenFiles": [
+    "快手/支付方向/快手日常实习面经.md",
+    "面经较少公司/银河智学.md",
+    "快手/支付方向/快手Java开发日常实习生（支付方向）一面（挂）.md",
+    "快手/支付方向/快手日常实习（支付方向）面经.md",
     "面经较少公司/未命名",
     "面经较少公司",
-    "快手/支付方向/快手日常实习（支付方向）面经.md",
-    "快手/支付方向/快手Java开发日常实习生（支付方向）一面（挂）.md",
-    "面经较少公司/银河智学.md",
     "快手/支付方向",
     "快手",
     "面经较少公司/粤港澳数字经济Idea 研究院.md",
@@ -238,7 +238,6 @@
     "Redis实战篇.assets",
     "小鹅通往年面经+我的面经/未命名",
     "心潮无限往年面经",
-    "image",
-    "小鹅通往年面经+我的面经"
+    "image"
   ]
 }

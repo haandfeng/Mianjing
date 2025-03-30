@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "腾讯/数据平台/腾讯数据平台部 后台开发（?） 二进宫 一面面经.md",
+                "file": "快手/支付方向/我的快手支付一面.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "腾讯数据平台部 后台开发（?） 二进宫 一面面经"
+              "title": "我的快手支付一面"
             }
           },
           {
@@ -27,12 +27,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "蚂蚁/一面.md",
+                "file": "字节-今日头条-财经业务/我的字节一面.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "一面"
+              "title": "我的字节一面"
+            }
+          },
+          {
+            "id": "7690292f6e4acffe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "蚂蚁/蚂蚁一面.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "蚂蚁一面"
             }
           }
         ],
@@ -68,7 +82,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "threadLocal",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -93,7 +107,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 277.5
+    "width": 277.5,
+    "collapsed": true
   },
   "right": {
     "id": "f9a4f884102898ce",
@@ -157,13 +172,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "腾讯/数据平台/腾讯数据平台部 后台开发（?） 二进宫 一面面经.md",
+                "file": "字节-今日头条-财经业务/我的字节一面.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "腾讯数据平台部 后台开发（?） 二进宫 一面面经 的大纲"
+              "title": "我的字节一面 的大纲"
             }
           },
           {
@@ -197,14 +212,16 @@
   },
   "active": "5d5942664f5b9ddb",
   "lastOpenFiles": [
+    "腾讯/数据平台/我的腾讯一面.md",
+    "字节-今日头条-财经业务/我的字节一面.md",
+    "面经较少公司/银河智学.md",
+    "快手/支付方向/快手日常实习面经.md",
+    "蚂蚁/蚂蚁一面.md",
     "快手/支付方向/我的快手支付一面.md",
+    "快手/支付方向/快手Java开发日常实习生（支付方向）一面（挂）.md",
     "腾讯/数据平台/腾讯数据平台部 后台开发（?） 二进宫 一面面经.md",
     "腾讯/数据平台",
     "腾讯",
-    "面经较少公司/银河智学.md",
-    "快手/支付方向/快手日常实习面经.md",
-    "快手/支付方向/快手Java开发日常实习生（支付方向）一面（挂）.md",
-    "蚂蚁/一面.md",
     "快手/支付方向/快手日常实习（支付方向）面经.md",
     "蚂蚁",
     "面经较少公司/广州兴业.md",
@@ -230,7 +247,6 @@
     "字节-今日头条-财经业务/字节财经一面.md",
     "image/1653320764547.png",
     "Cider面经/2.md",
-    "欢迎.md",
     "image/Pasted image 20250306135833.png",
     "字节-今日头条-财经业务",
     "Cider面经",

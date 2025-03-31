@@ -8,20 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "51d4f9b541aa32be",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "快手/支付方向/我的快手支付一面.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "我的快手支付一面"
-            }
-          },
-          {
             "id": "5d5942664f5b9ddb",
             "type": "leaf",
             "state": {
@@ -41,16 +27,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "蚂蚁/蚂蚁一面.md",
+                "file": "快手/支付方向/我的快手支付一面.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "蚂蚁一面"
+              "title": "我的快手支付一面"
+            }
+          },
+          {
+            "id": "def57431f6757db6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "快手/支付方向/我的快手支付二面.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "我的快手支付二面"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -82,7 +82,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "threadLocal",
+                "query": "explain",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -107,8 +107,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 277.5,
-    "collapsed": true
+    "width": 277.5
   },
   "right": {
     "id": "f9a4f884102898ce",
@@ -172,13 +171,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "字节-今日头条-财经业务/我的字节一面.md",
+                "file": "快手/支付方向/我的快手支付二面.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "我的字节一面 的大纲"
+              "title": "我的快手支付二面 的大纲"
             }
           },
           {
@@ -210,16 +209,20 @@
       "mxmind:Mxmind": false
     }
   },
-  "active": "5d5942664f5b9ddb",
+  "active": "def57431f6757db6",
   "lastOpenFiles": [
+    "快手/支付方向/快手Java开发日常实习生（支付方向）一面（挂）.md",
+    "快手/支付方向/我的快手支付二面.md",
     "腾讯/数据平台/我的腾讯一面.md",
+    "快手/支付方向/我的快手支付一面.md",
+    "腾讯/数据平台/腾讯数据平台部 后台开发（?） 二进宫 一面面经.md",
+    "蚂蚁/蚂蚁一面.md",
     "字节-今日头条-财经业务/我的字节一面.md",
+    "image/Pasted image 20250331142424.png",
+    "技术专栏/缓存一致性.md",
+    "技术专栏",
     "面经较少公司/银河智学.md",
     "快手/支付方向/快手日常实习面经.md",
-    "蚂蚁/蚂蚁一面.md",
-    "快手/支付方向/我的快手支付一面.md",
-    "快手/支付方向/快手Java开发日常实习生（支付方向）一面（挂）.md",
-    "腾讯/数据平台/腾讯数据平台部 后台开发（?） 二进宫 一面面经.md",
     "腾讯/数据平台",
     "腾讯",
     "快手/支付方向/快手日常实习（支付方向）面经.md",
@@ -244,9 +247,7 @@
     "小鹅通往年面经+我的面经/4.md",
     "小鹅通往年面经+我的面经/5.md",
     "心潮无限往年面经/1.md",
-    "字节-今日头条-财经业务/字节财经一面.md",
     "image/1653320764547.png",
-    "Cider面经/2.md",
     "image/Pasted image 20250306135833.png",
     "字节-今日头条-财经业务",
     "Cider面经",
@@ -255,8 +256,6 @@
     "Redis实战篇.assets/image-20220523212915666.png",
     "Redis实战篇.assets/1653548087334.png",
     "Redis实战篇.assets/1653819821591.png",
-    "Redis实战篇.assets/1653319261433.png",
-    "Redis实战篇.assets/1653327884526.png",
-    "Redis实战篇.assets"
+    "Redis实战篇.assets/1653319261433.png"
   ]
 }

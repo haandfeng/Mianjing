@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "快手/支付方向/我的快手支付二面.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "我的快手支付二面"
+              "title": "README"
             }
           }
         ],
@@ -93,8 +93,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 277.5,
-    "collapsed": true
+    "width": 277.5
   },
   "right": {
     "id": "f9a4f884102898ce",
@@ -198,6 +197,7 @@
   },
   "active": "6af07a90627ec71a",
   "lastOpenFiles": [
+    "快手/支付方向/我的快手支付二面.md",
     "快手/支付方向/我的快手支付一面.md",
     "技术专栏/Mysql锁.md",
     "技术专栏/InnoDB事务.md",
@@ -214,7 +214,6 @@
     "Cider面经/1.md",
     "心潮无限往年面经/1.md",
     "快手/支付方向/快手日常实习面经.md",
-    "快手/支付方向/我的快手支付二面.md",
     "image/Pasted image 20250331142424.png",
     "技术专栏",
     "面经较少公司/银河智学.md",

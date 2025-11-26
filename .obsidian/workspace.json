@@ -34,6 +34,48 @@
               "icon": "lucide-file",
               "title": "README"
             }
+          },
+          {
+            "id": "6cd4fd6fb9b8623d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "测试数学公式.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "测试数学公式"
+            }
+          },
+          {
+            "id": "8ae8574f62200357",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "自己简历可能会考察的八股/Java后端.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Java后端"
+            }
+          },
+          {
+            "id": "9da7839e5af97072",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Java并发编程.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Java并发编程"
+            }
           }
         ],
         "currentTab": 1
@@ -93,7 +135,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 277.5
+    "width": 277.5,
+    "collapsed": true
   },
   "right": {
     "id": "f9a4f884102898ce",
@@ -157,13 +200,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "快手/支付方向/快手Java开发日常实习生（支付方向）一面（挂）.md",
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "快手Java开发日常实习生（支付方向）一面（挂） 的大纲"
+              "title": "README 的大纲"
             }
           },
           {
@@ -181,11 +224,11 @@
       }
     ],
     "direction": "horizontal",
-    "width": 376.5,
-    "collapsed": true
+    "width": 376.5
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:创建新数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -197,18 +240,29 @@
   },
   "active": "6af07a90627ec71a",
   "lastOpenFiles": [
+    "技术专栏/InnoDB事务.md",
+    "Java并发编程.md",
+    "自己简历可能会考察的八股/Java后端.md",
+    "测试数学公式.md",
+    "README.md",
+    "自己简历可能会考察的八股/AI简历.md",
+    "Java后端.md",
+    "小鹅通往年面经+我的面经/小鹅通一面面经（带答案已OC）.md",
+    "自己简历可能会考察的八股",
+    "技术专栏/简历优化.md",
+    "技术专栏/缓存一致性.md",
+    "TT/TT Search ADs 26 Summer Intern.md",
+    "蚂蚁/蚂蚁一面.md",
+    "TT",
+    "未命名.md",
     "快手/支付方向/我的快手支付二面.md",
     "快手/支付方向/我的快手支付一面.md",
     "技术专栏/Mysql锁.md",
-    "技术专栏/InnoDB事务.md",
     "技术专栏/Mysql日志.md",
     "技术专栏/黑马点评常问的内容和黑马点评优化.md",
-    "技术专栏/缓存一致性.md",
-    "技术专栏/简历优化.md",
     "快手/支付方向/快手Java开发日常实习生（支付方向）一面（挂）.md",
     "快手/支付方向/快手日常实习（支付方向）面经.md",
     "字节-今日头条-财经业务/我的字节一面.md",
-    "蚂蚁/蚂蚁一面.md",
     "腾讯/数据平台/腾讯数据平台部 后台开发（?） 二进宫 一面面经.md",
     "腾讯/数据平台/我的腾讯一面.md",
     "Cider面经/1.md",
@@ -216,27 +270,16 @@
     "快手/支付方向/快手日常实习面经.md",
     "image/Pasted image 20250331142424.png",
     "技术专栏",
-    "面经较少公司/银河智学.md",
     "腾讯/数据平台",
     "腾讯",
     "蚂蚁",
-    "面经较少公司/广州兴业.md",
     "image/Pasted image 20250324234607.png",
     "面经较少公司/未命名",
     "面经较少公司",
     "快手/支付方向",
     "快手",
-    "面经较少公司/粤港澳数字经济Idea 研究院.md",
-    "面经较少公司/英孚.md",
-    "小鹅通往年面经+我的面经/小鹅通二面面经（结果未知）Cider一面面经（通过）.md",
-    "小鹅通往年面经+我的面经/小鹅通一面面经（带答案已OC）.md",
-    "README.md",
-    "小鹅通往年面经+我的面经/1.md",
-    "小鹅通往年面经+我的面经/2.md",
     "image/1653320764547.png",
     "image/Pasted image 20250306135833.png",
-    "字节-今日头条-财经业务",
-    "Cider面经",
     "Redis实战篇.assets/image-20220523221428827.png",
     "Redis实战篇.assets/image-20220523220950421.png",
     "Redis实战篇.assets/image-20220523212915666.png",

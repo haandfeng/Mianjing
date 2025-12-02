@@ -8,5 +8,6 @@
 博主找到工作了，暂时不更新。以后再找的时候Maybe更新，感谢相遇，家人们，有问题可以问我。还有一个字节面经没更新，但没啥，所以不更新。后续的约面我全拒了。
 
 
+哥们复活了。回来找工了 Nov.26 2025
 
-![Visitor Count](https://profile-counter.glitch.me/mianJing/count.svg)
+![Profile Views](https://komarev.com/ghpvc/?username=mianjing&color=58A6FF&style=for-the-badge&label=PROFILE+VIEWS)

@@ -8,73 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "5d5942664f5b9ddb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "技术专栏/InnoDB事务.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "InnoDB事务"
-            }
-          },
-          {
             "id": "6af07a90627ec71a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "面经较少公司/昆仑数智/1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "1"
             }
           },
           {
-            "id": "6cd4fd6fb9b8623d",
+            "id": "78acdd86f14b8fc7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "测试数学公式.md",
+                "file": "面经较少公司/昆仑数智/3.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "测试数学公式"
-            }
-          },
-          {
-            "id": "8ae8574f62200357",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "自己简历可能会考察的八股/Java后端.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Java后端"
-            }
-          },
-          {
-            "id": "9da7839e5af97072",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Java并发编程.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Java并发编程"
+              "title": "3"
             }
           }
         ],
@@ -224,7 +182,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 376.5
+    "width": 376.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -238,13 +197,18 @@
       "mxmind:Mxmind": false
     }
   },
-  "active": "6af07a90627ec71a",
+  "active": "78acdd86f14b8fc7",
   "lastOpenFiles": [
+    "面经较少公司/昆仑数智/3-总结.md",
+    "面经较少公司/昆仑数智/2.md",
+    "面经较少公司/昆仑数智/1.md",
+    "README.md",
+    "面经较少公司/昆仑数智",
+    "平凯星辰",
     "技术专栏/InnoDB事务.md",
     "Java并发编程.md",
     "自己简历可能会考察的八股/Java后端.md",
     "测试数学公式.md",
-    "README.md",
     "自己简历可能会考察的八股/AI简历.md",
     "Java后端.md",
     "小鹅通往年面经+我的面经/小鹅通一面面经（带答案已OC）.md",
@@ -265,9 +229,6 @@
     "字节-今日头条-财经业务/我的字节一面.md",
     "腾讯/数据平台/腾讯数据平台部 后台开发（?） 二进宫 一面面经.md",
     "腾讯/数据平台/我的腾讯一面.md",
-    "Cider面经/1.md",
-    "心潮无限往年面经/1.md",
-    "快手/支付方向/快手日常实习面经.md",
     "image/Pasted image 20250331142424.png",
     "技术专栏",
     "腾讯/数据平台",
@@ -276,8 +237,6 @@
     "image/Pasted image 20250324234607.png",
     "面经较少公司/未命名",
     "面经较少公司",
-    "快手/支付方向",
-    "快手",
     "image/1653320764547.png",
     "image/Pasted image 20250306135833.png",
     "Redis实战篇.assets/image-20220523221428827.png",

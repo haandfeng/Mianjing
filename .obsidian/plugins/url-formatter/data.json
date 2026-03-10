@@ -1,0 +1,10 @@
+{
+  "urlPatterns": [
+    {
+      "name": "Tickets per company",
+      "pattern": "^(https?:\\/\\/\\S+\\.(png|jpg|jpeg|webp|gif|svg)(\\?\\S*)?)$",
+      "formatString": "![]($1)",
+      "patternEnabled": false
+    }
+  ]
+}

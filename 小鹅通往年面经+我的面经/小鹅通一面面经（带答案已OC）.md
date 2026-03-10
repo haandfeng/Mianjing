@@ -117,12 +117,19 @@ HAVING COUNT(subject) >= 2;
 • **懒加载**（Holder.INSTANCE 只有在 getInstance() 被调用时才会初始化）
 ```java
 public class Singleton {
-    private Singleton() {}
-    private static class Holder {
+    //1、私有构造方法
+    private Singleton(){}
+
+    //2、定义一个静态内部类
+    private static class SingletonHolder{
+        // 在内部类中声明并初始化外部类的对象
+        // 加final关键字是 为了防止外界对其进行修改
         private static final Singleton INSTANCE = new Singleton();
     }
-    public static Singleton getInstance() {
-        return Holder.INSTANCE;
+
+    //3、提供一个获取单例的入口，注意是 public 和 static
+    public static Singleton getInstance(){
+        return SingletonHolder.INSTANCE;
     }
 }
 ```
@@ -157,12 +164,6 @@ public class Singleton {
 • **高速缓存**（如 Redis 替代方案）。
 • **会话数据存储**（如 Web Session ）。
 
- **4. Archive（适用于日志存储）**
-✅ **存储空间占用小，适合归档数据**。
-✅ **不支持索引（只能支持 PRIMARY KEY）**。
-✅ **只支持 INSERT 和 SELECT（不支持 DELETE 和 UPDATE）**。
-**适用场景**：
-• **日志存储**、**历史数据归档**（如银行流水、监控日志）。
 # Mysql的主从同步原理了解过吗
 没有。。
 [小林coding有讲](https://xiaolincoding.com/interview/mysql.html#mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%BA%86%E8%A7%A3%E5%90%97)
@@ -287,13 +288,3 @@ rabbitTemplate.convertAndSend("queue", message);
 | **生产者限流** | 令牌桶算法、RateLimiter | **削峰填谷，防止流量过载** |
 | **消费者扩容** | 增加消费者并发数、批量消费     | **提升消费速度**      |
 | **消息降级**  | 丢弃低优先级消息、延迟消费     | **优先保证核心业务**    |
-
-# 你想来小鹅通希望获取到什么，能给公司带来什么激励
-
-自己编
-
-# 你是什么性格
-他们喜欢e人，喜欢喜欢沟通的人
-
-
-# 介绍工作内容

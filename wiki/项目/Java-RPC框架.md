@@ -7,7 +7,9 @@ updated: 2026-05-04
 # Java-RPC框架
 
 ## 一句话介绍
-基于 Etcd/Nacos + Netty 的自研 Java RPC 框架，含心跳、ShutdownHook、自定义协议头、requestId 异步映射、容错、限流、负载均衡。
+基于 **Nacos** + Netty 的自研 Java RPC 框架，含心跳、ShutdownHook、自定义协议头、requestId 异步映射、容错、限流、负载均衡。
+
+> ⚠ **简历 vs 早期面经口径不一致**：简历最新版用 **Nacos**（见 [[我的简历/RPC框架项目]]）；早期部分面经（如 [[快手/支付方向/快手日常实习面经]]）用了 **Etcd**。面试时统一以 Nacos 为准。被追问 Etcd / Nacos / ZK 选型差异的话术见 [[我的简历/RPC框架项目#⚠ Nacos vs Etcd 不一致说明]]。
 
 ## 项目级 STAR 自陈
 - **S（场景）**：Java 程序与 Python 程序间需要远程调用，自建 RPC 框架学习核心组件。

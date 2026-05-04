@@ -14,9 +14,9 @@ updated: 2026-05-04
 - "为什么用 Milvus 不用 Elasticsearch" — [[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]、[[虾皮/Shopee DB Infra 北京平台实习面试问题总结]]
 - "HNSW 是什么；KNN vs ANN；FLAT 索引和 KNN 的关系" — [[虾皮/Shopee DB Infra 北京平台实习面试问题总结]]
 - "混合检索（dense + sparse + BM25）+ Reranker；RRF" — [[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]、[[虾皮/Shopee DB Infra 北京平台实习面试问题总结]]
-- "Chunk 切分策略；语义分块 / 滑动窗口 / 层次化" — [[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]、[[蔚来/xhs]]
+- "Chunk 切分策略；语义分块 / 滑动窗口 / 层次化" — [[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]、[[蔚来/蔚来一面RAG深挖]]
 - "RAG 评估方案 + LangSmith trace" — [[面经较少公司/PingCAP 平凯星辰/面试问题总结]]、[[虾皮/Shopee DB Infra 北京平台实习面试问题总结]]
-- "为什么不用大窗口模型直接喂全文档" — [[蔚来/xhs]]
+- "为什么不用大窗口模型直接喂全文档" — [[蔚来/蔚来一面RAG深挖]]
 
 ## 答题骨架
 
@@ -116,4 +116,4 @@ updated: 2026-05-04
 ## 深入阅读
 - 原始专栏 [[后端技术专栏/向量索引-HNSW和KNN-ANN区别]]
 - Agent 专栏 [[Agent技术专栏/MCP_SSE_文档]]
-- 真题来源 [[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]、[[面经较少公司/PingCAP 平凯星辰/面试问题总结]]、[[虾皮/Shopee DB Infra 北京平台实习面试问题总结]]、[[小红书/小红书产品工程师一面面经]]、[[蔚来/xhs]]
+- 真题来源 [[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]、[[面经较少公司/PingCAP 平凯星辰/面试问题总结]]、[[虾皮/Shopee DB Infra 北京平台实习面试问题总结]]、[[小红书/小红书产品工程师一面面经]]、[[蔚来/蔚来一面RAG深挖]]

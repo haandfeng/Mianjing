@@ -2,6 +2,14 @@
   "recentFiles": [
     {
       "basename": "README",
+      "path": "README.md"
+    },
+    {
+      "basename": "CLAUDE",
+      "path": "CLAUDE.md"
+    },
+    {
+      "basename": "README",
       "path": "wiki/README.md"
     },
     {
@@ -15,10 +23,6 @@
     {
       "basename": "README",
       "path": "wiki/模板/README.md"
-    },
-    {
-      "basename": "README",
-      "path": "README.md"
     },
     {
       "basename": "我的字节一面",
@@ -43,10 +47,6 @@
     {
       "basename": "JVM内存结构",
       "path": "Excalidraw/JVM内存结构.md"
-    },
-    {
-      "basename": "CLAUDE",
-      "path": "CLAUDE.md"
     },
     {
       "basename": "三次握手四次挥手 TCP可靠传输",

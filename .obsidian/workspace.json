@@ -41,7 +41,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/README.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
@@ -189,7 +189,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/README.md",
+                "file": "README.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -256,11 +256,14 @@
   },
   "active": "4f16e97206d0cbc8",
   "lastOpenFiles": [
+    "CLAUDE.md",
+    "wiki/使用指南.md",
+    "README.md",
+    "wiki/README.md",
     "wiki/dashboard/主题统计.md",
     "wiki/dashboard/公司爱考什么.md",
     "wiki/dashboard/面试历史.md",
     "wiki/模板/录音转面经.md",
-    "wiki/使用指南.md",
     "简历/2026-01-24_谭演锋_简历2026_2_12.pdf",
     "简历/2026-02-12_简历_谭演锋.pdf",
     "简历/2025-08-19_transcript.pdf",
@@ -273,7 +276,6 @@
     "简历/2025-11-20_Resume_Yanfeng_Tan_11_20.pdf",
     "wiki/可视化/README.md",
     "wiki/可视化/wiki鸟瞰图.md",
-    "wiki/README.md",
     "wiki/插件设置.md",
     "wiki/索引/高频考点榜.md",
     "公司/其他/长鑫/长鑫存储.md",
@@ -290,8 +292,6 @@
     "公司/其他/昆仑数智/3-总结.md",
     "公司/其他/昆仑数智/2.md",
     "公司/其他/昆仑数智/1.md",
-    "SOP.md",
-    "wiki/工作流/README.md",
     "img/Pasted image 20260312235921.png",
     "img/Pasted image 20260208151010.png",
     "img/Pasted image 20260205210548.png",

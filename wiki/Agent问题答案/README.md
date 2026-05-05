@@ -10,7 +10,7 @@ updated: 2026-05-04
 >
 > 来源：
 > - 真题：[[Agent相关问题]]
-> - 参考：[[Agent技术专栏/OpenClaw 笔记]]、[[Agent技术专栏/MCP_SSE_文档]]、[[Agent技术专栏/MCP与Tool管理]]、[[Agent技术专栏/Skills]]、[[wiki/技术主题/Agent设计模式与MCP]]、[[wiki/技术主题/RAG优化全链路]]、[[追问/西门子RAG]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]
+> - 参考：[[专栏/Agent/OpenClaw 笔记]]、[[专栏/Agent/MCP_SSE_文档]]、[[专栏/Agent/MCP与Tool管理]]、[[专栏/Agent/Skills]]、[[wiki/技术主题/Agent设计模式与MCP]]、[[wiki/技术主题/RAG优化全链路]]、[[追问/西门子RAG]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]
 
 ## 5 个主题
 
@@ -73,4 +73,4 @@ updated: 2026-05-04
 ## 标记说明
 
 - 部分问题 raw 来源覆盖不充分（如 Q15 推理模型不支持 MCP 的"技术原因"、Q27 A2A 协议、Q33 NL2SQL 安全），文中以 `// 待补全：暂无 raw 来源` + **推测** 标记给出最佳近似回答，等真题 / 项目积累后补全。
-- 双链命名约定：项目内 wiki = 裸名；raw 专栏 = 全路径（如 `[[Agent技术专栏/OpenClaw 笔记]]`）。
+- 双链命名约定：项目内 wiki = 裸名；raw 专栏 = 全路径（如 `[[专栏/Agent/OpenClaw 笔记]]`）。

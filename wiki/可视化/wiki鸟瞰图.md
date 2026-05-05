@@ -45,8 +45,9 @@ flowchart TD
     end
 
     subgraph RAW["💾 raw 层 (仓库根目录)"]
-        FACE[公司面经 .md]
-        COL[后端技术专栏/ + Agent技术专栏/]
+        FACE[公司/ — 13 公司面经]
+        COL[专栏/ — 后端 + Agent + 系统设计]
+        PROJ[项目/ — 个人项目]
         PDF[简历_谭演锋.pdf]
     end
 

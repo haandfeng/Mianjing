@@ -495,7 +495,7 @@ class Memory(BaseModel):
 # LangChain和LangGraph有什么区别？
 
 
-**详细对比和代码示例**：[[面经较少公司/PingCAP 平凯星辰/面试问题总结#你们当时为什么选择用 LangGraph 去写？|PingCAP面经中有详细的LangChain vs LangGraph对比和代码示例]]
+**详细对比和代码示例**：[[其他/PingCAP 平凯星辰/面试问题总结#你们当时为什么选择用 LangGraph 去写？|PingCAP面经中有详细的LangChain vs LangGraph对比和代码示例]]
 
 # 你了解MCP吗？
 

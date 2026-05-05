@@ -7,7 +7,7 @@ updated: 2026-05-04
 # Prompt 工程（写法 / 多轮对话 / 关键词提取 / 实践 / 示例）
 
 > 涵盖：Q8、Q9、Q19、Q25、Q40。
-> 主参考：[[Agent技术专栏/OpenClaw 笔记]]、[[西门子RAG]]、[[微软/Bing图像视频业务实习一面面经]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]。
+> 主参考：[[专栏/Agent/OpenClaw 笔记]]、[[西门子RAG]]、[[微软/Bing图像视频业务实习一面面经]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]。
 
 ---
 
@@ -24,7 +24,7 @@ updated: 2026-05-04
 - **动态拼装**：检索 / 工具结果作为 Context 注入，不要一股脑塞 system prompt；注意 token 预算。
 - **可观测**：把 prompt 模板版本化，A/B 测试，配合 LangSmith 看哪个版本准确率更高。
 
-**拓展双链**：[[Agent问题答案/Prompt工程#Q25]]、[[Agent技术专栏/OpenClaw 笔记]]（System Prompt Builder）
+**拓展双链**：[[Agent问题答案/Prompt工程#Q25]]、[[专栏/Agent/OpenClaw 笔记]]（System Prompt Builder）
 
 ---
 
@@ -37,11 +37,11 @@ updated: 2026-05-04
 - **简单方案**：把历史 messages 拼进 LLM 调用，按角色（user / assistant / tool）顺序排好；轮次少时直接喂。
 - **窗口压缩**：达到 N 轮（西门子项目里是 10 轮）触发 summary，把前面所有对话压成一条 summary message + 保留最近 K 轮原文。
 - **双层记忆**：window memory（最近 K 轮原文）+ summary memory（更早的总结）+ 长期 memory（向量库）。
-- **OpenClaw 模式**（[[Agent技术专栏/OpenClaw 笔记]]）：JSONL 转录 + MEMORY.md / `memory/*.md` 沉淀；`/new` / `/reset` 时 hook 把最近 N 条对话总结成新的 memory md。
+- **OpenClaw 模式**（[[专栏/Agent/OpenClaw 笔记]]）：JSONL 转录 + MEMORY.md / `memory/*.md` 沉淀；`/new` / `/reset` 时 hook 把最近 N 条对话总结成新的 memory md。
 - **Context Window Guard**：上下文快满时显式压缩 / 降级 / 优雅停，不能撑爆才知道。
 - **token 估算**：单轮约 5000 token、10 轮 5 万（西门子真实数据），结合模型上下文窗选阈值。
 
-**拓展双链**：[[Agent技术专栏/OpenClaw 笔记]]（Memory 章）、[[微软/Bing图像视频业务实习一面面经]]（多轮压缩 Q）、[[西门子RAG]]（Q13）
+**拓展双链**：[[专栏/Agent/OpenClaw 笔记]]（Memory 章）、[[微软/Bing图像视频业务实习一面面经]]（多轮压缩 Q）、[[西门子RAG]]（Q13）
 
 ---
 
@@ -76,7 +76,7 @@ updated: 2026-05-04
 - **模板版本化**：和代码一起进 git，prompt 模板是工程资产不是 magic string。
 - **观测 + 评估**：LangSmith trace + LLM judge + 人工抽样 double check。
 
-**拓展双链**：[[Agent问题答案/Prompt工程#Q8]]、[[西门子RAG]]、[[Agent技术专栏/OpenClaw 笔记]]
+**拓展双链**：[[Agent问题答案/Prompt工程#Q8]]、[[西门子RAG]]、[[专栏/Agent/OpenClaw 笔记]]
 
 ---
 

@@ -86,12 +86,12 @@ Agent
 
 - 答题分册：[[Agent问题答案/README]]（43 题分主题）
 - raw 笔记本：
-  - [[Agent技术专栏/OpenClaw 笔记]] —— Agent 调用链 / Skill Router / Task Planner
-  - [[Agent技术专栏/MCP_SSE_文档]] —— MCP 协议详解
-  - [[Agent技术专栏/MCP与Tool管理]] —— Tool 太多怎么办
-  - [[Agent技术专栏/Skills]] —— Skill 包格式
-  - [[Agent技术专栏/Harness Engineering]] —— OpenAI / Anthropic 的 Harness 实战（上下文管理 / 验证器 / 生成-评估循环）
-  - [[Agent技术专栏/RAG到Agent进阶]] —— RAG → ReAct / Plan-Execute / LangGraph State 的演化路径
-  - [[Agent技术专栏/什么时候选择多智能体]] —— Anthropic 多 Agent 设计指南
+  - [[专栏/Agent/OpenClaw 笔记]] —— Agent 调用链 / Skill Router / Task Planner
+  - [[专栏/Agent/MCP_SSE_文档]] —— MCP 协议详解
+  - [[专栏/Agent/MCP与Tool管理]] —— Tool 太多怎么办
+  - [[专栏/Agent/Skills]] —— Skill 包格式
+  - [[专栏/Agent/Harness Engineering]] —— OpenAI / Anthropic 的 Harness 实战（上下文管理 / 验证器 / 生成-评估循环）
+  - [[专栏/Agent/RAG到Agent进阶]] —— RAG → ReAct / Plan-Execute / LangGraph State 的演化路径
+  - [[专栏/Agent/什么时候选择多智能体]] —— Anthropic 多 Agent 设计指南
 - 原始 Q 清单：[[Agent相关问题]]
-- 真题来源：[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]] · [[小红书/小红书产品工程师一面面经]] · [[微软/Bing图像视频业务实习一面面经]] · [[字节-今日头条-财经业务/字节-国际广告and中国广告/面经记录_国际商业化创业_3.9]]
+- 真题来源：[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]] · [[小红书/小红书产品工程师一面面经]] · [[微软/Bing图像视频业务实习一面面经]] · [[字节/国际广告/面经记录_国际商业化创业_3.9]]

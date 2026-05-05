@@ -22,7 +22,7 @@ updated: 2026-05-04
 - 检索是写死调用（医疗场景宁愿延迟也要保证召回），生成阶段温度 0 防幻觉。
 - 上线后用 LangSmith trace 每个节点的输入输出 + 耗时，定位失败 case。
 
-**拓展双链**：[[RAG优化全链路]]、[[西门子RAG]]、[[Agent技术专栏/MCP_SSE_文档]]、[[向量索引-HNSW和KNN-ANN区别]]
+**拓展双链**：[[RAG优化全链路]]、[[西门子RAG]]、[[专栏/Agent/MCP_SSE_文档]]、[[向量索引-HNSW和KNN-ANN区别]]
 
 ---
 
@@ -72,7 +72,7 @@ updated: 2026-05-04
 - **Agent 行动**：失败时自动回查最近相似 case 的 root cause + 修复 PR；写回知识库形成闭环。
 - // 待补全：暂无 raw 来源（推测）。蔚来面经里有"DevOps + Agent 落地"的方向暗示，可作背景。
 
-**拓展双链**：[[RAG优化全链路]]、[[Agent技术专栏/OpenClaw 笔记]]（Memory MD/JSONL 沉淀模式）
+**拓展双链**：[[RAG优化全链路]]、[[专栏/Agent/OpenClaw 笔记]]（Memory MD/JSONL 沉淀模式）
 
 ---
 
@@ -106,7 +106,7 @@ updated: 2026-05-04
 - **代表系统**：Cursor、Sourcegraph Cody、GitHub Copilot Workspace 都是这个架构。
 - // 待补全：暂无 raw 来源（推测）。
 
-**拓展双链**：[[RAG优化全链路]]、[[Agent技术专栏/OpenClaw 笔记]]（Computer Use + 文件工具）
+**拓展双链**：[[RAG优化全链路]]、[[专栏/Agent/OpenClaw 笔记]]（Computer Use + 文件工具）
 
 ---
 
@@ -135,10 +135,10 @@ updated: 2026-05-04
 - **场景驱动**：直接问答 → 单步 prompt；多步任务 → ReAct（Reasoning + Acting）；并行子任务 → Plan-and-Execute；探索性 → ToT / 自反思（Self-Refine）。
 - **成本驱动**：简单查询走小模型 / 单跳；复杂查询才升级到 ReAct + 多工具循环。
 - **判定信号**：query 复杂度（长度、子句数）、是否需要外部数据、是否多回合澄清。
-- **Skill Router 思路**（[[Agent技术专栏/OpenClaw 笔记]]）：硬规则关键词匹配 + 轻量 LLM 兜底，先走确定性路径，边缘 case 才用大模型分类。
+- **Skill Router 思路**（[[专栏/Agent/OpenClaw 笔记]]）：硬规则关键词匹配 + 轻量 LLM 兜底，先走确定性路径，边缘 case 才用大模型分类。
 - 不要一上来就堆多 Agent，Cognition "Don't Build Multi-Agents" 提醒：默认串行，显式并行。
 
-**拓展双链**：[[Agent设计模式与MCP]]、[[Agent技术专栏/OpenClaw 笔记]]（Skill Router）、[[Agent问题答案/Agent设计#Q13]]（推理模式差异化）
+**拓展双链**：[[Agent设计模式与MCP]]、[[专栏/Agent/OpenClaw 笔记]]（Skill Router）、[[Agent问题答案/Agent设计#Q13]]（推理模式差异化）
 
 ---
 

@@ -7,7 +7,7 @@ updated: 2026-05-04
 # MCP 与协议（FC / SSE / A2A / Skill 区分 / 推理模型支持）
 
 > 涵盖：Q7、Q12、Q15、Q21、Q23、Q27、Q37、Q41。
-> 主参考：[[Agent技术专栏/MCP_SSE_文档]]、[[Agent技术专栏/MCP与Tool管理]]、[[Agent技术专栏/Skills]]、[[Agent设计模式与MCP]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]。
+> 主参考：[[专栏/Agent/MCP_SSE_文档]]、[[专栏/Agent/MCP与Tool管理]]、[[专栏/Agent/Skills]]、[[Agent设计模式与MCP]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]。
 
 ---
 
@@ -23,7 +23,7 @@ updated: 2026-05-04
 - 类比：FC 是函数指针，MCP 是 USB-C 接口标准；之前每接入一个工具就要写一遍适配，MCP 让工具方实现一次 Server，所有 Host 都能用。
 - 与 LangChain Tool：LangChain 是框架内抽象，MCP 是跨框架协议；LangChain 也已经支持接 MCP Server。
 
-**拓展双链**：[[Agent设计模式与MCP]]、[[Agent技术专栏/MCP与Tool管理]]、[[Agent技术专栏/MCP_SSE_文档]]
+**拓展双链**：[[Agent设计模式与MCP]]、[[专栏/Agent/MCP与Tool管理]]、[[专栏/Agent/MCP_SSE_文档]]
 
 ---
 
@@ -40,7 +40,7 @@ updated: 2026-05-04
 - **传输层**：stdio（本地子进程）/ SSE（HTTP 长连接）/ Streamable HTTP（新增），后两者支持远程。
 - 实战：OpenManus 实现了完整 Client + Server，工具会被重命名为 `mcp_<server_id>_<tool>` 加进 Agent 工具集。
 
-**拓展双链**：[[Agent技术专栏/MCP_SSE_文档]]（图示完整流程）、[[Agent设计模式与MCP]]
+**拓展双链**：[[专栏/Agent/MCP_SSE_文档]]（图示完整流程）、[[Agent设计模式与MCP]]
 
 ---
 
@@ -59,7 +59,7 @@ updated: 2026-05-04
 - 解决：要么换支持 FC 的模型；要么用轻量包装层把 MCP 工具描述塞进 system prompt 让模型 zero-shot；要么 fine-tune 一个 tool-use head。
 - // 待补全：暂无 raw 来源（推测）。可在专门面经里补"R1 / o1 系列对 tool use 支持差"等具体例子。
 
-**拓展双链**：[[Agent技术专栏/MCP与Tool管理]]、[[Agent设计模式与MCP]]
+**拓展双链**：[[专栏/Agent/MCP与Tool管理]]、[[Agent设计模式与MCP]]
 
 ---
 
@@ -76,7 +76,7 @@ updated: 2026-05-04
 - **并发上限**：浏览器对同一 origin 的 SSE 连接有上限（HTTP/1.1 ~6 个），HTTP/2 才能突破。
 - 替代：长任务 / 双向高频用 WebSocket；只读流用 SSE 仍然最简单。
 
-**拓展双链**：[[Agent技术专栏/MCP_SSE_文档]]（fetch + ReadableStream 突破 GET-only 限制）
+**拓展双链**：[[专栏/Agent/MCP_SSE_文档]]（fetch + ReadableStream 突破 GET-only 限制）
 
 ---
 
@@ -92,7 +92,7 @@ updated: 2026-05-04
 - **选型**：本地工具 / Claude Desktop 默认 stdio；跨机器 / 多客户端共享走 SSE 或 Streamable HTTP。
 - 配置示例（OpenManus `config/mcp.json`）：`type: "stdio"` 配 command + args；`type: "sse"` 配 url。
 
-**拓展双链**：[[Agent技术专栏/MCP_SSE_文档]]、[[Agent设计模式与MCP]]
+**拓展双链**：[[专栏/Agent/MCP_SSE_文档]]、[[Agent设计模式与MCP]]
 
 ---
 
@@ -125,7 +125,7 @@ updated: 2026-05-04
 - **执行环境**：MCP 工具跑在 Server 端进程；Skill 由 Agent 在本地按 SKILL.md 步骤执行（可以调脚本、读模板）。
 - **类比**：MCP = "外部 API 服务"；Skill = "内置技能包 / 插件"。两者可以并存：Skill 调脚本 → 脚本里再走 MCP 拿外部数据。
 
-**拓展双链**：[[Agent技术专栏/Skills]]、[[Agent技术专栏/MCP与Tool管理]]、[[Agent设计模式与MCP]]
+**拓展双链**：[[专栏/Agent/Skills]]、[[专栏/Agent/MCP与Tool管理]]、[[Agent设计模式与MCP]]
 
 ---
 

@@ -1,36 +1,24 @@
 {
   "recentFiles": [
     {
+      "basename": "我的字节一面",
+      "path": "公司/字节/我的字节一面.md"
+    },
+    {
+      "basename": "字节财经一面",
+      "path": "公司/字节/字节财经一面.md"
+    },
+    {
+      "basename": "Offer看板",
+      "path": "wiki/dashboard/Offer看板.md"
+    },
+    {
       "basename": "README",
       "path": "README.md"
     },
     {
-      "basename": "RPC框架",
-      "path": "后端技术专栏/RPC框架.md"
-    },
-    {
-      "basename": "什么时候选择多智能体",
-      "path": "Agent技术专栏/什么时候选择多智能体.md"
-    },
-    {
       "basename": "未命名",
       "path": "未命名.md"
-    },
-    {
-      "basename": "面经记录_国际商业化创业_3.9",
-      "path": "TT/字节-今日头条-财经业务/字节-国际广告and中国广告/面经记录_国际商业化创业_3.9.md"
-    },
-    {
-      "basename": "字节跳动中国商业化一面面经",
-      "path": "TT/字节-今日头条-财经业务/字节-国际广告and中国广告/字节跳动中国商业化一面面经.md"
-    },
-    {
-      "basename": "字节中国交易与广告 面经",
-      "path": "TT/字节-今日头条-财经业务/字节-国际广告and中国广告/字节中国交易与广告 面经.md"
-    },
-    {
-      "basename": "10.13 字节 国际化广告 后端",
-      "path": "TT/字节-今日头条-财经业务/字节-国际广告and中国广告/10.13 字节 国际化广告 后端.md"
     },
     {
       "basename": "卡码信息",
@@ -41,64 +29,8 @@
       "path": "项目/代码随想录项目精讲系列-仿牛客论坛项目.pdf"
     },
     {
-      "basename": "小红书产品工程师一面面经",
-      "path": "小红书/小红书产品工程师一面面经.md"
-    },
-    {
-      "basename": "快手一面面经",
-      "path": "快手/大数据平台方向/快手一面面经.md"
-    },
-    {
-      "basename": "阿里云消息团队一面面经",
-      "path": "阿里云面经/阿里云消息团队一面面经.md"
-    },
-    {
-      "basename": "字节财经一面",
-      "path": "TT/字节-今日头条-财经业务/字节财经一面.md"
-    },
-    {
-      "basename": "黑马点评相关技术",
-      "path": "后端技术专栏/黑马点评相关技术.md"
-    },
-    {
-      "basename": "用 Rand(A) 实现 Rand(B)",
-      "path": "后端技术专栏/用 Rand(A) 实现 Rand(B).md"
-    },
-    {
       "basename": "Java多线程 并发",
       "path": "后端技术专栏/Java多线程 并发.md"
-    },
-    {
-      "basename": "小红书产品工程师二面面经",
-      "path": "小红书/小红书产品工程师二面面经.md"
-    },
-    {
-      "basename": "Bing图像视频业务实习一面面经",
-      "path": "微软/Bing图像视频业务实习一面面经.md"
-    },
-    {
-      "basename": "老虎国际二面面经（资讯组）",
-      "path": "面经较少公司/老虎国际二面面经（资讯组）.md"
-    },
-    {
-      "basename": "老虎国际一面面经（资讯组）",
-      "path": "面经较少公司/老虎国际一面面经（资讯组）.md"
-    },
-    {
-      "basename": "我的腾讯一面",
-      "path": "腾讯/数据平台/我的腾讯一面.md"
-    },
-    {
-      "basename": "腾讯数据平台部 后台开发（?） 二进宫 一面面经",
-      "path": "腾讯/数据平台/腾讯数据平台部 后台开发（?） 二进宫 一面面经.md"
-    },
-    {
-      "basename": "PgSql",
-      "path": "后端技术专栏/PgSql.md"
-    },
-    {
-      "basename": "java参考代码",
-      "path": "后端技术专栏/java参考代码.md"
     },
     {
       "basename": "JVM内存结构",
@@ -109,32 +41,8 @@
       "path": "Agent相关问题.md"
     },
     {
-      "basename": "快手Java开发日常实习生（支付方向）一面（挂）",
-      "path": "快手/支付方向/快手Java开发日常实习生（支付方向）一面（挂）.md"
-    },
-    {
-      "basename": "我的快手支付二面",
-      "path": "快手/支付方向/我的快手支付二面.md"
-    },
-    {
-      "basename": "5",
-      "path": "小鹅通往年面经+我的面经/5.md"
-    },
-    {
-      "basename": "RPC框架整理后",
-      "path": "后端技术专栏/RPC框架整理后.md"
-    },
-    {
-      "basename": "Shopee DB Infra 北京平台实习面试问题总结",
-      "path": "虾皮/Shopee DB Infra 北京平台实习面试问题总结.md"
-    },
-    {
       "basename": "CLAUDE",
       "path": "CLAUDE.md"
-    },
-    {
-      "basename": "OpenClaw 笔记",
-      "path": "Agent技术专栏/OpenClaw 笔记.md"
     },
     {
       "basename": "三次握手四次挥手 TCP可靠传输",
@@ -157,36 +65,16 @@
       "path": "Java后端技术专栏/黑马点评相关技术.md"
     },
     {
-      "basename": "MCP_SSE_文档",
-      "path": "Agent技术专栏/MCP_SSE_文档.md"
-    },
-    {
       "basename": "Http Https",
       "path": "Excalidraw/Http Https.md"
-    },
-    {
-      "basename": "京东零售一面",
-      "path": "京东/京东零售一面.md"
-    },
-    {
-      "basename": "我的字节一面",
-      "path": "TT/字节-今日头条-财经业务/我的字节一面.md"
     },
     {
       "basename": "Java多线程 并发",
       "path": "Java后端技术专栏/Java多线程 并发.md"
     },
     {
-      "basename": "长鑫存储",
-      "path": "面经较少公司/长鑫存储.md"
-    },
-    {
       "basename": "Java并发编程",
       "path": "Java后端技术专栏/Java并发编程.md"
-    },
-    {
-      "basename": "快手日常实习面经",
-      "path": "快手/支付方向/快手日常实习面经.md"
     },
     {
       "basename": "Netty",

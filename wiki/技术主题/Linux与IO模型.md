@@ -10,10 +10,10 @@ updated: 2026-05-04
 
 ## 高频问法
 - "select / poll / epoll 区别；epoll 数据结构（红黑树 + 就绪链表）" — [[TT/TT SRE]]、[[京东/京东零售一面]]
-- "BIO / NIO / AIO；Reactor / Proactor" — [[TT/TT SRE]]、[[字节-今日头条-财经业务/字节-国际广告and中国广告/字节跳动中国商业化一面面经]]
+- "BIO / NIO / AIO；Reactor / Proactor" — [[TT/TT SRE]]、[[字节/国际广告/字节跳动中国商业化一面面经]]
 - "零拷贝（read+write / sendfile / mmap / splice）" — [[TT/TT SRE 牛客]]
 - "Linux 排查命令：top / vmstat / iostat / ss / strace / netstat" — [[TT/TT SRE]]、[[TT/TT SRE 牛客]]
-- "进程 vs 线程 vs 协程" — [[TT/TT SRE 牛客]]、[[字节-今日头条-财经业务/字节-国际广告and中国广告/字节跳动中国商业化一面面经]]
+- "进程 vs 线程 vs 协程" — [[TT/TT SRE 牛客]]、[[字节/国际广告/字节跳动中国商业化一面面经]]
 - "网站访问慢怎么排查；502 怎么排查" — [[TT/TT SRE 牛客]]
 - "CPU 占用不高但系统慢怎么排查" — [[TT/TT SRE 牛客]]
 - "Redis 用什么 IO 模型" — [[京东/京东零售一面]]
@@ -132,5 +132,5 @@ updated: 2026-05-04
 - TIME_WAIT 大量积累会耗尽端口，调 `net.ipv4.tcp_tw_reuse=1`
 
 ## 深入阅读
-- 原始专栏 [[后端技术专栏/Netty]]（select/poll/epoll、零拷贝、Reactor 章节）
+- 原始专栏 [[专栏/后端/Netty]]（select/poll/epoll、零拷贝、Reactor 章节）
 - 真题来源 [[TT/TT SRE]]、[[TT/TT SRE 二面]]、[[TT/TT SRE 牛客]]

@@ -7,7 +7,7 @@ updated: 2026-05-05
 
 # Harness Engineering
 
-> Agent harness 是包裹 LLM 让它能高效运转的一切工程支撑。本文整理 OpenAI 和 Anthropic 的最佳实践（含原文合并自 `Agent技术专栏/Harness.md`）。
+> Agent harness 是包裹 LLM 让它能高效运转的一切工程支撑。本文整理 OpenAI 和 Anthropic 的最佳实践（含原文合并自 `专栏/Agent/Harness.md`）。
 
 ## TL;DR — Anthropic Harness 三组件
 

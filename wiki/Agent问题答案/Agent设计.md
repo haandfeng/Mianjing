@@ -7,7 +7,7 @@ updated: 2026-05-04
 # Agent 设计（项目背景 / 推理模式 / 调用流程 / 多 Agent / 范式）
 
 > 涵盖：Q1、Q3、Q4、Q10、Q13、Q16、Q18、Q22、Q30、Q31。
-> 主参考：[[Agent技术专栏/OpenClaw 笔记]]、[[Agent设计模式与MCP]]、[[西门子RAG]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]。
+> 主参考：[[专栏/Agent/OpenClaw 笔记]]、[[Agent设计模式与MCP]]、[[西门子RAG]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]。
 
 ---
 
@@ -90,7 +90,7 @@ updated: 2026-05-04
 - **ToT / Self-Refine**：树搜索 / 反思迭代，适合需要尝试多个解的难题。
 - **差异化原则**：用最简单能解决问题的模式；准确性敏感场景优先确定性流程（写死调用 RAG），灵活性场景才放权给模型。
 
-**拓展双链**：[[Agent问题答案/Agent设计#Q16]]、[[Agent技术专栏/OpenClaw 笔记]]（Skill Router 决策框架）
+**拓展双链**：[[Agent问题答案/Agent设计#Q16]]、[[专栏/Agent/OpenClaw 笔记]]（Skill Router 决策框架）
 
 ---
 
@@ -110,7 +110,7 @@ updated: 2026-05-04
 - **防卡死**：检测连续多轮无新增信息（is_stuck）就强制结束并兜底。
 - **观察存储**：所有 tool_call 与 result 都进 Memory.messages，下一轮 think 拿到完整对话历史。
 
-**拓展双链**：[[Agent技术专栏/OpenClaw 笔记]]（Agentic Loop 节）、[[Agent设计模式与MCP]]、[[Agent问题答案/Agent设计#Q13]]
+**拓展双链**：[[专栏/Agent/OpenClaw 笔记]]（Agentic Loop 节）、[[Agent设计模式与MCP]]、[[Agent问题答案/Agent设计#Q13]]
 
 ---
 
@@ -125,9 +125,9 @@ updated: 2026-05-04
 - **切换机制**：sub-agent 输出 final_answer 或 handoff 时把控制权交回 Supervisor；状态由 LangGraph 持久化，支持中断后从 checkpoint 恢复。
 - **默认串行**：参考 Cognition "Don't Build Multi-Agents"，并行只在显式低风险任务（定时任务、独立子查询）开启。
 - **失败兜底**：sub-agent 失败 N 次自动降级到 fallback 简单链路，避免无限循环。
-- // 部分推测：Supervisor 模式来自 LangGraph 文档与 [[Agent技术专栏/MCP与Tool管理]]，"切换机制"对蔚来项目的具体落地是推测。
+- // 部分推测：Supervisor 模式来自 LangGraph 文档与 [[专栏/Agent/MCP与Tool管理]]，"切换机制"对蔚来项目的具体落地是推测。
 
-**拓展双链**：[[Agent设计模式与MCP]]（5. 多级 Agent 架构）、[[Agent技术专栏/OpenClaw 笔记]]（lane / 串行默认）
+**拓展双链**：[[Agent设计模式与MCP]]（5. 多级 Agent 架构）、[[专栏/Agent/OpenClaw 笔记]]（lane / 串行默认）
 
 ---
 
@@ -166,7 +166,7 @@ updated: 2026-05-04
 - **运行**：`agent = await Manus.create()` → `agent.run(prompt)` → 内部循环 think / act 直到完成或 max_steps。
 - **观察**：trace / log 写到本地 jsonl + LangSmith。
 
-**拓展双链**：[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]（OpenManus 代码示例最详）、[[Agent技术专栏/OpenClaw 笔记]]
+**拓展双链**：[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]（OpenManus 代码示例最详）、[[专栏/Agent/OpenClaw 笔记]]
 
 ---
 
@@ -184,7 +184,7 @@ updated: 2026-05-04
 - **Anthropic Skill**：能力包打包格式，按 description 触发。
 - **Cognition Devin**：长期任务 + 沙箱执行，强调"默认串行"和可回放转录。
 
-**拓展双链**：[[Agent设计模式与MCP]]、[[Agent技术专栏/OpenClaw 笔记]]、[[Agent技术专栏/Skills]]
+**拓展双链**：[[Agent设计模式与MCP]]、[[专栏/Agent/OpenClaw 笔记]]、[[专栏/Agent/Skills]]
 
 ---
 

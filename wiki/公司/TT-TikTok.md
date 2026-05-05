@@ -12,10 +12,10 @@ updated: 2026-05-04
 - 一句话画像：SRE 是面经里 Linux/网络/系统八股密度最高的公司，二面专攻 502 排查 SOP；Search Ads 一道场景题（1 亿日志找 top-K IP）就能定差别
 
 ## 面经文件
-- [[TT/TT SRE]] —— 西门子 ETL 深挖（XML→Markdown 改开源库表格嵌套、Milvus batch insert 25→10 分钟、GPU 没打满）+ Linux 常用命令 + ext4 + 滑动窗口最小覆盖子串（含保留 T 字符顺序的 follow-up）
-- [[TT/TT SRE 二面]] —— 浏览器输 URL 全流程（DNS → TCP → TLS → 协议栈封装 → 网卡/交换机/路由器转发）+ DNS 递归 vs 迭代 + TCP 三/四次握手 + HTTPS 加密 + tiktok.com 1 分钟才显示的排查讨论
-- [[TT/TT SRE 牛客]] —— K8s 搭建 + nginx 流量架构 + service 调度算法 + DNS 协议 + IO 吞吐 + free -h 字段 + 502 排查 6 步 SOP（错误日志归类 / 直连验证 / ss 看连接状态分布 / Recv-Q 看 accept 队列满 / 配置事故 / 队列调优）+ JWT 三段结构 + Redis 点赞缓存一致性（先更新 MySQL 后删 Redis）+ DNS / TCP / 双向队列 / 日志 awk 统计 / 站点慢排查 / top vs vmstat vs iostat / 零拷贝 mmap/sendfile/scatter-gather + 进程线程协程
-- [[TT/TT Search ADs 26 Summer Intern]] —— 西门子 RAG 深挖（面试官想看后端方向，反响一般）+ 1 小时 1 亿条 nginx access log 求 top-K IPv4 + ACID 实习实践 + 召回/粗排/精排漏斗
+- [[TT/SRE/TT SRE]] —— 西门子 ETL 深挖（XML→Markdown 改开源库表格嵌套、Milvus batch insert 25→10 分钟、GPU 没打满）+ Linux 常用命令 + ext4 + 滑动窗口最小覆盖子串（含保留 T 字符顺序的 follow-up）
+- [[TT/SRE/TT SRE 二面]] —— 浏览器输 URL 全流程（DNS → TCP → TLS → 协议栈封装 → 网卡/交换机/路由器转发）+ DNS 递归 vs 迭代 + TCP 三/四次握手 + HTTPS 加密 + tiktok.com 1 分钟才显示的排查讨论
+- [[TT/SRE/TT SRE 牛客]] —— K8s 搭建 + nginx 流量架构 + service 调度算法 + DNS 协议 + IO 吞吐 + free -h 字段 + 502 排查 6 步 SOP（错误日志归类 / 直连验证 / ss 看连接状态分布 / Recv-Q 看 accept 队列满 / 配置事故 / 队列调优）+ JWT 三段结构 + Redis 点赞缓存一致性（先更新 MySQL 后删 Redis）+ DNS / TCP / 双向队列 / 日志 awk 统计 / 站点慢排查 / top vs vmstat vs iostat / 零拷贝 mmap/sendfile/scatter-gather + 进程线程协程
+- [[TT/Search-Ads/TT Search ADs 26 Summer Intern]] —— 西门子 RAG 深挖（面试官想看后端方向，反响一般）+ 1 小时 1 亿条 nginx access log 求 top-K IPv4 + ACID 实习实践 + 召回/粗排/精排漏斗
 
 ## 考察重点（按出现次数排序）
 1. **502 排查 SOP（六步法）** —— 看 Nginx error.log upstream 错误 → 直连验证上游 → ss 看连接状态分布 → ss -lnt 看 Recv-Q 是不是 accept 队列满 → 修配置（超时不要离谱大、调 backlog/somaxconn、启用 keepalive）→ 资源治理
@@ -29,13 +29,13 @@ updated: 2026-05-04
 
 ## 真题摘录（值得背的）
 
-> **外部访问 URL 出现 502 该怎么排查？** 出处 [[TT/TT SRE 牛客]]
+> **外部访问 URL 出现 502 该怎么排查？** 出处 [[TT/SRE/TT SRE 牛客]]
 > 六步法：①确认是谁返回的 502（curl -v 看 Nginx/Ingress）；②看 error.log upstream 报错归类（connect refused / timed out / prematurely closed / no live upstreams）；③直连验证（ss -tlnp 端口监听 / curl 健康检查 / journalctl 进程日志）；④ss -ant 看连接状态分布（SYN_SENT 卡住 / ESTABLISHED 堆积 / TIME_WAIT 爆炸）；⑤ss -lnt 看 Recv-Q 是不是 accept 队列满（Tomcat accept-count + somaxconn 默认偏小）；⑥修配置（超时不要离谱大触发雪崩、调 backlog、upstream keepalive 减少新建连接）。
 
-> **CPU 利用率不高但系统就是慢，怎么排查？** 出处 [[TT/TT SRE 牛客]]
+> **CPU 利用率不高但系统就是慢，怎么排查？** 出处 [[TT/SRE/TT SRE 牛客]]
 > 时间花在"等"上：top wa（iowait）高、进程 D 状态多 → 磁盘 IO；vmstat r/b 队列、si/so 换页、bi/bo 块设备读写；iostat %util > 80% / await > 50ms 看磁盘；iotop 看谁在大量读写；free -h 看 swap；strace -p 跟踪系统调用；netstat 看 TCP 是否大量 SYN-SENT/TIME-WAIT/CLOSE-WAIT 等外部依赖慢。
 
-> **redis 做点赞缓存如何避免数据不一致？** 出处 [[TT/TT SRE 牛客]]
+> **redis 做点赞缓存如何避免数据不一致？** 出处 [[TT/SRE/TT SRE 牛客]]
 > 先更新 MySQL 后删除 Redis：MySQL 写入 >> Redis 删除耗时，正常并发下读请求很难在写完前后那段间隙旧值写回。如果先删后更新反而更容易不一致——MySQL 写入慢，期间读请求会把旧值写回。删除失败兜底：依赖 TTL 过期 / 消息队列重试 / 订阅 binlog + MQ 重试。
 
 ## 复习清单（双链）

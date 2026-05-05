@@ -1,3 +1,15 @@
+---
+title: 小鹅通一面面经（带答案已OC）
+type: 面经
+company: 小鹅通
+bu: 我的
+round: 一面
+date: 2026-05-05
+verdict: 通过
+source: 我面试
+tags: [mysql, redis, java并发, jvm, spring, rpc, mq, 限流]
+---
+
 更多面经请查看https://github.com/haandfeng/Mianjing 以后会陆续更新和完善，我会持续引用之前面经的内容，也会根据自己面的公司看之前的面经，然后写上答案。如果大家觉得有用请多多关注，点赞收藏star🥺🥺🥺
 这些都是我基于gpt+小林+javaguide+其他杂七杂八的来源+自己思考的答案。欢迎大家来讨论
 

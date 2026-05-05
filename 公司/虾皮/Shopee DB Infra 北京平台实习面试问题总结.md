@@ -1,3 +1,15 @@
+---
+title: Shopee DB Infra 北京平台实习面试问题总结
+type: 面经
+company: 虾皮
+bu: 未知
+round: 一面
+date: 2024-01-01
+verdict: 未知
+source: 未知
+tags: [mysql, redis, java并发, jvm, spring, rpc, mq, 限流]
+---
+
 
 # Shopee大数据平台实习面试问题总结（含参考答案）
 

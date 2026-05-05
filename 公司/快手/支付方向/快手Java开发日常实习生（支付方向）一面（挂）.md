@@ -1,3 +1,15 @@
+---
+title: 快手Java开发日常实习生（支付方向）一面（挂）
+type: 面经
+company: 快手
+bu: 支付方向
+round: 一面
+date: 2026-05-05
+verdict: 挂
+source: 未知
+tags: [mysql, redis, spring, mq, 限流, 网络, 秒杀, linux]
+---
+
 [快手Java开发日常实习生（支付方向）一面（挂）](https://www.nowcoder.com/feed/main/detail/4968ffa543664c63a7a1cb3cf965c55f?sourceSSR=search)
 
 1. 问项目  

@@ -1,3 +1,15 @@
+---
+title: TT SRE 二面
+type: 面经
+company: TT
+bu: SRE
+round: 二面
+date: 2026-05-05
+verdict: 未知
+source: 未知
+tags: [网络, 设计模式]
+---
+
 
 
 

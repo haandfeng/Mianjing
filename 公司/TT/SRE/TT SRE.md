@@ -1,3 +1,15 @@
+---
+title: TT SRE
+type: 面经
+company: TT
+bu: SRE
+round: 未知
+date: 2026-05-05
+verdict: 未知
+source: 未知
+tags: [mysql, redis, spring, rpc, mq, 网络, rag, agent]
+---
+
 ## **1) 开场与背景**
 
 1. **先自我介绍一下**（教育背景、实习/项目、你做了什么）

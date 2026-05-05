@@ -1,3 +1,15 @@
+---
+title: Bing图像视频业务实习一面面经
+type: 面经
+company: 微软
+bu: 未知
+round: 一面
+date: 2026-05-05
+verdict: 未知
+source: 未知
+tags: [mysql, java并发, jvm, rag, agent, llm, 秒杀, linux]
+---
+
 # 面经记录
 
 **岗位方向：** Bing 图像/视频业务实习（多媒体应用 + Agent 探索，技术栈偏 Python / C#）

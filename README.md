@@ -30,11 +30,15 @@
 └── CLAUDE.md     ← Claude 配置
 ```
 
-## 第一次来
+## 怎么用这个仓库
 
-1. **装 Obsidian**：[obsidian.md](https://obsidian.md/)
-2. **装插件**（必装 Dataview）：[wiki/插件设置.md](wiki/插件设置.md)
-3. **看 SOP**：[wiki/使用指南.md](wiki/使用指南.md)
+> **唯一的入口**：[`wiki/使用指南.md`](wiki/使用指南.md) —— 端到端 SOP，4 件事每件都有具体操作步骤。
+
+第一次进来：
+1. 装 Obsidian：[obsidian.md](https://obsidian.md/)
+2. 装必装插件 Dataview：[`wiki/插件设置.md`](wiki/插件设置.md)
+3. 读使用指南：[`wiki/使用指南.md`](wiki/使用指南.md)
+4. （可选）让 Claude 帮你做事时，它会读 [`CLAUDE.md`](CLAUDE.md) 自动按规则操作
 
 ## 加新面经（最常用）
 

@@ -1,3 +1,15 @@
+---
+title: TT Search ADs 26 Summer Intern
+type: 面经
+company: TT
+bu: Search-Ads
+round: 一面
+date: 2026-05-05
+verdict: 未知
+source: 未知
+tags: [rag, 分布式, es]
+---
+
 1. 自我介绍
 2. 自己比较熟悉的选择一段实习做深挖（西门子 RAG 问答）——业务背景、团队人数与分工、你的职责。我选的实习比较偏AI应用，但他希望看到更多的后端方向的实习内容，所以反响一般。
 3. 场景体：Nginx Access Log 1 小时 1 亿条，求出现次数最多的前 K 个 IPv4

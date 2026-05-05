@@ -1,3 +1,15 @@
+---
+title: 蔚来CICD组AI agent实习生一面面经-详细版
+type: 面经
+company: 蔚来
+bu: 未知
+round: 一面
+date: 2025-12-01
+verdict: 未知
+source: 未知
+tags: [mysql, jvm, 限流, 网络, rag, agent, llm, postgres]
+---
+
 # 自我介绍/个人信息
 
 # 你的项目现在是一个什么样的状态？上线了吗？

@@ -1,3 +1,15 @@
+---
+title: 粤港澳数字经济Idea 研究院
+type: 面经
+company: 粤港澳-Idea
+bu: 未知
+round: 未知
+date: 2026-05-05
+verdict: 未知
+source: 未知
+tags: [mysql, redis, java并发, spring, rpc, mq, 限流, 网络]
+---
+
  
 #### 对实习内容的询问
 其实主要还是关注sql的优化方面

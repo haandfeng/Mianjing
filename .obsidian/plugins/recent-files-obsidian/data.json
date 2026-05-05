@@ -1,8 +1,12 @@
 {
   "recentFiles": [
     {
-      "basename": "README",
-      "path": "README.md"
+      "basename": "PingCAP",
+      "path": "wiki/公司/PingCAP.md"
+    },
+    {
+      "basename": "使用指南",
+      "path": "wiki/使用指南.md"
     },
     {
       "basename": "CLAUDE",
@@ -10,11 +14,31 @@
     },
     {
       "basename": "README",
-      "path": "wiki/README.md"
+      "path": "README.md"
+    },
+    {
+      "basename": "公司爱考什么",
+      "path": "wiki/dashboard/公司爱考什么.md"
+    },
+    {
+      "basename": "面试历史",
+      "path": "wiki/dashboard/面试历史.md"
+    },
+    {
+      "basename": "西门子RAG",
+      "path": "wiki/追问/西门子RAG.md"
+    },
+    {
+      "basename": "主题",
+      "path": "wiki/索引/主题.md"
     },
     {
       "basename": "插件设置",
       "path": "wiki/插件设置.md"
+    },
+    {
+      "basename": "README",
+      "path": "wiki/README.md"
     },
     {
       "basename": "README",

@@ -1,3 +1,15 @@
+---
+title: 小鹅通二面面经（结果未知）Cider一面面经（通过）
+type: 面经
+company: 小鹅通
+bu: 我的
+round: 二面
+date: 2026-05-05
+verdict: 通过
+source: 我面试
+tags: [mysql, redis, rpc, 网络, linux, 分布式, 算法题]
+---
+
 趁我记得赶紧发一下，都是今天面的
 
 小鹅通感觉G了，虽然他一直和我说我很好，但是半天没消息，上次是立刻有的

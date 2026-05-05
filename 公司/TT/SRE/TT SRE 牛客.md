@@ -1,3 +1,15 @@
+---
+title: TT SRE 牛客
+type: 面经
+company: TT
+bu: SRE
+round: 未知
+date: 2026-05-05
+verdict: 未知
+source: 未知
+tags: [mysql, redis, java并发, jvm, mq, 限流, 网络, rag]
+---
+
 https://www.nowcoder.com/feed/main/detail/bc23767459164ad98a2eebb4ddffbe4c?sourceSSR=users
 
 ## 一面  

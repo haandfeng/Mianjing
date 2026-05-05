@@ -10,7 +10,7 @@ updated: 2026-05-04
 >
 > 来源：
 > - 真题：[[Agent相关问题]]
-> - 参考：[[Agent技术专栏/OpenClaw 笔记]]、[[Agent技术专栏/MCP_SSE_文档]]、[[Agent技术专栏/MCP与Tool管理]]、[[Agent技术专栏/Skills]]、[[wiki/技术主题/Agent设计模式与MCP]]、[[wiki/技术主题/RAG优化全链路]]、[[wiki/项目/西门子RAG]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]
+> - 参考：[[Agent技术专栏/OpenClaw 笔记]]、[[Agent技术专栏/MCP_SSE_文档]]、[[Agent技术专栏/MCP与Tool管理]]、[[Agent技术专栏/Skills]]、[[wiki/技术主题/Agent设计模式与MCP]]、[[wiki/技术主题/RAG优化全链路]]、[[追问/西门子RAG]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]
 
 ## 5 个主题
 

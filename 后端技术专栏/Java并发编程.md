@@ -689,3 +689,149 @@ void doWork() {
 你可以总结一句：
 
 > 实战里，我更倾向于在设计阶段就统一锁顺序、减少嵌套锁，并在关键模块加上日志和监控。如果真的怀疑有死锁，就会先打线程 dump，看有没有"Found one Java-level deadlock"，再顺着锁和线程的关系回到代码里修。
+
+
+---
+
+## 六、经典并发工具（合并自原 `Java多线程 并发.md` 2026-05-05）
+
+> 以下内容是从原 `后端技术专栏/Java多线程 并发.md` 合并过来的实操向章节。`线程池` 部分已在第四节覆盖，此处只保留独有内容。
+
+### 1. 经典面试题模板：并发任务处理器
+
+> 给定 100 个任务 ID，要求最大并发数为 3，模拟并发调用某外部接口。
+
+```java
+ThreadPoolExecutor executor = new ThreadPoolExecutor(
+    3, 3, 0, TimeUnit.SECONDS, new LinkedBlockingQueue<>()
+);
+
+for (int i = 1; i <= 100; i++) {
+    final int id = i;
+    executor.submit(() -> {
+        System.out.println("任务: " + id + " | 线程: " + Thread.currentThread().getName());
+    });
+}
+
+executor.shutdown();
+executor.awaitTermination(1, TimeUnit.HOURS);
+```
+
+把 id 作为参数传时不能直接 lambda（Runnable 没参数），用方法封装即可：
+
+```java
+private static Runnable createTask(int id) {
+    return () -> System.out.println("任务: " + id);
+}
+```
+
+### 2. 三线程交替打印（lock + wait/notifyAll）
+
+```java
+static int turn = 0;
+static final Object lock = new Object();
+
+for (int id = 0; id < 3; id++) {
+    final int threadId = id;
+    new Thread(() -> {
+        while (true) {
+            synchronized (lock) {
+                while (turn < 100 && turn % 3 != threadId) lock.wait();
+                if (turn >= 100) return;
+                System.out.println("Thread-" + threadId + ": " + turn);
+                turn++;
+                lock.notifyAll();
+            }
+        }
+    }).start();
+}
+```
+
+### 3. Callable vs Runnable
+
+| 接口 | 返回值 | 受检异常 |
+|---|---|---|
+| `Runnable` | 无 | 不能抛 |
+| `Callable<V>` | 有 | 可抛 |
+
+```java
+Future<String> future = executor.submit(() -> {
+    Thread.sleep(1000);
+    return "结果";
+});
+String r = future.get();   // 阻塞拿结果
+```
+
+### 4. Future
+
+Java 5 引入。三个核心方法：`get()` / `get(timeout, unit)` / `isDone()`。
+缺点：`get()` 阻塞，多个 Future 只能逐个等，无回调机制。
+
+```java
+future.isDone();                        // 是否完成
+future.isCancelled();                   // 是否被取消
+future.cancel(true);                    // 取消
+future.get();                           // 阻塞等
+future.get(3, TimeUnit.SECONDS);        // 带超时
+```
+
+### 5. CompletableFuture
+
+Java 8 引入，解决 Future 无回调问题。
+
+```java
+// 提交
+CompletableFuture.runAsync(() -> {...}, executor);          // 无返回
+CompletableFuture.supplyAsync(() -> "x", executor);         // 有返回
+
+// 回调
+.thenRun(() -> {...})           // 不关心上一步结果
+.thenAccept(r -> {...})         // 接收结果
+.thenApply(r -> r.toUpperCase())// 接收并转换
+
+// 组合
+CompletableFuture.allOf(f1, f2, f3).join();   // 等所有
+CompletableFuture.anyOf(f1, f2, f3).join();   // 等任一
+```
+
+实操：用 CompletableFuture 实现并发任务处理器：
+
+```java
+List<CompletableFuture<Void>> futures = new ArrayList<>();
+for (int i = 1; i <= 100; i++) {
+    final int id = i;
+    futures.add(CompletableFuture.runAsync(() -> {
+        System.out.println("任务: " + id);
+    }, executor));
+}
+CompletableFuture.allOf(futures.toArray(new CompletableFuture[0])).join();
+```
+
+### 6. CountDownLatch
+
+倒计时栅栏，常用于"等多个子任务都完成再继续"。
+
+```java
+CountDownLatch latch = new CountDownLatch(3);
+for (int i = 0; i < 3; i++) {
+    new Thread(() -> {
+        // ...
+        latch.countDown();
+    }).start();
+}
+latch.await();      // 主线程阻塞，等 3 个 countDown
+```
+
+### 7. ThreadLocal
+
+数据存在 **每个 Thread 自身的 ThreadLocalMap** 里（key 是 ThreadLocal 实例，value 是设置的值），同一个 ThreadLocal 实例在不同线程查到不同 Map，自然隔离。
+
+#### 内存泄漏
+
+`ThreadLocalMap.Entry extends WeakReference<ThreadLocal<?>>`：
+- **key 弱引用**：ThreadLocal 没强引用时会被 GC，Entry 的 key 变 null
+- **value 强引用**：value 仍被 Entry 强引用，无法回收
+
+线程长存活（如线程池）时，key 为 null 的 Entry 一直在，造成内存泄漏。`get/set/remove` 会被动清理但不可靠。
+
+**实战守则**：用完一定 `threadLocal.remove()`；尤其线程池 + 拦截器场景必须在 finally 里 remove。

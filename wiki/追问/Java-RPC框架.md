@@ -11,6 +11,9 @@ updated: 2026-05-04
 
 > ⚠ **简历 vs 早期面经口径不一致**：简历最新版用 **Nacos**（见 [[我的简历/RPC框架项目]]）；早期部分面经（如 [[快手/支付方向/快手日常实习面经]]）用了 **Etcd**。面试时统一以 Nacos 为准。被追问 Etcd / Nacos / ZK 选型差异的话术见 [[我的简历/RPC框架项目#⚠ Nacos vs Etcd 不一致说明]]。
 
+> 通用 RPC / Netty 原理（协议字段、序列化对比、注册中心对比、Reactor、粘包半包）→ 见 [[wiki/技术主题/RPC与Netty]]
+> 通用限流 / 熔断 / 容错 → 见 [[wiki/技术主题/限流熔断容错]]
+
 ## 项目级 STAR 自陈
 - **S（场景）**：Java 程序与 Python 程序间需要远程调用，自建 RPC 框架学习核心组件。
 - **T（目标）**：实现一套可注册发现、可容错、可监控的最小化 RPC 框架。
@@ -19,65 +22,67 @@ updated: 2026-05-04
 
 ## 高频追问 Q&A
 
-### Q1: 服务注册与发现流程
+### Q1: 服务注册与发现流程（项目特定实现）
 **出处**：[[快手日常实习面经]] · [[蚂蚁一面]] · [[银河智学]]
 
-**答题骨架**：
+> 通用注册发现流程见 [[wiki/技术主题/RPC与Netty#5. 服务注册与发现]]；下面是本项目 Etcd 路径与 key 设计。
+
 - ServiceKey = ServiceName + ServiceVersion；NodeKey = ServiceKey + Host + Port
-- 注册：本地注册器存 服务名 → Class 对象；连 Etcd，key 是 ETCD_ROOT_PATH + NodeKey，value 是 ServiceMetaInfo（服务名、IP、端口、协议版本号）的 JSON，30 秒租约；本地维护已注册节点 set，用于心跳重新注册
+- 注册：本地注册器存 服务名 → Class 对象；连 Etcd，key 是 `ETCD_ROOT_PATH + NodeKey`，value 是 ServiceMetaInfo（服务名、IP、端口、协议版本号）的 JSON，30 秒租约；本地维护已注册节点 set，用于心跳重新注册
 - 发现：先看本地缓存有没有；没有就根据 ServiceKey 前缀匹配 Etcd 拿到 List；watch 监听 key 变化；最后 ConcurrentHashMap 缓存 List
 - Etcd 事件监听：监听 key 内容变化，DELETE 等事件触发本地缓存清理
-- 为什么选 Etcd：Go 实现性能高、Raft 一致性算法、高可用强一致、完善的 watch 通知机制
 
 ---
 
-### Q2: 心跳机制 + 优雅下线
+### Q2: 心跳机制 + 优雅下线（项目特定细节）
 **出处**：[[快手日常实习面经]] · [[Shopee DB Infra 北京平台实习面试问题总结]] · [[蚂蚁一面]]
 
-**答题骨架**：
-- Etcd：30 秒租约 + 用 Hutool CronUtil 每 10 秒跑定时任务，对本地 set 的每个 key get 后再 register（重新写一遍 key 续命）
-- Nacos 2.x：客户端 SDK 内部定时（约 5 秒）发心跳到 /nacos/v1/ns/instance/beat；服务端超过 15 秒没心跳标记不健康，超过 30 秒删除实例
+> 应用层心跳为何不靠 TCP Keep-Alive、Nacos / Etcd 心跳机制对比 → 见 [[wiki/技术主题/RPC与Netty#11. 心跳为什么自己写而不靠 TCP Keep-Alive]]
+
+- Etcd（本项目实现）：30 秒租约 + 用 Hutool CronUtil 每 10 秒跑定时任务，对本地 set 的每个 key get 后再 register（重新写一遍 key 续命）
+- Nacos（备选实现）：客户端 SDK 内部定时（约 5 秒）发心跳到 `/nacos/v1/ns/instance/beat`；服务端超过 15 秒没心跳标记不健康，超过 30 秒删除实例
 - ShutdownHook：`Runtime.getRuntime().addShutdownHook(new Thread(registry::destroy))` 在 JVM 关闭前清理 Etcd 数据
-- 已经有 TCP Keep-Alive 为什么还要应用层心跳：TCP Keep-Alive 默认 2 小时太慢，应用层心跳几秒一次更快、可携带业务信息、能感知"实例还活着但服务已挂"
-- 注册中心心跳维护「实例活不活」的元数据，TCP Keep-Alive 维护连接本身，是两件事
 
 ---
 
-### Q3: 自定义协议头设计 / 魔数的作用
+### Q3: 自定义协议头设计 / 魔数的作用（项目特定 17 字节布局）
 **出处**：[[Shopee DB Infra 北京平台实习面试问题总结]]
 
-**答题骨架**：
-- 17 字节固定头：magic(1) + version(1) + serializer(1) + type(1) + status(1) + requestId(8) + bodyLength(4)
-- 解码：先读 17 字节头 → 取 bodyLength → 精确读 bodyLength 字节 body
-- 魔数 ≠ 协议识别（协议识别是端口的事），魔数是流内"帧起始"校验，防止错位、脏数据被当 RPC 解析
-- 粘包/半包：靠 bodyLength 字段（固定长度头方案），第一个字节先校验魔数
+> 通用协议字段含义 / 魔数 vs 协议识别 / 粘包半包通解 → 见 [[wiki/技术主题/RPC与Netty#1. 自定义协议字段（17 字节固定头 + body）]]
+
+本项目采用 17 字节固定头：
+```
+magic(1) + version(1) + serializer(1) + type(1) + status(1) + requestId(8) + bodyLength(4)
+```
+解码：先读 17 字节头 → 取 bodyLength → 精确读 bodyLength 字节 body。
 
 ---
 
 ### Q4: 客户端怎么知道响应是给自己的？requestId 异步映射
 **出处**：[[快手日常实习面经]]
 
-**答题骨架**：
-- 协议头携带 requestId（雪花算法生成的 long）
-- 发请求：生成 requestId → 创建 CompletableFuture<RpcResponse> → 放到 `Map<Long, CompletableFuture> pendingRequests` → requestId 放进请求头发出
+> 通用 requestId 匹配机制 → 见 [[wiki/技术主题/RPC与Netty#3. 请求 / 响应匹配]]
+
+本项目特定：
+- requestId 用雪花算法生成的 long
+- 发请求：生成 requestId → 创建 `CompletableFuture<RpcResponse>` → 放到 `Map<Long, CompletableFuture> pendingRequests` → requestId 放进请求头发出
 - 收响应：从响应头取 requestId → 在 pendingRequests 找到对应 Future → complete
-- 服务端响应：直接复用请求 header（只改 type/status），requestId 原样带回；通过同一条 Channel writeAndFlush 写回
-- 大量并发：每个请求唯一 requestId + pendingRequests 映射表精确匹配
+- 服务端响应：直接复用请求 header（只改 type/status），requestId 原样带回
 
 ---
 
 ### Q5: 容错策略
 **出处**：[[快手日常实习面经]]
 
-**答题骨架**：
-- FailFast 快速失败：包装成 RuntimeException 抛出
-- FailSafe 静默失败：打日志，返回空 RpcResponse
-- FailOver 故障转移：换节点再调（待实现）
-- FailBack 失败回退：降级逻辑（待实现）
+> FailFast / FailSafe / FailOver / FailBack 四种策略含义 → 见 [[wiki/技术主题/RPC与Netty#10. 容错策略与重试]]
+> A 端保护（超时 + 熔断 + 隔离）/ B 端保护（限流 + 降级）→ 见 [[wiki/技术主题/限流熔断容错]]
+
+本项目实现：
+- FailFast：包装成 RuntimeException 抛出
+- FailSafe：打日志，返回空 RpcResponse
+- FailOver / FailBack：待实现
 - 重试：NoRetry / FixedInterval（基于 Guava Retrying）
 - 流程：rpcRequest → RetryStrategy.doRetry → 失败进 catch → TolerantStrategy.doTolerant
-- A 端保护自己：超时 + 熔断（Hystrix/Sentinel/Resilience4j，关闭→打开→半开三态）+ 隔离（每个下游独立线程池/信号量，舱壁模式）
-- B 端保护自己：限流 + 降级
 
 ---
 
@@ -95,37 +100,25 @@ updated: 2026-05-04
 ### Q7: 限流算法
 **出处**：[[快手日常实习面经]]
 
-**答题骨架**：
-- 固定窗口：简单但有临界突发问题
-- 滑动窗口：把固定窗口细分小格子，临界问题缓解，Sentinel 用这个
-- 漏桶：固定速率流出，严格平滑，不允许突发
-- 令牌桶：固定速率生成令牌，允许突发，Guava RateLimiter / Nginx limit_req 用这个
-- 实际项目中：令牌桶 + 滑动窗口最常见
+> 4 种算法对比 / 漏桶 vs 令牌桶 / Redis 实现 → 见 [[wiki/技术主题/限流熔断容错]]
+
+本项目用：令牌桶 + 滑动窗口。
 
 ---
 
 ### Q8: Netty 线程模型 / BIO NIO AIO 区别
 **出处**：[[Shopee DB Infra 北京平台实习面试问题总结]] · [[字节跳动中国商业化一面面经]] · [[快手日常实习面经]]
 
-**答题骨架**：
-- BIO：一个连接一个线程，所有 I/O 操作阻塞等待，连接多线程多
-- NIO：基于 Selector 多路复用，一个线程通过 Selector 同时监听多个连接，事件就绪才处理；不是完全不阻塞，是阻塞在 Selector 而非单个连接
-- Netty 线程模型：Reactor 模式，channel + Selector，线程把感兴趣的事件注册到 channel，事件触发后处理对应内容
-- TCP 粘包拆包：协议头带 bodyLength 字段，按长度读对应字节
-- decoder：JSON 编解码器（不是二进制），ProtocolMessage 包含 header + body
+> 通用 BIO / NIO / AIO 对比 + Netty 主从 Reactor + 粘包半包三种解法 → 见 [[wiki/技术主题/RPC与Netty#7. Netty 为什么快]] / [[wiki/技术主题/RPC与Netty#9. BIO / NIO / AIO]]
+
+本项目特定：decoder 用 JSON 编解码器（不是二进制），ProtocolMessage 包含 header + body；TCP 粘包拆包靠协议头 bodyLength 字段。
 
 ---
 
 ### Q9: 序列化协议选型
 **出处**：[[Shopee DB Infra 北京平台实习面试问题总结]] · [[银河智学]]
 
-**答题骨架**：
-- 速度：Kryo > Protobuf > Hessian > JSON（元数据越少越偏二进制越快）
-- Kryo：无 schema、按字段顺序写、纯 Java、对类结构变化敏感
-- Protobuf：需 .proto schema、字段编号、跨语言、版本兼容
-- Hessian：自描述协议、跨语言、性能不如 Protobuf
-- JSON：纯文本可读、生态最广、慢且大
-- 选型：对外用 JSON，跨语言微服务用 Protobuf，纯 Java 高性能用 Kryo
+> Kryo / Protobuf / Hessian / JSON 速度排名 + 选型建议 → 见 [[wiki/技术主题/RPC与Netty#4. 序列化对比]]
 
 ---
 
@@ -152,6 +145,8 @@ updated: 2026-05-04
 
 ## 双链
 - [[索引/主题]]
+- [[wiki/技术主题/RPC与Netty]]
+- [[wiki/技术主题/限流熔断容错]]
 - [[后端技术专栏/RPC框架]]
 - [[后端技术专栏/RPC框架整理后]]
 - [[公司/快手]]

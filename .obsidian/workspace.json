@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/使用指南.md",
+                "file": "wiki/插件设置.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "使用指南"
+              "title": "插件设置"
             }
           },
           {
@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/使用指南.md",
+                "file": "wiki/README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "使用指南"
+              "title": "README"
             }
           }
         ],
@@ -189,13 +189,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/使用指南.md",
+                "file": "wiki/README.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "使用指南 的大纲"
+              "title": "README 的大纲"
             }
           },
           {
@@ -256,42 +256,42 @@
   },
   "active": "4f16e97206d0cbc8",
   "lastOpenFiles": [
-    "wiki/可视化/README.md",
+    "wiki/dashboard/主题统计.md",
+    "wiki/dashboard/公司爱考什么.md",
+    "wiki/dashboard/面试历史.md",
+    "wiki/模板/录音转面经.md",
     "wiki/使用指南.md",
+    "简历/2026-01-24_谭演锋_简历2026_2_12.pdf",
+    "简历/2026-02-12_简历_谭演锋.pdf",
+    "简历/2025-08-19_transcript.pdf",
+    "简历/2025-09-15_resume_Yanfeng_Tan_9_16.pdf",
+    "简历/2025-09-14_resume_Yanfeng_Tan_9_15.pdf",
+    "简历/2025-08-19_resume_Yanfeng_Tan_8_16.pdf",
+    "简历/2025-09-17_resume_Yanfeng_Tan_10_3.pdf",
+    "简历/2025-10-11_Resume_Yanfeng_Tan——11.19.pdf",
+    "简历/2025-11-19_Resume_Yanfeng_Tan_11_20_total.pdf",
+    "简历/2025-11-20_Resume_Yanfeng_Tan_11_20.pdf",
+    "wiki/可视化/README.md",
     "wiki/可视化/wiki鸟瞰图.md",
     "wiki/README.md",
     "wiki/插件设置.md",
     "wiki/索引/高频考点榜.md",
     "公司/其他/长鑫/长鑫存储.md",
-    "公司/其他/长鑫",
     "公司/其他/贝壳/贝壳找房一面面经.md",
-    "公司/其他/贝壳",
     "公司/其他/老虎国际/老虎国际二面面经（资讯组）.md",
     "公司/其他/老虎国际/老虎国际一面面经（资讯组）.md",
-    "公司/其他/老虎国际",
     "公司/其他/粉笔/粉笔上岸.md",
-    "公司/其他/粉笔",
     "公司/其他/心潮无限/1.md",
-    "公司/其他/心潮无限",
     "公司/其他/PingCAP/面试问题总结.md",
-    "公司/其他/PingCAP",
     "公司/其他/粤港澳-Idea/粤港澳数字经济Idea 研究院.md",
-    "公司/其他/粤港澳-Idea",
     "公司/其他/Cider/2.md",
     "公司/其他/Cider/1.md",
-    "公司/其他/Cider",
     "公司/其他/昆仑数智/3.md",
     "公司/其他/昆仑数智/3-总结.md",
     "公司/其他/昆仑数智/2.md",
     "公司/其他/昆仑数智/1.md",
-    "公司/其他/昆仑数智",
-    "简历_谭演锋_四月初可到岗.pdf 15-00-50-559.pdf",
     "SOP.md",
     "wiki/工作流/README.md",
-    "wiki/复盘/模板.md",
-    "wiki/dashboard/TODO汇总.md",
-    "wiki/dashboard/README.md",
-    "wiki/模板/README.md",
     "img/Pasted image 20260312235921.png",
     "img/Pasted image 20260208151010.png",
     "img/Pasted image 20260205210548.png",

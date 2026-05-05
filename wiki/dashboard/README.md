@@ -2,55 +2,51 @@
 title: Dashboard 入口
 type: dashboard-root
 updated: 2026-05-05
-note: 全部 dashboard 依赖 Dataview 插件 — 见 [[插件设置#1. Dataview ★]]
+note: 依赖 Dataview 插件 — 见 [[插件设置#1. Dataview ★]]
 ---
 
 # Dashboard 入口
 
-> 这一栏是把整个 wiki 当数据库查的视图。**装了 [[插件设置#1. Dataview ★]] 才能看到表格内容**——没装的话只能看到查询代码块。
+把 wiki 当数据库查。**装了 Dataview 才能看到表格**。
 
-## Dashboard 列表
+## 3 个核心 dashboard
 
 | Dashboard | 干嘛 |
 |---|---|
-| [[面试历史]] | 所有复盘按日期 / 公司 / 结果排表 |
-| [[公司面试矩阵]] | 公司 × 已收集面经数 |
-| [[主题文章统计]] | 22 个主题文章 + 它们的 raw 出处密度 |
-| [[追问统计]] | 5 个项目 Q&A 库 + 题数 + 涉及公司 |
-| [[Offer看板]] | 当前 offer 状态（也可直接看 [[offer]]）|
-| [[TODO汇总]] | 全 wiki 未完成任务聚合 |
-| [[最近更新]] | 这周 / 这月改了哪些 |
+| [[面试历史]] | 所有面经按时间 / 公司 / 通过状态排表（主要看近一年）|
+| [[公司爱考什么]] | 每家公司高频考点 tag 频次 |
+| [[主题统计]] | 主题文章被引用次数 + raw 来源密度 |
 
-## Dataview 极简语法（5 分钟看懂）
+## Dataview 极简语法
 
 ```
 \`\`\`dataview
-TABLE field1, field2, field3
-FROM "wiki/复盘"
-WHERE type = "review"
+TABLE company, date, verdict
+FROM "公司"
+WHERE date >= date(today) - dur(365 days)
 SORT date DESC
-LIMIT 20
 \`\`\`
 ```
 
-- `TABLE` 选要显示的列（来自 frontmatter）
-- `FROM "目录"` 限制扫描范围
-- `WHERE` 过滤条件
-- `SORT ... DESC/ASC` 排序
-- `LIMIT N` 限行
+- `TABLE` 选 frontmatter 字段做列
+- `FROM "目录"` 限范围
+- `WHERE` 过滤（含日期 / tag）
+- `SORT` / `LIMIT`
 
-不会写就抄 dashboard 文件里的现成例子，改字段名就行。
+## frontmatter 字段（要让 dashboard 能查）
 
-## frontmatter 字段约定（让查询能查到）
-
-| 字段 | 哪些文件填 | 例 |
+| 字段 | 谁填 | 例 |
 |---|---|---|
-| `type` | 所有 wiki 文件 | `review` / `topic` / `company-profile` / `project` / `template` |
-| `company` | 复盘 / 公司画像 | `字节` / `快手` |
-| `round` | 复盘 | `一面` / `二面` / `Leader` / `HR` |
-| `date` | 复盘 | `2026-05-05` |
-| `verdict` | 复盘 | `通过` / `挂` / `未知` |
+| `type` | 所有 | `面经` / `topic` / `company-profile` / `project` |
+| `company` | 面经 / 公司画像 | `字节` |
+| `bu` | 面经 | `财经` / `中国商业化` |
+| `date` | 面经 | `2024-08-15` |
+| `round` | 面经 | `一面` / `二面` / `Leader` / `HR` |
+| `verdict` | 面经 | `通过` / `挂` / `未知` |
+| `source` | 面经 | `我面试` / `网上转载` |
+| `tags` | 面经 / 主题 | `[java, mysql, redis]` |
+| `last_interview` | 公司画像 | `2026-05-05` |
 | `tier` | 公司画像 | `大厂` / `中型` / `小公司` |
-| `domain` | 主题文章 | `数据库` / `缓存` / `Java` / `Agent` |
+| `domain` | 主题 | `数据库` / `缓存` / `Java` / `Agent` |
 
-> 加新内容时按 [[模板/README]] 走就自动有这些字段。已有文件可能缺字段——dashboard 会显示空值，**你可以慢慢补**，不影响其他列。
+> 用 [[模板/README]] 加新内容时模板已经把字段写好。已有文件慢慢补即可。

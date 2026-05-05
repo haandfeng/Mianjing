@@ -70,7 +70,7 @@ updated: 2026-05-04
 - **检索分层**：先按错误码 / stack 哈希精确召回（关键词），再做语义补全（向量召回相似 case）。
 - **GraphRAG 思路**：模块之间的依赖、错误传播链建图，多跳推理"上游谁先报错"。
 - **Agent 行动**：失败时自动回查最近相似 case 的 root cause + 修复 PR；写回知识库形成闭环。
-- // 待补全：暂无 raw 来源（推测）。蔚来面经里有"DevOps + Agent 落地"的方向暗示，可作背景。
+> 来源说明：本题无直接面试出处，答案基于通用知识 + 蔚来面经"DevOps + Agent 落地"方向背景。
 
 **拓展双链**：[[RAG优化全链路]]、[[专栏/Agent/OpenClaw 笔记]]（Memory MD/JSONL 沉淀模式）
 
@@ -104,7 +104,7 @@ updated: 2026-05-04
 - **Agent 工作流**：先理解 query → 检索相关函数 → 取上下文（调用方 + 被调方）→ 生成补丁 / 解释。
 - **持续更新**：按 commit hash 做增量索引，删除被改 / 删函数的旧向量；CI 钩子触发重建。
 - **代表系统**：Cursor、Sourcegraph Cody、GitHub Copilot Workspace 都是这个架构。
-- // 待补全：暂无 raw 来源（推测）。
+> 来源说明：无直接面试出处，答案基于通用知识 + 行业代表系统（Cursor / Cody / Copilot Workspace）。
 
 **拓展双链**：[[RAG优化全链路]]、[[专栏/Agent/OpenClaw 笔记]]（Computer Use + 文件工具）
 

@@ -2,7 +2,7 @@
 
 > 这是入口提醒。**完整 SOP 在 [`wiki/使用指南.md`](wiki/使用指南.md)**。
 
-## 30 秒上手
+## 30 秒上手ˇ
 
 1. 装 Obsidian + 必装 3 个插件（Dataview / Templater / Tasks）—— [`wiki/插件设置.md`](wiki/插件设置.md)
 2. 打开 [`wiki/README.md`](wiki/README.md) 找你需要的入口

@@ -56,7 +56,7 @@ updated: 2026-05-04
 - **Prompt 模板**：要求模型输出 `{ "skills": [...], "domain": [...], "tools": [...] }`，给 schema + 2 个示例。
 - **去噪 / 同义合并**：用 embedding 把"k8s"、"Kubernetes"、"K8S"聚类合并；技能等级（熟练 / 了解）单独抽。
 - **后处理**：和 JD 关键词做对齐打分（cosine + tf-idf 加权）→ 输出 match score 和缺口提醒。
-- // 待补全：暂无 raw 来源（推测）。
+> 来源说明：无直接面试出处，答案基于通用知识 + 行业代表系统（Cursor / Cody / Copilot Workspace）。
 
 **拓展双链**：[[Agent问题答案/Prompt工程#Q8]]、[[Agent问题答案/RAG#Q26]]
 

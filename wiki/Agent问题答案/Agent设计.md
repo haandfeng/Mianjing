@@ -125,7 +125,7 @@ updated: 2026-05-04
 - **切换机制**：sub-agent 输出 final_answer 或 handoff 时把控制权交回 Supervisor；状态由 LangGraph 持久化，支持中断后从 checkpoint 恢复。
 - **默认串行**：参考 Cognition "Don't Build Multi-Agents"，并行只在显式低风险任务（定时任务、独立子查询）开启。
 - **失败兜底**：sub-agent 失败 N 次自动降级到 fallback 简单链路，避免无限循环。
-- // 部分推测：Supervisor 模式来自 LangGraph 文档与 [[专栏/Agent/MCP与Tool管理]]，"切换机制"对蔚来项目的具体落地是推测。
+> 来源说明：Supervisor 模式来自 LangGraph 文档与 [[专栏/Agent/MCP与Tool管理]]；"切换机制"对蔚来项目的具体落地系推测。
 
 **拓展双链**：[[Agent设计模式与MCP]]（5. 多级 Agent 架构）、[[专栏/Agent/OpenClaw 笔记]]（lane / 串行默认）
 

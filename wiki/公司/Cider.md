@@ -13,8 +13,8 @@ updated: 2026-05-04
 
 ## 面经文件
 - [[小鹅通/我的/小鹅通二面面经（结果未知）Cider一面面经（通过）]] —— 低代码平台 + 低代码 + AI 看法 + SQL 优化（select / 索引 / Join / 插入）+ 索引怎么加（避免失效 + 联合索引顺序 + 加了再删）+ 性别字段不该加索引（区分度低）+ 验证二叉搜索树 + 改成迭代 + RPC 为什么基于 TCP 自定义（速度 / 传输效率）+ TCP 滑动窗口理解 + 大众点评追问；面试官建议专注业务项目
-- [[Cider面经/1]] —— MySQL 4 种事务隔离级别详解 + 默认 RR + 各自机制 + 脏读/不可重复读/幻读三种异常的具体例子 + InnoDB vs MyISAM 对比 + MVCC 原理（隐藏字段 trx_id/roll_pointer + Undo Log + ReadView 三可见性规则）
-- [[Cider面经/2]] —— stub（个人复盘"还要学 MySQL 和 JUC"）
+- [[公司/其他/Cider/1]] —— MySQL 4 种事务隔离级别详解 + 默认 RR + 各自机制 + 脏读/不可重复读/幻读三种异常的具体例子 + InnoDB vs MyISAM 对比 + MVCC 原理（隐藏字段 trx_id/roll_pointer + Undo Log + ReadView 三可见性规则）
+- [[公司/其他/Cider/2]] —— stub（个人复盘"还要学 MySQL 和 JUC"）
 
 ## 考察重点（按出现次数排序）
 1. **MySQL 事务隔离级别 + MVCC** —— 4 级隔离 + 各自机制（RU 不用 MVCC / RC 每次 SELECT 新 ReadView / RR 事务开始一个 ReadView 复用 / Serializable 串行加锁）+ 三种异常具体例子
@@ -27,7 +27,7 @@ updated: 2026-05-04
 
 ## 真题摘录（值得背的）
 
-> **可重复读 vs 读已提交在 ReadView 上的差异？** 出处 [[Cider面经/1]]
+> **可重复读 vs 读已提交在 ReadView 上的差异？** 出处 [[公司/其他/Cider/1]]
 > RC：每次 SELECT 都生成新的 ReadView，所以同一事务内不同时刻能看到其他事务新提交的数据（不可重复读）。RR：事务内第一次 SELECT 生成 ReadView 并复用，所以多次读结果一致。InnoDB 在 RR 下还通过 next-key lock（间隙锁）防止当前读时的幻读。
 
 > **为什么不该在性别字段加索引？** 出处 [[小鹅通/我的/小鹅通二面面经（结果未知）Cider一面面经（通过）]]

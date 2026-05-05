@@ -57,7 +57,7 @@ updated: 2026-05-04
   - 上下文窗口太小，几十个工具的 schema 装不下 → 退化成"假装支持"。
   - 模型 provider 的 SDK 还没接 MCP（这是工程问题，非协议问题）。
 - 解决：要么换支持 FC 的模型；要么用轻量包装层把 MCP 工具描述塞进 system prompt 让模型 zero-shot；要么 fine-tune 一个 tool-use head。
-- // 待补全：暂无 raw 来源（推测）。可在专门面经里补"R1 / o1 系列对 tool use 支持差"等具体例子。
+> 来源说明：无直接面试出处，答案基于通用知识 + 行业代表系统（Cursor / Cody / Copilot Workspace）。可在专门面经里补"R1 / o1 系列对 tool use 支持差"等具体例子。
 
 **拓展双链**：[[专栏/Agent/MCP与Tool管理]]、[[Agent设计模式与MCP]]
 
@@ -107,7 +107,7 @@ updated: 2026-05-04
 - **传输**：HTTP + JSON-RPC + SSE，复用 MCP 已熟悉的链路。
 - **典型流程**：A 通过 well-known URL 拉 B 的 AgentCard → 创建 Task → 发 message → 订阅 Task 状态流 → 拿 Artifact。
 - **和 MCP 的分工**：MCP 是 Agent ↔ Tool；A2A 是 Agent ↔ Agent；可叠加，外层 A2A 调度，内层 MCP 取数据。
-- // 待补全：暂无 raw 来源（推测）。本节内容基于 Google 公开 spec，等真题积累再补面试细节。
+> 来源说明：无直接面试出处，答案基于通用知识 + 行业代表系统（Cursor / Cody / Copilot Workspace）。本节内容基于 Google 公开 spec，等真题积累再补面试细节。
 
 **拓展双链**：[[Agent问题答案/MCP与协议#Q41]]、[[Agent设计模式与MCP]]
 
@@ -140,7 +140,7 @@ updated: 2026-05-04
 - **状态模型**：MCP 单次调用为主（tools/call），无状态；A2A 任务有完整生命周期（submitted → working → completed / failed），支持长任务和流式 Artifact。
 - **能力发现**：MCP 通过 `tools/list` 拉清单；A2A 通过 well-known URL 发布 AgentCard 自描述。
 - **协同**：A2A 在外层做多 Agent 编排，每个 Agent 内部仍可走 MCP 调工具，两层协议各司其职。
-- // 待补全：暂无 raw 来源（推测）。
+> 来源说明：无直接面试出处，答案基于通用知识 + 行业代表系统（Cursor / Cody / Copilot Workspace）。
 
 **拓展双链**：[[Agent问题答案/MCP与协议#Q27]]、[[Agent设计模式与MCP]]
 

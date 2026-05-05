@@ -3,5 +3,9 @@
   "mxmind",
   "recent-files-obsidian",
   "obsidian-excalidraw-plugin",
-  "url-formatter"
+  "url-formatter",
+  "dataview",
+  "obsidian-tasks-plugin",
+  "templater-obsidian",
+  "calendar"
 ]

@@ -49,7 +49,9 @@ def lint_links(all_md, wiki_files):
 
 def find_todos(wiki_files):
     todos = []
-    pat = re.compile(r'(?://\s*待补全|TODO|FIXME|XXX)', re.IGNORECASE)
+    # 严格匹配：// 待补全 / 大写 TODO/FIXME 单词 / "⚠️ TODO"
+    # 不匹配 xxx (小写, 常见于占位符如 'xxx%' 'setXxx')
+    pat = re.compile(r'//\s*待补全|⚠️\s*TODO|\bTODO\b|\bFIXME\b')
     for wf in wiki_files:
         with open(os.path.join(ROOT, wf), encoding='utf-8') as fh:
             for i, line in enumerate(fh, 1):

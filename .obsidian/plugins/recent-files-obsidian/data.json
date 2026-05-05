@@ -1,16 +1,64 @@
 {
   "recentFiles": [
     {
+      "basename": "使用指南",
+      "path": "wiki/使用指南.md"
+    },
+    {
+      "basename": "README",
+      "path": "wiki/可视化/README.md"
+    },
+    {
+      "basename": "wiki鸟瞰图",
+      "path": "wiki/可视化/wiki鸟瞰图.md"
+    },
+    {
+      "basename": "README",
+      "path": "wiki/README.md"
+    },
+    {
+      "basename": "插件设置",
+      "path": "wiki/插件设置.md"
+    },
+    {
+      "basename": "高频考点榜",
+      "path": "wiki/索引/高频考点榜.md"
+    },
+    {
+      "basename": "SOP",
+      "path": "SOP.md"
+    },
+    {
+      "basename": "README",
+      "path": "wiki/工作流/README.md"
+    },
+    {
+      "basename": "模板",
+      "path": "wiki/复盘/模板.md"
+    },
+    {
+      "basename": "TODO汇总",
+      "path": "wiki/dashboard/TODO汇总.md"
+    },
+    {
+      "basename": "README",
+      "path": "wiki/dashboard/README.md"
+    },
+    {
+      "basename": "README",
+      "path": "wiki/模板/README.md"
+    },
+    {
+      "basename": "README",
+      "path": "README.md"
+    },
+    {
       "basename": "我的字节一面",
       "path": "公司/字节/我的字节一面.md"
     },
     {
       "basename": "Offer看板",
       "path": "wiki/dashboard/Offer看板.md"
-    },
-    {
-      "basename": "README",
-      "path": "README.md"
     },
     {
       "basename": "未命名",

@@ -1,16 +1,16 @@
 {
   "recentFiles": [
     {
+      "basename": "README",
+      "path": "README.md"
+    },
+    {
       "basename": "RPC框架",
       "path": "后端技术专栏/RPC框架.md"
     },
     {
       "basename": "什么时候选择多智能体",
       "path": "Agent技术专栏/什么时候选择多智能体.md"
-    },
-    {
-      "basename": "Harness",
-      "path": "Agent技术专栏/Harness.md"
     },
     {
       "basename": "未命名",
@@ -39,10 +39,6 @@
     {
       "basename": "代码随想录项目精讲系列-仿牛客论坛项目",
       "path": "项目/代码随想录项目精讲系列-仿牛客论坛项目.pdf"
-    },
-    {
-      "basename": "Harness Engineering",
-      "path": "Harness Engineering.md"
     },
     {
       "basename": "小红书产品工程师一面面经",
@@ -195,10 +191,6 @@
     {
       "basename": "Netty",
       "path": "Java后端技术专栏/Netty.md"
-    },
-    {
-      "basename": "Skills",
-      "path": "Agent技术专栏/Skills.md"
     }
   ],
   "omittedPaths": [],

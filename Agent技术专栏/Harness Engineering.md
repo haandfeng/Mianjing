@@ -1,3 +1,24 @@
+---
+title: Harness Engineering
+type: column
+domain: Agent
+updated: 2026-05-05
+---
+
+# Harness Engineering
+
+> Agent harness 是包裹 LLM 让它能高效运转的一切工程支撑。本文整理 OpenAI 和 Anthropic 的最佳实践（含原文合并自 `Agent技术专栏/Harness.md`）。
+
+## TL;DR — Anthropic Harness 三组件
+
+1. **上下文清理器与管理器（Context Cleaner & Manager）**：通过总结、压缩或重置历史记录管理 LLM 有限上下文窗口，防止"上下文焦虑"和性能下降。
+2. **验证器与评估器（Validator & Evaluator）**：自动化检查确保模型输出符合结构 / 类型 / 质量标准。例如 [Guardrails AI](https://guardrailsai.com/docs/concepts/validators) 强制 JSON 结构到无害内容。
+   > 实际到工程代码开发中这个可能是 UT 的自动生成或者代码编译是否通过的 Linter
+3. **生成-评估循环（Generator-Evaluator Loop）**：一种 `生成器` 模型产生输出、由 `评估器` 反馈的模式（灵感源 GAN），推动生成器产出更高质量解决方案。
+
+> Harness 是理论指导，真实实现多样。下面是两家厂商的实战。
+
+---
 
 # OpenAI 文章
 [OpenAI](https://openai.com/index/harness-engineering/)

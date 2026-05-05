@@ -11,10 +11,14 @@
             "id": "4ee2a51ed8b672ff",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "README"
             }
           }
         ]
@@ -196,8 +200,10 @@
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "4ee2a51ed8b672ff",
+  "active": "71de882f8a167c7e",
   "lastOpenFiles": [
+    "Agent技术专栏/Harness Engineering.md",
+    "Agent技术专栏/RAG到Agent进阶.md",
     "后端技术专栏/RPC框架.md",
     "Agent技术专栏/什么时候选择多智能体.md",
     "System Design/System_Design_学习资料汇总.md",
@@ -229,8 +235,6 @@
     "微软/Bing图像视频业务实习一面面经.md",
     "自己简历可能会考察的八股/Java后端.md",
     "自己简历可能会考察的八股/AI简历.md",
-    "面经较少公司/老虎国际二面面经（资讯组）.md",
-    "面经较少公司/老虎国际一面面经（资讯组）.md",
     "image/Pasted image 20260312235921.png",
     "小红书",
     "微软/Bing图像视频业务实习面试—谭海峰 1.txt",

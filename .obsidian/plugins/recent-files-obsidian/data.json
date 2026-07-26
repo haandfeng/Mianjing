@@ -1,8 +1,112 @@
 {
   "recentFiles": [
     {
+      "basename": "阿里云消息团队一面面经",
+      "path": "公司/阿里云/阿里云消息团队一面面经.md"
+    },
+    {
+      "basename": "JOIN",
+      "path": "Excalidraw/JOIN.md"
+    },
+    {
+      "basename": "牛客爬取_WXG微信支付共性分析",
+      "path": "公司/腾讯/微信事业群/牛客爬取_WXG微信支付共性分析.md"
+    },
+    {
+      "basename": "腾讯WXG后端实习三面",
+      "path": "公司/腾讯/微信事业群/腾讯WXG后端实习三面.md"
+    },
+    {
+      "basename": "URL访问",
+      "path": "Excalidraw/URL访问.md"
+    },
+    {
+      "basename": "NIO BIO AIO Block",
+      "path": "Excalidraw/NIO BIO AIO Block.md"
+    },
+    {
+      "basename": "数据库",
+      "path": "Excalidraw/数据库.md"
+    },
+    {
+      "basename": "三次握手四次挥手 TCP可靠传输",
+      "path": "Excalidraw/三次握手四次挥手 TCP可靠传输.md"
+    },
+    {
+      "basename": "Http Https",
+      "path": "Excalidraw/Http Https.md"
+    },
+    {
+      "basename": "长鑫存储",
+      "path": "公司/其他/长鑫/长鑫存储.md"
+    },
+    {
+      "basename": "银河智学",
+      "path": "公司/其他/银河智学.md"
+    },
+    {
+      "basename": "腾讯WXG后端实习一面",
+      "path": "公司/腾讯/微信事业群/腾讯WXG后端实习一面.md"
+    },
+    {
+      "basename": "TT SRE 牛客",
+      "path": "公司/TT/SRE/TT SRE 牛客.md"
+    },
+    {
+      "basename": "TCP与HTTPS",
+      "path": "wiki/技术主题/TCP与HTTPS.md"
+    },
+    {
+      "basename": "OpenClaw Memory",
+      "path": "专栏/Agent/OpenClaw Memory.md"
+    },
+    {
+      "basename": "Claude Code Context管理",
+      "path": "专栏/Agent/Claude Code Context管理.md"
+    },
+    {
+      "basename": "三家大模型API协议对比",
+      "path": "专栏/Agent/三家大模型API协议对比.md"
+    },
+    {
+      "basename": "记忆压缩",
+      "path": "专栏/Agent/记忆压缩.md"
+    },
+    {
+      "basename": "代码随想录项目精讲系列-仿牛客论坛项目",
+      "path": "项目/代码随想录项目精讲系列-仿牛客论坛项目.pdf"
+    },
+    {
+      "basename": "卡码网盘",
+      "path": "项目/卡码网盘.md"
+    },
+    {
+      "basename": "卡码信息",
+      "path": "项目/卡码信息.md"
+    },
+    {
+      "basename": "公司列表",
+      "path": "公司列表.md"
+    },
+    {
+      "basename": "插件设置",
+      "path": "wiki/插件设置.md"
+    },
+    {
       "basename": "面试历史",
       "path": "wiki/dashboard/面试历史.md"
+    },
+    {
+      "basename": "备注",
+      "path": "备注.md"
+    },
+    {
+      "basename": "主题",
+      "path": "wiki/索引/主题.md"
+    },
+    {
+      "basename": "西门子RAG",
+      "path": "wiki/追问/西门子RAG.md"
     },
     {
       "basename": "TT SRE 二面",
@@ -25,10 +129,6 @@
       "path": "wiki/README.md"
     },
     {
-      "basename": "主题",
-      "path": "wiki/索引/主题.md"
-    },
-    {
       "basename": "CLAUDE",
       "path": "CLAUDE.md"
     },
@@ -39,14 +139,6 @@
     {
       "basename": "公司爱考什么",
       "path": "wiki/dashboard/公司爱考什么.md"
-    },
-    {
-      "basename": "西门子RAG",
-      "path": "wiki/追问/西门子RAG.md"
-    },
-    {
-      "basename": "插件设置",
-      "path": "wiki/插件设置.md"
     },
     {
       "basename": "README",
@@ -61,28 +153,12 @@
       "path": "公司/字节/我的字节一面.md"
     },
     {
-      "basename": "未命名",
-      "path": "未命名.md"
-    },
-    {
-      "basename": "卡码信息",
-      "path": "项目/卡码信息.md"
-    },
-    {
-      "basename": "代码随想录项目精讲系列-仿牛客论坛项目",
-      "path": "项目/代码随想录项目精讲系列-仿牛客论坛项目.pdf"
-    },
-    {
       "basename": "Java多线程 并发",
       "path": "后端技术专栏/Java多线程 并发.md"
     },
     {
       "basename": "JVM内存结构",
       "path": "Excalidraw/JVM内存结构.md"
-    },
-    {
-      "basename": "三次握手四次挥手 TCP可靠传输",
-      "path": "Excalidraw/三次握手四次挥手 TCP可靠传输.md"
     },
     {
       "basename": "RPC框架整理后",
@@ -99,10 +175,6 @@
     {
       "basename": "黑马点评相关技术",
       "path": "Java后端技术专栏/黑马点评相关技术.md"
-    },
-    {
-      "basename": "Http Https",
-      "path": "Excalidraw/Http Https.md"
     },
     {
       "basename": "Java多线程 并发",

@@ -4,81 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "1f9f5d60339aad0c",
+        "id": "a8ee9ef7acfcfe68",
         "type": "tabs",
         "children": [
           {
-            "id": "4ee2a51ed8b672ff",
+            "id": "7d9dc8eb3de32bef",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/插件设置.md",
+                "file": "公司/阿里云/阿里云消息团队一面面经.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "插件设置"
-            }
-          },
-          {
-            "id": "4cbfb0b125dd4a0e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/dashboard/面试历史.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "面试历史"
-            }
-          },
-          {
-            "id": "ccfe3dcabca9f7a2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/追问/西门子RAG.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "西门子RAG"
-            }
-          },
-          {
-            "id": "0f84b9ad9f26e07f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/索引/主题.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "主题"
-            }
-          },
-          {
-            "id": "4f16e97206d0cbc8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "wiki/dashboard/面试历史.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "面试历史"
+              "title": "阿里云消息团队一面面经"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -111,7 +54,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": " ",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -146,7 +89,7 @@
               "type": "recent-files",
               "state": {},
               "icon": "clock",
-              "title": "Recent Files"
+              "title": "Recent files"
             }
           }
         ]
@@ -217,13 +160,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/dashboard/面试历史.md",
+                "file": "公司列表.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "面试历史 的大纲"
+              "title": "公司列表 的大纲"
             }
           },
           {
@@ -265,7 +208,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 323.5
+    "width": 323.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -282,44 +226,45 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "4cbfb0b125dd4a0e",
+  "active": "7d9dc8eb3de32bef",
   "lastOpenFiles": [
+    "wiki/追问/谷歌Memory.md",
+    "wiki/追问/字节答疑Bot.md",
+    "公司/星河觉醒/Agent方向/星河觉醒Agent一面_2026-07-20.md",
+    "公司/星河觉醒/Agent方向",
+    "公司/星河觉醒",
+    "Excalidraw/JOIN.md",
+    "公司/腾讯/微信事业群/牛客爬取_WXG微信支付共性分析.md",
+    "公司/腾讯/微信事业群/腾讯WXG后端实习三面.md",
+    "Excalidraw/URL访问.md",
+    "Excalidraw/NIO BIO AIO Block.md",
+    "Excalidraw/数据库.md",
+    "Excalidraw/三次握手四次挥手 TCP可靠传输.md",
+    "Excalidraw/Http Https.md",
+    "公司/其他/长鑫/长鑫存储.md",
+    "公司/其他/银河智学.md",
+    "公司/腾讯/微信事业群/腾讯WXG后端实习一面.md",
+    "公司/TT/SRE/TT SRE 牛客.md",
+    "wiki/技术主题/TCP与HTTPS.md",
+    "专栏/Agent/Claude Code Context管理.md",
+    "专栏/Agent/OpenClaw Memory.md",
+    "专栏/Agent/三家大模型API协议对比.md",
+    "专栏/Agent/记忆压缩.md",
+    "项目/代码随想录项目精讲系列-仿牛客论坛项目.pdf",
+    "项目/卡码网盘.md",
+    "项目/卡码信息.md",
+    "公司列表.md",
+    "wiki/插件设置.md",
+    "wiki/dashboard/面试历史.md",
+    "备注.md",
+    "image/Pasted image 20260515220626.png",
+    "image",
     "项目/卡码网盘_AI_pgvector.sql",
     "项目/卡码网盘_DDL.sql",
-    "项目/卡码网盘.md",
-    "公司/TT/SRE/TT SRE 二面.md",
-    "wiki/dashboard/面试历史.md",
-    "wiki/使用指南.md",
-    "README.md",
-    "wiki/公司/TT-TikTok.md",
-    "wiki/README.md",
-    "wiki/索引/主题.md",
-    "CLAUDE.md",
-    "wiki/公司/PingCAP.md",
-    "wiki/dashboard/公司爱考什么.md",
-    "wiki/追问/西门子RAG.md",
-    "wiki/插件设置.md",
-    "wiki/dashboard/主题统计.md",
-    "wiki/模板/录音转面经.md",
     "简历/2026-01-24_谭演锋_简历2026_2_12.pdf",
     "简历/2026-02-12_简历_谭演锋.pdf",
     "简历/2025-08-19_transcript.pdf",
     "简历/2025-09-15_resume_Yanfeng_Tan_9_16.pdf",
-    "简历/2025-09-14_resume_Yanfeng_Tan_9_15.pdf",
-    "简历/2025-08-19_resume_Yanfeng_Tan_8_16.pdf",
-    "简历/2025-09-17_resume_Yanfeng_Tan_10_3.pdf",
-    "简历/2025-10-11_Resume_Yanfeng_Tan——11.19.pdf",
-    "简历/2025-11-19_Resume_Yanfeng_Tan_11_20_total.pdf",
-    "wiki/可视化/README.md",
-    "wiki/可视化/wiki鸟瞰图.md",
-    "wiki/索引/高频考点榜.md",
-    "公司/其他/长鑫/长鑫存储.md",
-    "公司/其他/贝壳/贝壳找房一面面经.md",
-    "公司/其他/老虎国际/老虎国际二面面经（资讯组）.md",
-    "公司/其他/老虎国际/老虎国际一面面经（资讯组）.md",
-    "公司/其他/粉笔/粉笔上岸.md",
-    "公司/其他/心潮无限/1.md",
-    "公司/其他/PingCAP/面试问题总结.md",
     "img/Pasted image 20260312235921.png",
     "img/Pasted image 20260208151010.png",
     "img/Pasted image 20260205210548.png",
@@ -329,7 +274,6 @@
     "img/Pasted image 20260105213230.png",
     "img/Pasted image 20251216152255.png",
     "img/Pasted image 20250331142424.png",
-    "img/Pasted image 20250324234607.png",
     "Excalidraw/未命名.canvas",
     "Excalidraw/TCP.canvas"
   ]

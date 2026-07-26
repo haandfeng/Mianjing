@@ -16,13 +16,19 @@ class UrlFormatterSettingTab extends obsidian.PluginSettingTab {
         const { containerEl } = this;
         containerEl.empty();
         new obsidian.Setting(containerEl).setName("Custom url patterns").setHeading();
-        containerEl.createEl('p').innerHTML = 'Define custom url patterns to automatically format pasted links into clean Markdown.<br>Each pattern requires:';
+        containerEl.createEl('p', { text: 'Define custom url patterns to automatically format pasted links into clean Markdown. Each pattern requires:' });
         const ul = containerEl.createEl('ul');
         ul.createEl('li', { text: 'A friendly name for identification.' });
-        ul.createEl('li', { text: 'A regular expression (regex) that matches the full url.' });
+        ul.createEl('li', { text: 'A regular expression (regex) that matches the url.' });
         const liWithCode = ul.createEl('li');
-        liWithCode.innerHTML = 'An output format string using <code>$0</code> for the full match, and <code>$1</code>, <code>$2</code>, etc., for capture groups. Remember to escape special characters (like . / ?).';
-        ul.createEl('li', { text: 'You can easily toggle each pattern on or off.' });
+        liWithCode.appendText('An output format string using ');
+        liWithCode.createEl('code', { text: '$0' });
+        liWithCode.appendText(' for the full match, and ');
+        liWithCode.createEl('code', { text: '$1' });
+        liWithCode.appendText(', ');
+        liWithCode.createEl('code', { text: '$2' });
+        liWithCode.appendText(', etc., for capture groups.');
+        ul.createEl('li', { text: 'Use the test field under each pattern to try it on a sample url and preview the result.' });
         // Render each existing URL pattern
         this.plugin.settings.urlPatterns.forEach((patternConfig, index) => {
             this.renderPatternItem(patternConfig, index, containerEl);
@@ -59,9 +65,42 @@ class UrlFormatterSettingTab extends obsidian.PluginSettingTab {
      */
     renderPatternItem(patternConfig, index, containerEl) {
         const patternContainer = containerEl.createDiv('url-formatter-pattern-item');
-        // Pattern header with toggle
-        new obsidian.Setting(patternContainer)
-            .setName(`Pattern ${index + 1}`).setHeading()
+        const fallbackHeading = `Pattern ${index + 1}`;
+        // Sample url the user is testing this pattern against (not persisted)
+        let testUrl = '';
+        let previewEl;
+        const updatePreview = () => {
+            previewEl.removeClass('is-match', 'is-error');
+            if (!testUrl) {
+                previewEl.setText('Enter a test url above to see a live preview of the result.');
+                return;
+            }
+            try {
+                new RegExp(patternConfig.pattern);
+            }
+            catch (e) {
+                previewEl.addClass('is-error');
+                previewEl.setText(`Invalid regular expression: ${e instanceof Error ? e.message : String(e)}`);
+                return;
+            }
+            if (!patternConfig.pattern || !patternConfig.formatString) {
+                previewEl.setText('Fill in the regular expression and output format string to preview.');
+                return;
+            }
+            const result = this.plugin.formatUrlWithPattern(testUrl, patternConfig);
+            if (result) {
+                previewEl.addClass('is-match');
+                previewEl.setText(`✓ ${result}`);
+            }
+            else {
+                previewEl.addClass('is-error');
+                previewEl.setText('✗ This url does not match the regular expression.');
+            }
+        };
+        // Pattern header with toggle; shows the pattern's name and follows edits live
+        const headingSetting = new obsidian.Setting(patternContainer)
+            .setName(patternConfig.name || fallbackHeading)
+            .setHeading()
             .addToggle(toggle => toggle
             .setValue(patternConfig.patternEnabled)
             .onChange(async (value) => {
@@ -77,14 +116,16 @@ class UrlFormatterSettingTab extends obsidian.PluginSettingTab {
             .setValue(patternConfig.name)
             .onChange((value) => {
             patternConfig.name = value;
+            headingSetting.setName(value || fallbackHeading);
             this.plugin.debouncedSaveSettings();
         }));
         // Regular expression with validation
-        new obsidian.Setting(patternContainer)
+        const regexSetting = new obsidian.Setting(patternContainer)
             .setName('Regular expression')
-            .setDesc('The regex to match the url. **Use `\\/` to escape literal forward slashes `/` and `\\.` to escape literal dots `.`')
-            .addText(text => {
-            text.setPlaceholder('e.g., "https:\\/\\/([A-Za-z0-9-]+)\\.example\\.com\\/([A-Z0-9-]+)"')
+            .setDesc('The regex to match the url. Escape literal dots and slashes with a backslash: \\. and \\/');
+        regexSetting.settingEl.addClass('url-formatter-stacked');
+        regexSetting.addText(text => {
+            text.setPlaceholder('e.g., https:\\/\\/([A-Za-z0-9-]+)\\.example\\.com\\/([A-Z0-9-]+)')
                 .setValue(patternConfig.pattern)
                 .onChange((value) => {
                 patternConfig.pattern = value;
@@ -96,25 +137,38 @@ class UrlFormatterSettingTab extends obsidian.PluginSettingTab {
                 catch (e) {
                     text.inputEl.addClass('url-formatter-invalid-regex');
                 }
+                updatePreview();
                 this.plugin.debouncedSaveSettings();
             });
-            text.inputEl.addClass('url-formatter-full-width-input');
-            text.inputEl.addClass('url-formatter-margin-bottom');
         });
         // Output format string
-        new obsidian.Setting(patternContainer)
+        const formatSetting = new obsidian.Setting(patternContainer)
             .setName('Output format string')
-            .setDesc('Use $0 for the full url match, $1, $2, etc., for regex capture groups. e.g., "Blog: $1 - $2!"')
-            .addText(text => {
-            text.setPlaceholder('e.g., "$2 ($1)"')
+            .setDesc('Use $0 for the full url match, $1, $2, etc., for regex capture groups. e.g., "Blog: $1 - $2!"');
+        formatSetting.settingEl.addClass('url-formatter-stacked');
+        formatSetting.addText(text => {
+            text.setPlaceholder('e.g., $2 ($1)')
                 .setValue(patternConfig.formatString)
                 .onChange((value) => {
                 patternConfig.formatString = value;
+                updatePreview();
                 this.plugin.debouncedSaveSettings();
             });
-            text.inputEl.addClass('url-formatter-full-width-input');
-            text.inputEl.addClass('url-formatter-margin-bottom');
         });
+        // Live tester: paste a sample url and preview the formatted result
+        const testSetting = new obsidian.Setting(patternContainer)
+            .setName('Test with a sample url')
+            .setDesc('Paste an example url to preview what this pattern produces. (not saved)');
+        testSetting.settingEl.addClass('url-formatter-stacked');
+        testSetting.addText(text => {
+            text.setPlaceholder('e.g., https://acme.example.com/ABC-123')
+                .onChange((value) => {
+                testUrl = value.trim();
+                updatePreview();
+            });
+        });
+        previewEl = patternContainer.createDiv('url-formatter-preview');
+        updatePreview();
         // Remove button - fixed closure bug by using filter instead of splice
         new obsidian.Setting(patternContainer)
             .addButton(button => button
@@ -157,6 +211,12 @@ class UrlFormatterPlugin extends obsidian.Plugin {
     }
     onunload() {
         console.log('URL Formatter Plugin unloaded.');
+        // Flush a pending debounced save so the last settings edits are not lost
+        if (this.saveDebounceTimer !== null) {
+            window.clearTimeout(this.saveDebounceTimer);
+            this.saveDebounceTimer = null;
+            this.saveSettings();
+        }
     }
     createPasteHandler() {
         const plugin = this;
@@ -214,9 +274,10 @@ class UrlFormatterPlugin extends obsidian.Plugin {
      */
     debouncedSaveSettings(delayMs = 500) {
         if (this.saveDebounceTimer) {
-            clearTimeout(this.saveDebounceTimer);
+            window.clearTimeout(this.saveDebounceTimer);
         }
-        this.saveDebounceTimer = setTimeout(() => {
+        this.saveDebounceTimer = window.setTimeout(() => {
+            this.saveDebounceTimer = null;
             this.saveSettings();
         }, delayMs);
     }
@@ -244,25 +305,34 @@ class UrlFormatterPlugin extends obsidian.Plugin {
         for (const patternConfig of this.settings.urlPatterns) {
             if (patternConfig.patternEnabled === false)
                 continue;
-            try {
-                const regex = new RegExp(patternConfig.pattern);
-                const match = url.match(regex);
-                if (match) {
-                    let formattedDisplayText = patternConfig.formatString;
-                    // Replace $0, $1, $2, etc., with actual capture group values
-                    for (let i = 0; i < match.length; i++) {
-                        const placeholder = `$${i}`;
-                        formattedDisplayText = formattedDisplayText.replaceAll(placeholder, match[i] || '');
-                    }
-                    return `[${formattedDisplayText}](${url})`;
-                }
-            }
-            catch (e) {
-                console.error(`URL Formatter Plugin: Invalid regex pattern "${patternConfig.pattern}":`, e);
-            }
+            const formatted = this.formatUrlWithPattern(url, patternConfig);
+            if (formatted)
+                return formatted;
         }
         // No pattern matches
         return null;
+    }
+    /**
+     * Applies a single pattern to a URL, ignoring the pattern's enabled state
+     * (also used by the settings tab to preview patterns while editing them)
+     * @returns Markdown link, or null if the pattern is incomplete, invalid, or does not match
+     */
+    formatUrlWithPattern(url, patternConfig) {
+        if (!patternConfig.pattern || !patternConfig.formatString)
+            return null;
+        try {
+            const regex = new RegExp(patternConfig.pattern);
+            const match = url.match(regex);
+            if (!match)
+                return null;
+            // Replace $0, $1, $2, etc., with actual capture group values in a single pass
+            const formattedDisplayText = patternConfig.formatString.replace(/\$(\d+)/g, (token, groupIndex) => Number(groupIndex) < match.length ? (match[Number(groupIndex)] ?? '') : token);
+            return `[${formattedDisplayText}](${url})`;
+        }
+        catch (e) {
+            console.error(`URL Formatter Plugin: Invalid regex pattern "${patternConfig.pattern}":`, e);
+            return null;
+        }
     }
 }
 

@@ -1,18 +1,20 @@
 ---
 title: Python并发与GIL
 type: topic
-updated: 2026-07-20
+updated: 2026-07-29
 ---
 
 # Python 并发与 GIL
 
 > GIL 是 **CPython 实现**的一把全局互斥锁：同一时刻只有一个线程能执行 Python 字节码。根因是引用计数非原子。**2026 年它已从「不可逾越」变成「可选项」**——free-threading 与子解释器都已落地。
+> **asyncio 是绕开 GIL 的另一条路**（不是绕开，是让 I/O 等待不占线程）——见 §10。
 
 ## 高频问法
 - 「为什么有 GIL？多线程的锁有哪些？Lock 和 RLock 有啥区别？」—— 出处 [[老虎国际一面面经（资讯组）]]
 - 「多线程情况下这个队列怎么保证正确性？」—— 出处 [[腾讯/微信事业群/腾讯微信支付一面_2026-07-20]]（手写环形队列的可选进阶项）
 - 「信号量的底层实现原理」
 - 「Python 多线程为什么快不起来？怎么绕过？」
+- ⭐「**什么是事件循环？为什么跨事件循环复用连接会出错？本质是什么？**」—— 出处 [[公司/点点互动/AI Agent方向/点点互动AI Agent一面_2026-07-27]]（**当场答错了定义**）；见 §10 + [[追问/字节答疑Bot]] Q6
 
 ## 答题骨架
 
@@ -188,6 +190,104 @@ numpy / polars / torch 底层大运算**主动释放 GIL**；**PyO3** 的 `py.al
 1. **CPU + 内存开销**——大数据时是主要瓶颈，「多进程处理大数组反而更慢」的原因
 2. **有些东西 pickle 不了**：lambda、文件句柄、socket、锁——**规律：绑定 OS 资源的都不行**（换个进程毫无意义）
 3. **⚠️ 安全红线：绝不 unpickle 不可信数据**——反序列化会执行 `__reduce__`，等价于任意代码执行。**pickle ≠ json**：json 只表达数据，pickle 表达「怎么重建对象」。跨系统/接收外部数据一律用 JSON / msgpack / Protobuf / Arrow
+
+### 10. asyncio 事件循环：定义、与连接的绑定、跨 loop 复用 bug ⭐
+
+> **两场面试都被问到**（点点互动直接问「什么是事件循环」，答成了「检测每一个线程是否有任务」——**概念硬伤**）。
+
+#### 10.1 事件循环是什么（正确定义，30 秒）
+
+> 「事件循环是**单线程**的调度中心，维护两样东西：**一个就绪任务队列**，和**一批注册在 epoll/kqueue 上的 fd**。循环体三件事转圈跑：**① 问内核『哪些 fd 就绪了』→ ② 把就绪 fd 对应的回调/协程放进队列 → ③ 逐个执行到下一个 await 点**。
+> 价值是**一个线程管上万连接**——连接大部分时间在等 I/O，等的时候不占线程只占一个 fd 注册项。**所以它省的是线程栈内存和上下文切换，不是省 CPU**——CPU 密集任务放进去会把整个循环卡死。」
+
+❌ **别说「检测每一个线程是否有任务」**——事件循环不检测线程，它自己就是单线程的。
+✅ **比喻**：不是「前台查房间」，是**餐厅里一个服务员**——不站在某桌前干等，谁举手（fd 就绪）去谁那儿；但有一桌拉着他聊十分钟（CPU 密集不让出），其他所有桌都得等。
+
+#### 10.2 连接为什么会「绑定」到某个 loop（机制层，讲清就有深度）
+
+**OS 层面根本没有绑定**——TCP 连接就是一个 fd，属于进程，谁都能 read/write。**绑定是 asyncio 造出来的**：
+
+```
+httpx.AsyncClient                    ← 配置 + 池的持有者（不是一条连接！）
+  └── AsyncConnectionPool            ← 池：不知道每条连接归哪个 loop
+        └── Connection
+              └── Transport          ← ⚠️ 绑定在这层
+                    ├─ self._loop = loop            ① 硬引用创建它的 loop
+                    ├─ loop._add_reader(fd, cb)     ② fd 注册进这个 loop 的 epoll
+                    └─ 写缓冲 / TLS 状态             ③ 换 loop 也带不走
+                          └── socket fd=7
+```
+
+**每次 I/O 都在调旧 loop 的方法**：`self._loop.create_future()` → 内部第一行 `self._check_closed()` → loop 关了就 `RuntimeError('Event loop is closed')`。**这就是报错的确切位置**——不是 fd 坏了、不是网络断了。
+
+> **能不能迁移到新 loop？** 底层 fd 理论上能重新注册，但 transport 里还挂着**未完成的 Future、TLS 握手状态、读写缓冲**，都跟旧 loop 的调度绑在一起，httpx/anyio 也没暴露迁移接口。**工程结论：连接池不能跨 loop 共享。**
+
+#### 10.3 经典 bug：跨事件循环复用连接（实战出处见文末）
+
+**根因一句话：连接池的生命周期比 event loop 长，但池里的连接绑死在 loop 上。**
+
+```
+T1  loop A 运行     pool = [conn1→loopA, conn2→loopA]        ✅
+T2  某框架关掉 loopA pool = [conn1→💀, conn2→💀]              ⚠️ 池毫无察觉
+T3  新请求（loop B） conn = pool.pop() → conn._loop.create_future() → 💥
+```
+
+**解释了两个现象**：**为什么偶发**（池空时新建的连接没事，只有捞到旧连接才炸）；**为什么难查**（雷是关 loop 时埋的，炸是下次复用时炸的，位置隔很远）。
+
+**定位三步**：① 看堆栈（炸点在连接池层 → 说明是**复用的连接对象**出事，不是当次请求）② **在建连接处和报错处分别打印 `id(asyncio.get_running_loop())`**，对比发现不是同一个 ③ 最小复现：全局 client + 连续两次 `asyncio.run()`，第二次必炸。
+
+**找出谁在关 loop（十行代码抓现行）：**
+```python
+_orig = asyncio.BaseEventLoop.close
+def _traced(self):
+    logging.warning("有人关 loop id=%s\n%s", id(self), "".join(traceback.format_stack()))
+    return _orig(self)
+asyncio.BaseEventLoop.close = _traced
+```
+
+#### 10.4 七种修法与选择依据
+
+| # | 方案 | 做法 | 代价 |
+|---|---|---|---|
+| **①** | **关闭连接复用** ⭐ | `Limits(max_keepalive_connections=0)` | 每次握手 2~5ms（内网） |
+| **⑥** | **给捣乱方独立 loop** ⭐ | 守护线程跑常驻 loop + `run_coroutine_threadsafe` | 改其调用方式 |
+| ② | per-loop client | `WeakKeyDictionary` 按 loop 分池 | 复用率降；**旧 client 无法优雅关闭 → socket 泄漏** |
+| ③ | 连接级 test-on-borrow | 子类化 httpcore，借出前校验 loop 存活 | **碰内部 API 版本脆弱**；丢弃时得手动关 socket |
+| ④ | 池级 loop 守卫 | httpx transport 层拦，loop 变了整池重建 | 误伤绑新 loop 的好连接 |
+| ⑤ | patch `loop.close` | 主 loop 打保护标记拦截 close | **改标准库行为**，只能临时止血 |
+| ⑦ | 单一常驻 loop | 全程一个 loop，进程退出才关 | 要重构（但这是 asyncio 应用的正常形态） |
+
+> **③ 的本质是数据库连接池的 `test-on-borrow`**——池里的连接可能已失效，借出前校验、失效就丢弃重建。只是校验条件从「TCP 还通吗」换成了「它绑的 loop 还活着、且就是当前 loop 吗」。
+> ⚠️ 校验要**两个条件**：loop 没关 **且** 是当前 loop——绑在 loop A 的连接即使 A 活着，在 loop B 里用会**卡死而不是报错**，更难查。
+
+**选 ① 的算账（这段是答案的灵魂）：**
+| | 内网网关 | 跨公网 |
+|---|---|---|
+| 建连总成本 | **2~5 ms** | 100~300 ms |
+| 一次 LLM 请求 | **秒级~数十秒**（开了最高思考强度） | 同 |
+| **握手占比** | **< 0.1%** | 3~5% |
+
+**TIME_WAIT 稳态占用 ≈ QPS × 60 秒**，本地端口约 28000 个。串行调用 QPS 几十 → 占几百个，差一个数量级。
+
+> **判断句：这里正确的做法不是把连接池做得更聪明，而是意识到我们根本不需要连接池。**
+> **知道什么时候不该优化，比会优化更难——但必须算过账才能这么说。**
+
+**为什么还要做 ⑥**：① 只是**止血**，「关闭一个自己不拥有的 loop」这个缺陷还在，以后会以别的形式咬人（别的用 asyncio 资源的库）。**一个止血一个根治，两句一起说。**
+
+#### 10.5 两条铁律 + 一条测试
+
+> **① 谁创建 loop 谁关闭，使用者只能用不能关。`asyncio.get_event_loop()` 拿到的 loop 永远不要 `close()`——它很可能不是你的；只关你用 `new_event_loop()` 亲手建的那个。**
+> **② 报错位置往往不是埋雷位置——debug 要追对象的生命周期，不能只盯炸点。**
+
+```python
+def test_client_survives_loop_restart():
+    """③状态序列层测试：loop 用完关闭再起新的——修复前必炸"""
+    async def call():
+        return await get_client().get("http://localhost:8000/ping")
+    asyncio.run(call())   # loop A 建连接，run 结束时关闭 loop A
+    asyncio.run(call())   # loop B —— 修复前 💥
+```
+> **这类 bug 只有「用完关掉再起一个」的状态序列能测出来，普通边界测试永远测不到**（见 [[测试设计方法论]] §③）。
 
 ## 易错点 & 追问
 

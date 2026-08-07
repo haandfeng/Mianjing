@@ -12,7 +12,7 @@ tags: [agent, memory, 自进化memory, skillopt, 决策树, review-agent, agent-
 
 # 面经记录
 
-**岗位方向：** Agent Infra · 中国商业化 Commercial AI
+**岗位方向：** Agent Infra · 中国商业化 Commercial AI · **提前批**
 **时长：** 48 分 40 秒
 **流程：** 自我介绍 → 谷歌 Memory 深挖（~13 min）→ 字节 DeerFlow 深挖（~13 min）→ 算法题一道（~16 min）→ AI coding 占比 → 反问（~3 min）
 **结果：** 未知（当天面完）

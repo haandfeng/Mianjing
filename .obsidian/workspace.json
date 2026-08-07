@@ -13,15 +13,72 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "公司/阿里云/阿里云消息团队一面面经.md",
+                "file": "wiki/技术主题/Agent设计模式与MCP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "阿里云消息团队一面面经"
+              "title": "Agent设计模式与MCP"
+            }
+          },
+          {
+            "id": "9b960df3bbbfc19e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/技术主题/Agent记忆三家实现对比.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Agent记忆三家实现对比"
+            }
+          },
+          {
+            "id": "d60dd82d46ca4839",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/技术主题/Agent上下文压缩链路.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Agent上下文压缩链路"
+            }
+          },
+          {
+            "id": "7a0e477917400acf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/技术主题/Agent记忆系统.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Agent记忆系统"
+            }
+          },
+          {
+            "id": "ed4238b19fad808f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "公司/字节/中国商业化/字节商业化AgentInfra一面_2026-07-30.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "字节商业化AgentInfra一面_2026-07-30"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -42,7 +99,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -54,12 +113,12 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "file:ag",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
-                "sortOrder": "alphabetical"
+                "sortOrder": "byModifiedTime"
               },
               "icon": "lucide-search",
               "title": "搜索"
@@ -96,7 +155,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 217.5
+    "width": 290.53515625,
+    "collapsed": true
   },
   "right": {
     "id": "f9a4f884102898ce",
@@ -112,7 +172,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "广州兴业.md",
+                "file": "Excalidraw/看思维导图.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,7 +182,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "广州兴业 的反向链接列表"
+              "title": "看思维导图 的反向链接列表"
             }
           },
           {
@@ -131,12 +191,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "广州兴业.md",
+                "file": "Excalidraw/看思维导图.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "广州兴业 的出链列表"
+              "title": "看思维导图 的出链列表"
             }
           },
           {
@@ -160,13 +220,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "公司列表.md",
+                "file": "wiki/技术主题/Agent上下文压缩链路.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "公司列表 的大纲"
+              "title": "大纲"
             }
           },
           {
@@ -208,8 +268,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 323.5,
-    "collapsed": true
+    "width": 323.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -226,45 +285,45 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "7d9dc8eb3de32bef",
+  "active": "d60dd82d46ca4839",
   "lastOpenFiles": [
-    "公司/点点互动/AI Agent方向/点点互动AI Agent一面_2026-07-27.md",
-    "公司/点点互动/AI Agent方向",
-    "公司/点点互动",
-    "wiki/技术主题/Python并发与GIL.md",
-    "wiki/技术主题/测试设计方法论.md",
-    "wiki/追问/谷歌Memory.md",
-    "wiki/追问/字节答疑Bot.md",
-    "公司/星河觉醒/Agent方向/星河觉醒Agent一面_2026-07-20.md",
-    "公司/星河觉醒/Agent方向",
-    "公司/星河觉醒",
-    "Excalidraw/JOIN.md",
-    "公司/腾讯/微信事业群/牛客爬取_WXG微信支付共性分析.md",
-    "公司/腾讯/微信事业群/腾讯WXG后端实习三面.md",
-    "Excalidraw/URL访问.md",
-    "Excalidraw/NIO BIO AIO Block.md",
-    "Excalidraw/数据库.md",
-    "Excalidraw/三次握手四次挥手 TCP可靠传输.md",
-    "Excalidraw/Http Https.md",
-    "公司/其他/长鑫/长鑫存储.md",
-    "公司/其他/银河智学.md",
-    "公司/腾讯/微信事业群/腾讯WXG后端实习一面.md",
-    "公司/TT/SRE/TT SRE 牛客.md",
-    "wiki/技术主题/TCP与HTTPS.md",
+    "公司/字节/中国商业化/字节商业化AgentInfra二面_2026-08-06.md",
+    "wiki/公司/阿里国际.md",
+    "公司/阿里国际/Agent Infra/阿里星一面_2026-08-06.md",
+    "公司/阿里国际/Agent Infra",
+    "公司/阿里国际",
+    "wiki/技术主题/Agent记忆三家实现对比.md",
+    "公司/点点互动/AI Agent方向/点点互动AI Agent二面_2026-08-05.md",
+    "wiki/技术主题/Agent设计模式与MCP.md",
+    "wiki/技术主题/Agent上下文压缩链路.md",
+    "wiki/技术主题/消息队列不丢不重.md",
+    "公司/米哈游/米哈游提前批二面_约2026-08.md",
+    "wiki/技术主题/Agent记忆系统.md",
+    "公司/字节/中国商业化/字节商业化AgentInfra一面_2026-07-30.md",
+    "Excalidraw/看思维导图.md",
+    "wiki/技术主题/JVM内存与GC.md",
+    "wiki/技术主题/LangGraph工程实践.md",
+    "wiki/技术主题/缓存一致性.md",
     "专栏/Agent/Claude Code Context管理.md",
-    "专栏/Agent/OpenClaw Memory.md",
-    "专栏/Agent/三家大模型API协议对比.md",
-    "专栏/Agent/记忆压缩.md",
-    "项目/代码随想录项目精讲系列-仿牛客论坛项目.pdf",
-    "项目/卡码网盘.md",
-    "项目/卡码信息.md",
-    "公司列表.md",
+    "发帖/米哈游一面_发帖.md",
+    "wiki/技术主题/AI-Coding工程实践.md",
+    "wiki/技术主题/幻觉与事实性评测.md",
+    "公司/米哈游/米哈游一面（我面试）_约2026-08.md",
+    "wiki/技术主题/LLM多协议网关适配.md",
+    "公司/米哈游/米哈游提前批一面_约2026-08.md",
+    "wiki/公司/米哈游.md",
+    "公司/米哈游",
+    "wiki/公司/其他公司.md",
+    "备注.md",
+    "wiki/索引/主题.md",
+    "公司/上海AI Lab/后训练数据",
+    "公司/上海AI Lab",
+    "发帖",
+    "公司/淘天/AI Agent",
+    "公司/淘天",
+    "公司/快手/DataAgent方向",
+    "公司/点点互动/AI Agent方向",
     "image/Pasted image 20260515220626.png",
-    "image",
-    "项目/卡码网盘_AI_pgvector.sql",
-    "项目/卡码网盘_DDL.sql",
-    "简历/2026-01-24_谭演锋_简历2026_2_12.pdf",
-    "简历/2026-02-12_简历_谭演锋.pdf",
     "img/Pasted image 20260312235921.png",
     "img/Pasted image 20260208151010.png",
     "img/Pasted image 20260205210548.png",

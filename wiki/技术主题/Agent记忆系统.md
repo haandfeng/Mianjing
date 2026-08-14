@@ -187,5 +187,5 @@ flowchart TD
 
 - raw 专栏：[[专栏/Agent/OpenClaw Memory]] · [[专栏/Agent/记忆压缩]] · [[专栏/Agent/Claude Code Context管理]]
 - 项目追问库：[[追问/谷歌Memory]]（自进化 memory 的完整弹药库 + 设计维度九问）
-- **具体实现**：[[Agent记忆三家实现对比]]（Claude Code / Codex / OpenClaw 逐维度落地，本文七维度的实证版）· [[Agent上下文压缩链路]]（本轮会话内的压缩，跟 memory 是两件事）
+- **具体实现**：[[Agent记忆四家实现对比]]（Claude Code / Codex / OpenClaw 逐维度落地，本文七维度的实证版）· [[Agent上下文压缩链路]]（本轮会话内的压缩，跟 memory 是两件事）
 - 相邻主题：[[Agent设计模式与MCP]] · [[LangGraph工程实践]]（Checkpointer 短期 vs Store 长期）· [[RAG优化全链路]]（记忆检索与 RAG 同构）

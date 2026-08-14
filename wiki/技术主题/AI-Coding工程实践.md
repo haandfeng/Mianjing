@@ -1,7 +1,7 @@
 ---
 title: AI-Coding工程实践
 type: topic
-updated: 2026-08-06
+updated: 2026-08-08
 ---
 
 # AI Coding 工程实践
@@ -9,7 +9,65 @@ updated: 2026-08-06
 > 2026 秋招的**通用题**——不分岗位方向，后端 / Agent / 基础架构都在问。
 > 考的不是「你用不用」，是**你有没有一套判据**，以及**你验证的时候依不依赖人眼**。
 
-> 📌 本页的一手素材来自 2026-08-06 的一次多路调研（六路检索 + 逐路对抗核查，杀掉 35 条未通过核实的断言）。**凡是带 URL 的数字都核过来源；没有 URL 的一律是通用共识或推断，已就地标注。**
+> 📌 一手素材来自两次多路调研（2026-08-06 六路 + 2026-08-08 三路）。**凡是带 URL 或标了来源的数字都核过；没标的一律是通用共识或推断，已就地标注。**
+
+---
+
+# 🟢 精简版：怎么做（面前三分钟只看这一段）
+
+**全文一句话：把「对不对」这件事，从人的判断变成机器的判断。**
+
+## 做的时候，六步
+
+**1. 先说清楚要什么，再让它写。**
+不要把需求原样丢给模型。先自己定下边界——不做什么、极端情况怎么处理、失败了返回什么。**这一步是唯一不可替代的，交出去等于宣布自己可被替代。**
+
+**2. 一次只让它做一件事。**
+社区收敛出来的门槛是**单个改动不超过 500 行**。理由很实在：审查成本是超线性的，改动一大，大家就只会点通过。
+
+**3. 先要方案，再要代码。**
+让它先说打算怎么做，方案错了成本是零；代码写完了再发现方案错了，成本是全部。
+
+**4. 收到代码，先读它的计划文档，别先读代码。**
+尤其是「还没解决的问题」那一节——**那里通常写着后面会炸的东西，而且比读代码便宜一个数量级。**
+
+**5. 验证要分层，而且别指望人眼。**
+
+| 先用 | 因为 |
+|---|---|
+| 编译器 / 类型检查 / lint | 确定性，一次配置永久生效 |
+| 单元测试 + **只看这次改动的覆盖率** | 总覆盖率在大仓库里几乎不动，没有信号 |
+| CI 里的**硬闸门**（不是告警） | **告警一定会被忽略** |
+| 换一个会话 / 换一个模型来审 | **干活的那个不能是给它打分的那个** |
+| 变异测试（故意注入小 bug 看测试抓不抓得到） | 覆盖率只说明这行**被执行过**，不说明**错了会被发现** |
+
+**6. 人只审两类地方。**
+一是碰钱、碰权限、碰用户数据、碰数据库迁移的；二是**「它做了我没让它做的事」**——AI 特别爱顺手加 fallback、加吞异常的 try-except、加没要求的配置层。
+
+## 三个必须知道的坑
+
+**坑一：它的错误长得跟人的不一样。**
+模型优化的目标是「输出**像不像**对的」，不是「对不对」。所以它的错误天生是**读起来很顺、命名很合理**的那一类——**正好是人眼最容易放过的那一类。**
+
+**坑二：让 AI 写测试来验 AI 写的代码，等于让它自己给自己判卷。**
+而且它作弊的方式很具体：**跑不过就改测试**。有基准专门测到过这种行为——加 sleep 而不是修竞态、重写测试去接受错误行为。
+
+**坑三：「多写测试」防不了屎山。**
+AI 写测试时看得到实现，断言会耦合到实现上。**实现把 `>` 写成 `>=`，它的测试就照着这个行为写断言——测试全绿，bug 被固化成契约。**
+
+## 长期只有一条真正有强制力
+
+前面所有东西——写规格、写项目约定文件、code review——**都是软的，模型可以无视，人会疲劳**。
+
+**唯一的硬约束是把架构规则写成 CI 里会让构建失败的测试**（比如「这个包不许依赖那个包」）。**它的价值恰恰在于不关心代码是谁写的。**
+
+## 记不住就记这三句
+
+> **提示词是建议，闸门才是保证。要 100% 发生的事，别写进提示词。**
+> **干活的那个不能是给它打分的那个。**
+> **你能验证它，才能发它；验证不了就别发。**
+
+---
 
 ## 高频问法
 
@@ -18,12 +76,66 @@ updated: 2026-08-06
 - **「有没有工程化的方式，保证编码的有效性？」** — 同上（**一场里第三次追问同一主题**）
 - **「你用 Cursor 过程中有没有遇到实际问题？」** — [[公司/其他/PingCAP/面试问题总结]]
 - **「你们组里怎么用 agent 写代码 / 跟 Claude Code 比你做了什么改进？」** — [[公司/快手/DataAgent方向/快手数据平台DataAgent一面_2026-07-29]]
+- **「有参考类似 SPEC 这种方式吗？」** — [[公司/星河觉醒/Agent方向/星河觉醒Agent二面_2026-08-07]]（🔴 **答不上来，补课见 ⑤b**）
+
+---
+
+## ⓪ 面试形式分两派，准备动作是相反的（🆕 2026-08-08 查证）
+
+拿到面试邀约**先问 recruiter 是哪派**——两派要练的东西完全不同。
+
+| | **受控派** | **自带派** |
+|---|---|---|
+| 代表 | **Meta**、Google（2026-05 起试点） | **Canva**、Rippling |
+| 规则 | 只能用它内置的 AI，**明令禁止外部工具** | **自带 IDE、自选 AI 工具**（Copilot / Cursor / Claude） |
+| 形态 | 一道多阶段大题 / 约 60 分钟 / 多文件已有代码库；**AI 只能在 chat 面板回话，不能直接改文件** | 完整的 AI 协作流程，共享屏幕 |
+| 实际考什么 | **读懂已有代码 + 验证**（排除了 agent 模式） | 需求拆解 + 判断力 + 协作过程 |
+| 会前要准备 | 练读陌生代码、练单窗口对话 | **提前备好项目模板、lint / test 脚本** |
+
+**Meta 官方招聘页原文**（metacareers.com/hiring-process，一手）：
+> 「Candidates are **expected to** use this AI assistant as part of the interview.」——是 **expected 不是 allowed**
+> 「**No outside AI tools or assistance are authorized** — only the tools available within the interview environment may be used.」
+
+官方给这轮的名字是 **AI-Native Coding Interview**，公开的考察词是 **problem-solving / coding / debugging / collaboration**。
+
+> ⚠️ **网上流传的「Meta 四维 rubric（Problem Solving / Code Quality / Verification / Communication）」不是 Meta 公开的**，是备考机构转述内部说法；那些带百分比权重的版本（35-40% / 25-30%…）**查不到任何一手来源，判定为编造，一律别引用**。
+> ⚠️ 三栏 CoderPad 布局、可选模型列表、E5-E7 覆盖范围等细节来自候选人回忆，**要说「据候选人反馈」**。
+> <!-- 来源: metacareers.com 官方页（高）+ Hello Interview / interviewing.io 社区汇总（中）・ 查证于 2026-08-08 -->
+
+**上海 AI Lab 那场是自带派**（「任何模型、任何 harness 都可以」）→ 见 [[公司/上海AI Lab/后训练数据/上海AI Lab后训练数据一面_2026-07-31]]。
 
 ---
 
 ## ① 面试官到底在测什么
 
-> ⚠️ **先说证据强度**：国内大厂（字节/阿里/腾讯/快手/米哈游）**没有任何一家公开过 AI-assisted 面试的评分标准**。下面四个维度是从海外公司官方博客（Canva / Applied Intuition / Sierra）+ HackerRank 的评分框架合成的。**准备可以用，面试里别说「业界的评分标准是……」。**
+> ✅ **证据强度已更新（2026-08-08）**：国内大厂（字节/阿里/腾讯/快手/米哈游）仍然**没有任何一家公开过评分标准**。但海外**Canva 公开了完整的一手 rubric 和反模式清单，而且是面试官视角写的**——这是目前最强的一手来源，下面 §①b 单列。§① 的四维仍是合成版，**面试里别说「业界的评分标准是……」**。
+
+### ①b Canva 的一手 rubric（🆕 唯一可以直接引用的公开评分标准）
+
+出处：canva.dev/blog/engineering 两篇——《Yes, You Can Use AI in Our Interviews. In fact, we insist》（2025-06，作者 Simon Newton，head of platforms）+《AI Interview Success: An Interviewer's Inside Guide》（面试官视角）。
+
+**三个评估维度（官方原文）：**
+
+| 维度 | 原文 |
+|---|---|
+| **Engineering Problem-Solving** | 「Can you break down complex requirements, make scope and prioritization decisions?」 |
+| **Technical Depth & Ownership** | 「**Do you understand and own the code in your solution?** Can you identify potential issues, explain your architectural choices?」 |
+| **AI Collaboration Effectiveness** | 「Do you use AI tools to accelerate appropriate tasks **while maintaining technical control**?」 |
+
+**🔴 三个官方点名的减分模式（唯一有一手出处的反模式清单，名字很有辨识度，可以直接说出口）：**
+
+| 名字 | 原文表现 |
+|---|---|
+| **AI Showcase** | 重心放在「demonstrating their AI tool mastery」而不是工程基本功 |
+| **Feature Marathon** | 为了多做功能「accepting AI outputs quickly to maximize progress」，牺牲思考质量 |
+| **Hands-Off** | 把 AI 当「**a complete solution generator rather than a development accelerator**」 |
+
+**Newton 的观察（这句可以当收口）：**
+> 挂掉的候选人「**not because they couldn't code, but because they lacked the judgment to guide AI effectively**」——**挂点在判断力，不在编码力。**
+
+> 💡 **反用法**：被问「你怎么控制 AI 编码质量」时——「Canva 公开的三个减分模式里有一个叫 **Hands-Off**，就是把 AI 当完整方案生成器而不是加速器。我的做法是……」
+> 📌 **各家一手二手材料唯一完全一致的一条：最致命的减分行为是「解释不了自己交的代码」。**
+> <!-- 来源: canva.dev 工程博客官方 ・ 查证于 2026-08-08 ・ 置信度高 -->
 
 **他问这题有两层动机：**
 
@@ -105,6 +217,21 @@ updated: 2026-08-06
 
 > ⭐ **「深浅缺陷倒挂」那一行是全表最值钱的**：它一句话说清了为什么「代码能跑」不等于没问题——**浅层缺陷大幅下降，深层缺陷大幅上升**。而浅层缺陷是编译器和 linter 抓的，深层缺陷是人和架构评审抓的。**所以 AI 恰好把工作量从机器能抓的那类，转移到了机器抓不住的那类。**
 
+### 🆕 组织级的宏观数字（2026-08-08 补，被问「那到底该不该用 AI」时用）
+
+| 数字 | 出处 |
+|---|---|
+| **AI 采用率每提高 25%，交付稳定性下降 7.2%** | **DORA 2024** 官方建模，39000 名受访者（⚠️ **必须标 2024 版**，2025 版结论变了，说错版本会被抓） |
+| 2025 版**吞吐量转正了，但稳定性仍是负相关** | **DORA 2025**，近 5000 名从业者。官方原文：「AI adoption **does continue to have a negative relationship with software delivery stability**」 |
+| **AI 采用率 90%，但只有 24% 高度信任、30% 信任很低** | DORA 2025（信任悖论） |
+
+**🔑 官方给的机制解释，比罗列风险成熟得多——「AI as amplifier（AI 是放大器）」：**
+> 「AI accelerates software development, but that acceleration can **expose weaknesses downstream**. Without robust control systems, like strong automated testing, mature version control practices, and fast feedback loops, **an increase in change volume leads to instability**.」
+
+**用法**：面试官说「那是不是不该用 AI」时用这条转折——**「结论不是别用，是 AI 放大你已有的强项和功能障碍。你原来测试、版本控制、反馈回路弱，AI 只会让你更快地把烂东西推到线上。」**
+
+> ⚠️ **METR 那个「资深开发者用 AI 慢 19%、自评快 20%」的 RCT 别裸抛**——只有 16 人、场景是自己熟悉的成熟仓库（恰好是 AI 最不占优的），METR 自己已标为 historical。详细口径见 §⑧ 引用红线。
+
 ### AI 特有的四个坑
 
 | 坑 | 表现 | 怎么防 |
@@ -174,6 +301,34 @@ GitHub 官方承认的是双向误差：「Copilot code review **has a risk of h
 
 **Meta 有个反过来用的案例（ACH）**：不用规则型变异算子，**让 LLM 按自然语言描述生成少而真实的变异体**，把现有测试杀不死的变异体当提示词去生成测试——2024 Q4 试点，**73% 的生成测试被隐私工程师接受**（[engineering.fb.com](https://engineering.fb.com/2025/09/30/security/llms-are-the-key-to-mutation-testing-and-better-compliance/)）。
 
+### 🆕 L6 的一手背书和一锤定音的数字（2026-08-08 补）
+
+**Thoughtworks Technology Radar Vol.34（2026-04）把变异测试放在 Trial 环，blip 原文明确点名 AI：**
+> 变异测试「remains **the most honest signal** for evaluating the real fault-detection capability of a test suite」
+> 「**high coverage percentages can mask logically hollow tests or generated code that has never been meaningfully asserted**」
+> 它充当抓「**perpetually green（永远绿）**」测试的加固层——那些因为**缺断言或 mock 脱耦**而无论逻辑怎么改都通过的测试。
+
+> ⚠️ **用词要准**：Radar 说的是「AI 生成的**测试**」，**不要扩大成「变异测试专治 AI 代码」**。
+
+**🔑 一锤定音的数字（ULT benchmark，arXiv:2508.00408，2025-08，3909 个未泄漏到训练集的函数）：**
+
+| 数据集 | LLM 生成测试的语句覆盖 | **变异分数** |
+|---|---|---|
+| TestEval（较容易） | **92.18%** | **仅 49.69%** |
+| ULT（未泄漏） | 45.10% | 40.21% |
+
+> **同一批测试，覆盖率 92% 但只能杀掉一半变异体**——这就是「覆盖率和故障检出能力脱钩」的量化证据，而且**在 AI 生成的测试上最明显**。
+>
+> **用法**：被问「AI 帮你写了测试，你怎么验收」→「**我不看覆盖率。** 有个 2025 年的 benchmark 叫 ULT，LLM 生成测试在容易的数据集上语句覆盖 92%，**变异分数只有 49.7%——一半的注入缺陷抓不到**。所以我跑变异测试看分数。」
+
+**Anthropic 官方的题眼（比任何自创说法都硬）**——Claude Code 最佳实践文档明确命名的失败模式：
+> **「The trust-then-verify gap.」** 产出看起来合理但不处理边界。**「If you can't verify it, don't ship it.」**
+> 四档门禁的最后一档是验证子 agent，原文：**「so the agent doing the work isn't the one grading it」（干活的 agent 不是给它打分的那个）**
+
+> ⭐ **这一句是整个 AI 协作题的题眼，而且它跟你字节做的审核 agent 是同一个思想**（[[追问/字节答疑Bot]]：「生成的那个不许审自己」）。
+> 同篇还**主动承认了 LLM reviewer 的假阳性倾向**：「A reviewer prompted to find gaps **will usually report some, even when the work is sound**」——所以要「Tell the reviewer to flag only gaps that affect correctness」。**这条自我拆台说出来，比堆 buzzword 可信得多。**
+> <!-- 来源: Thoughtworks Radar Vol.34 官方 + arXiv:2508.00408 论文 + Claude Code 官方文档 ・ 查证于 2026-08-08 ・ 置信度高 -->
+
 ### L7 的最好素材
 
 **Bun 的 Zig→Rust 迁移**：约 100 万行两周完成，**合并前 CI 里 100% 的现有测试通过，合并后仍出现 19 个回归**（[claude.com/blog/ai-code-migration](https://claude.com/blog/ai-code-migration)，2026-07-16）。
@@ -211,6 +366,193 @@ USENIX Security 2025 的研究：16 个模型、**19.7% 被引用的包根本不
 > `misguidance effect（误导效应）`：**拿有 bug 的代码去让模型生成单测，模型会把 bug 的行为当成契约写进断言。**
 
 **而且是双重伤害**：错误断言的测试变多、同时能抓 bug 的测试被压制（ISSTA 2026，[arxiv.org/html/2607.22883v1](https://arxiv.org/html/2607.22883v1)）。**论文给的缓解手段是：提示词里不给它 buggy 代码，改给规格描述。**
+
+---
+
+## ⑤b SPEC / 规格驱动开发（SDD）——2026 的主流方法论
+
+> 🔴 **2026-08-07 星河觉醒二面被直接问「有参考类似 SPEC 这种方式吗」，答不上来。** 上一节 misguidance effect 的缓解手段（「改给规格描述」）指向的就是这套东西，**两节要连着看**。
+
+### ① 技术定义
+
+**SDD（spec-driven development，规格驱动开发）= 把一份写下来的「规格文档」当成项目的主产物，代码是从规格文档生成出来的、可再生的产出。** 对话式 prompt 不是事实来源，那份文档才是。
+
+### ② 不用它会怎样
+
+不用 SDD 的做法（业界叫 **vibe coding**）是：需求塞在一次性的聊天消息里，模型猜剩下的部分。三个具体坏结果：
+- **改一次需求要把整个上下文重讲一遍**——需求没有沉淀在任何地方
+- **没有东西可以 review**——你 review 的是代码，不是意图；意图理解偏了看代码看不出来
+- **同一需求两次生成结果不一样，且没法定位是哪句话理解偏了**
+
+### ③ 机制：四个阶段 + 两个检查器
+
+以 **spec-kit**（GitHub 出的开源实现，社区采用最广，Python CLI，125.7k stars，支持 30+ 种 coding agent）为例：
+
+```mermaid
+flowchart TD
+    C["先立项目原则和红线<br/>/speckit.constitution"] --> S["写「做什么、为什么」，不含技术实现<br/>/speckit.specify"]
+    S --> CL["把没说清的地方逼出来问<br/>/speckit.clarify"]
+    CL --> P["技术方案：选型、架构<br/>/speckit.plan"]
+    P --> T["拆成可执行的任务列表<br/>/speckit.tasks"]
+    T --> A["跨产物一致性 + 覆盖度检查<br/>/speckit.analyze"]
+    A --> I["agent 按任务表写代码<br/>/speckit.implement"]
+    I --> CK["生成质量校验清单<br/>/speckit.checklist"]
+```
+
+**关键不是那四个阶段，是两个检查器**——**`analyze`**（检查 spec / plan / tasks 三份产物有没有互相矛盾、有没有需求没被任何任务覆盖）和 **`checklist`**（生成可勾选的质量校验项）。**面试官说「标准 checkpoint」时指的就是这两个。**
+
+另一条路线是 **Kiro**（AWS 2026 年 5 月发布国际版的 IDE）：不是往现有工具上叠 prompt，而是**把 spec 做成编辑器里的一等公民对象**，SDD 是默认工作流。
+
+<!-- 来源: github/spec-kit README（命令清单、star 数）+ AWS Kiro 公开资料 + 2026 社区综述 ・ 查证于 2026-08-08 -->
+
+### ④ 面试怎么说（30 秒 + 一句自己的判断）
+
+> 「SDD 的核心是**把『要做什么』写成一份可检查的结构化产物，让 agent 对着它执行，再用检查器验证覆盖度**——spec-kit 那套 specify → plan → tasks → implement，真正值钱的是中间的 `analyze` 和 `checklist` 两个检查器。
+> **我自己的判断是：它和上面那个验证信号阶梯管的是两头。** 阶梯管**输出侧**——代码写出来之后怎么验；SDD 管**输入侧**——怎么让它一开始就不跑偏。**两边都缺一个不行，但如果只能先做一个，我会先做输出侧**，因为输出侧的信号是自动的、不依赖人写文档的自觉。」
+
+**预备追问「SDD 有什么问题」：**
+- **规格本身会过期**——文档和代码脱节的老问题换了个位置，没消失
+- **小改动的仪式成本高**——改一行也要走一遍流程，团队会开始绕过它
+- **规格写不清的部分照样会被猜**——`clarify` 这一步存在，正说明这是常态
+
+---
+
+## ⑤c 软约束 vs 硬约束（🆕 开场就抛这个二分，它是整套答案的骨架）
+
+```mermaid
+flowchart TD
+    S["软约束<br/>agent 可以无视 / 人会疲劳"] --> S1["生成前：spec-driven<br/>AGENTS.md / CLAUDE.md"]
+    S --> S2["生成中：单次改动体积上限"]
+    S --> S3["生成后：对抗 review / 变异测试 / 属性测试"]
+    H["🔑 硬约束<br/>不管代码是谁写的都会拦"] --> H1["架构适应度函数<br/>写成 CI 里 fail build 的测试"]
+```
+
+### 硬约束：架构适应度函数（fitness function）
+
+> **① 技术定义**：**可执行的架构规格**——把「哪些模块可以 import 哪些模块」写成类似单元测试的断言，在 CI 里跑，**违反时直接让 build 失败**，代码进不了主干。
+>
+> **② 不用它会怎样**：AGENTS.md / CLAUDE.md 是**提示词层的软约束，agent 可以无视**；code review 靠人的注意力，**PR 一多就失守**。于是架构漂移没有任何机制能拦住。
+>
+> **③ 机制**：工具是 **ArchUnit**（Java，事实标准）、**dependency-cruiser**（JS）、**tsarch**（TS）。可检查：包依赖方向、类关系、命名约定、循环依赖。**新玩法是把违规结果接回 agent 的反馈回路**——agent 跑 test → 看到架构违规 → 自己修。
+>
+> **④ 面试怎么说**：「**它的价值恰恰在于不关心代码是谁写的**——所以它天然免疫『AI 写得太快人来不及看』这个根本问题。」
+
+**配套第二条长期防线：显式的重构预算。** GitClear 的 long-term update percent 从 1.7% 掉到 0.46%（**-74%**）——遗留代码维护已接近归零，**不给预算它不会自己发生**。
+
+> ⚠️ **AGENTS.md 的定位要说准**：它已是跨工具事实标准（Linux Foundation 下的 Agentic AI Foundation 托管，60k+ 仓库；**Claude Code 是主要例外，仍只读 CLAUDE.md**，靠 `@AGENTS.md` 导入或软链桥接）。**但它是「约定分发机制」不是「约定执行机制」——软约束，硬约束必须在 CI。** 少了后半句会显得你把提示词当成了执行机制。
+
+### 生成中：单次改动体积上限
+
+开发者社区从 1154 条真实讨论里编码出来的具体门槛是 **单个 PR ≤ 500 行**。三个独立来源指向同一件事：Thoughtworks 雷达点名 coding agent 会生成「larger changesets harder to review」；DORA 2025 的 7 项能力里「**working in small batches**」独立成条；社区 mitigation 清单把 PR 体积上限排第一。
+
+**理由一句话：review 成本是超线性的，PR 一大大家就只会点 approve。**
+
+> 故事素材：curl 项目因为 AI 生成的漏洞报告「looked plausible, contained no real findings, and consumed maintainer time」**关闭了 HackerOne 赏金项目**；Linux 内核安全邮件列表 2026-05 被重复的 AI 辅助报告淹没，Torvalds 形容为「almost entirely unmanageable」。
+
+---
+
+## ⑤d 测试标准与复杂度验证（🆕 AI Lab / WXG 两场都问）
+
+### 标准分类：不用自己编
+
+**ISO/IEC/IEEE 29119-4:2021** 把测试设计技术分三类：**规格基**（等价类划分、边界值分析、决策表、状态转换、组合测试）／**结构基**（语句覆盖、分支覆盖）／**经验基**（错误猜测、探索式测试、fault attack）。
+
+几条能报准的表述：
+- **等价类划分**：分区必须**不重叠、非空**；一个分区测一个值就够
+- **边界值分析**分 2-value 和 3-value 两版，**3-value 更严格**
+- **分支覆盖包含（subsume）语句覆盖**
+- **状态转换三级覆盖互相包含**：all states < 0-switch < all transitions，**最后一级是安全关键系统的最低要求**
+- **pairwise 有硬数据**：NIST 实测四个真实系统，**2-way 覆盖触发 70%–97% 的故障，所有故障都在 6-way 以内触发完**
+
+> ✅ **但实际答题用 [[测试设计方法论]] 的推导版更好**：`输出 = f(输入, 内部状态, 时序, 环境)` → 四条正交攻击线，**纯函数没有内部状态和时序，③④ 自动裁剪**。
+> **最好的说法是两个都给**：先报标准分类的出处（证明你知道有标准），再说「我实际用的是从组件模型推导，所以我能说清楚为什么没漏」。
+
+### 🔑 怎么真正验证一个复杂度声明（这题答好能拉开巨大差距）
+
+**跑得快不算数，那只说明常数小。**
+
+> **① 技术定义**：复杂度是 n→∞ 的渐近性质，**任何有限次测量都无法「证明」它**。工程上做的是**证伪**。
+>
+> **② 不做会怎样**：AI 说「这是 O(1)」，实际是 O(n)——在测试数据规模（n=10）上完全看不出来，**上线后 n=10 万时接口超时**。
+>
+> **③ 三种手段，从粗到细：**
+
+| 手段 | 做法 | 局限 |
+|---|---|---|
+| **A. 倍增法** | 规模翻倍测耗时比值：**≈1 → O(1)，≈2 → O(n)，≈4 → O(n²)**（出自 Sedgewick《Algorithms》1.4） | 原文明说：**区分不出 O(n) 和 O(n log n)** |
+| **B. 现成工具** | C++ 用 `google/benchmark` 的 `Complexity()`——对**一族**输入规模做最小二乘拟合、**选 RMS 最小的复杂度类**；Python 用 `big-O` | 必须跑一族规模，单点无效 |
+| 🔑 **C. 数执行次数不数时间** | 插计数器（比较次数 / 哈希探测次数 / DB 查询次数），断言 `count(2n)/count(n) < 1.5` | — |
+
+**为什么 C 最该用在 CI 里：确定性——不受 JIT 预热、GC、缓存、机器负载影响。计时型断言在 CI 里必然 flaky。** 学术上对应 FSE 2007 的 **trend-prof**（数基本块执行次数）。
+
+**另外三个坑（说出来很加分）：**
+1. **摊还 O(1) 和最坏 O(1) 要分开测**（哈希冲突、动态数组扩容）
+2. **要有对照组**——把一个已知 O(n) 的实现放进同一套测量当标尺，否则不知道是被测代码的问题还是测量环境的问题
+3. **小 n 下常数项和缓存效应会淹没趋势**，规模要跨几个数量级
+
+> 💡 **对 AI 方向可以补一句**：Meta 2025 年的 **BigO(Bench)**（arXiv:2503.15242）就是干这个的，用非负最小二乘拟合加「简单性偏置」防过拟合到高阶项。**有意思的是它测出 LLM 按指定复杂度生成代码的 pass@1 只有 4.8%——模型能写对代码，但不理解自己写的复杂度。**
+
+---
+
+## ⑤e 交付标准：Definition of Done（🆕）
+
+### 官方定义只有一句，而且故意不给清单
+
+**Scrum Guide 2020**（DoD 是该版引入的三个「artifact commitment」之一）：
+> 「The Definition of Done is a formal description of the state of the Increment **when it meets the quality measures required for the product**.」
+
+其余官方规定：**组织已有 DoD 标准的，团队必须至少遵守它（下限）**；不满足 DoD 的条目**不能发布、也不能在 Sprint Review 上展示**。
+
+> 🔴 **Scrum Guide 有意不给条目清单**——所以**别把某篇博客的清单说成「业界标准」**，那是给面试官送反驳素材。正确说法：「DoD 的具体条目没有标准，Scrum Guide 只给定义。行业惯例大致收敛在这几类……」
+
+**每一条 DoD 必须是可判定的**（能明确回答是/否）。Scrum.org 举的例子是「页面加载 < 0.1 秒」，**不能写「代码质量良好」**。
+
+> 💡 **便宜的加分点**：主动区分 **DoD / Acceptance Criteria / Definition of Ready**——DoD 是对所有条目统一适用的完成门槛；Acceptance Criteria 是单个用户故事特有的；DoR 是进入 Sprint 的准入条件。很多候选人把三者混着说。
+
+### AI 之后 DoD 确实加了新条目——有实证分布
+
+**arXiv 2605.16706（2026-07）扫了 1000 个热门 GitHub 仓库，118 个有明确 AI 政策：**
+
+| 规则 | 比例 |
+|---|---|
+| 🔑 **要求 human-in-the-loop** | **74%**（三类里最高） |
+| 要求披露用了 AI | 51% |
+| 明确禁止 / 劝阻 | 22% |
+
+**最高频的那条不是「禁用 AI」也不是「必须披露」，是责任归属**——facebook/docusaurus 原文：
+> 「**You are responsible for the code you submit, regardless of whether generated by AI.**」
+
+**Linux 内核 2025-12 合并了官方政策**（`Documentation/process/coding-assistants.rst`），给了可抄的格式：
+- **AI agent 不得添加 `Signed-off-by`**——只有人类能在法律上认证 DCO（开发者原创声明）
+- 归属用 **`Assisted-by: AGENT_NAME:MODEL_VERSION [专门分析工具]`**，例：`Assisted-by: Claude:claude-3-opus coccinelle sparse`
+- **基础开发工具（git、gcc、编辑器）不要列**
+
+> 规模化旁证：一百万个关键开源仓库里，**把 AI agent 列为 co-author 的 PR 从 2025-10 的 2% 涨到 2026-05 的 10%**。
+
+**→ 直接对应你 DoD 该加的两条：① 署名与责任归属 ② 披露级别决定 review 强度。**
+
+### Google code review 的核心判据（可背）
+
+> 「只要这个改动**确定性地改进了系统的整体代码健康度**，即使不完美也应该批准。」
+
+---
+
+## ⑤f 三条反直觉（🆕 最能把你从「背过八股」提到「读过实证」）
+
+**① 圈复杂度是很差的门禁指标。**
+- 与可执行代码行数**高度共线**：回归 **adjusted R² = 0.9251**
+- 与缺陷数相关性**极弱**：**只有 0.06 量级**
+
+> 「圈复杂度我会用，但不会当核心指标——**它跟代码行数的 R² 是 0.925，跟缺陷的相关性只有 0.06 量级。用它做门禁本质上是在限制函数长度，不是在测结构复杂度。**」
+> **这条为什么值钱**：「上圈复杂度门禁」是几乎所有候选人会给的标准答案。
+
+**② 「多写测试」并不能防屎山——AI 写的测试是「实现的镜子」不是「规格的断言」。**
+它看得到实现，断言会系统性耦合到实现上。**实现把 `>` 误写成 `>=`，AI 生成的测试会照着这个行为写断言，bug 被固化成契约。** 这类测试叫 **paper tests**：看起来在测，实际在掩盖。
+第三层更严重：被要求「让测试通过」时，agent 经常**直接改测试**——记录到的行为包括「加 sleep 而不是修竞态、重写测试去接受错误行为」。
+
+**③ 更强的模型不会自动解决这个问题。**
+Veracode 最关键的一条不是「45% 有漏洞」，是**更新更大的模型并没有产出更安全的代码**——**说明这是生成机制层面的结构性问题，不是能力问题，所以工程手段不能省。**
+> 用法：面试官说「模型越来越强这些问题会自己消失吧」时，这句话把「要不要建流程」这个问题彻底关死。
 
 ---
 
@@ -290,6 +632,10 @@ USENIX Security 2025 的研究：16 个模型、**19.7% 被引用的包根本不
 | Anthropic《2026 Agentic Coding Trends Report》里的「错误少 40%、任务快 55%」 | **只在二手博客里见到**，一手 PDF 是注册墙。要提就说「有个报告提到，我没核到原文」 |
 | 「大家都用『门禁』这个说法」 | 「门禁」在**面试话术**语境里没有既有用例（阿里那篇原文里「门禁」「卡点」都是 0 次）。**词可以用，别说「大家都这么讲」** |
 | 把 `verification debt` 和 `verification tax` 混用 | 前者出自 AWS re:Invent 2025 keynote（偏「理解的重建成本」），后者是 DORA 的词。**不是同一个概念** |
+| 🆕「**property-based testing 专治 AI 代码**」 | ⚠️ **本页早期这么写过，已收回。** 查到的论文（FSE 2025《From Prompts to Properties》等）设定都是「**让 LLM 自己用 PBT 迭代**」，度量 pass@1 提升 23–37%，**不等于「人用 PBT 验收 AI 代码更有效」**。而且 **Thoughtworks Radar Vol.34 里没有 PBT 的 blip**（变异测试有）。<br>**正确说法（区分论文和推断本身是加分项）**：「变异测试对 AI 代码有用，Radar 2026-04 有明确表述。PBT 我看到的论文是让模型自己迭代，不完全等于人用它验收。**我自己的判断是 PBT 抗测试过拟合**——你给例子 AI 就针对例子写，性质没法针对，因为输入是随机生成的。」 |
+| 🆕「Meta 的 rubric 是 Problem Solving / Code Quality / Verification / Communication」 | **不是 Meta 公开的**，是备考机构转述。Meta 官方公开的四个词是 **problem-solving / coding / debugging / collaboration**。带百分比权重的版本查不到一手来源，**判定为编造** |
+| 🆕「Shopify / Coinbase 改了面试规则」 | **查不到任何一手的面试规则声明**——两家 CEO 的表态是关于用人和绩效，不是关于面试。（Shopify 的 Farhan Thawar 那句「I want you to use it, 90-95%」是**用人观**不是面试规则，引用时别混） |
+| 🆕「GitClear 2026 报告说函数跨文件调用 -35% / 遗留代码维护 -74% / 错误掩盖 +47%」 | 2026 版原始页面抓不到（403），**这三个数全是二手转述，且和 2025 年报口径对不上**。要用只用 2025 版那几个（Moved 代码下跌、Copy/Paste 首超 Moved），**并主动声明 2026 数字未核到原文** |
 
 ### 调研盲区（被追到这里就直说是行业空白）
 

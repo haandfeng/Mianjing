@@ -5,7 +5,7 @@ company: 字节
 bu: 中国商业化 / Commercial AI · Agent Infra
 round: 二面
 date: 2026-08-06
-verdict: 未知
+verdict: 通过
 source: 我面试
 tags: [agent, agent-infra, memory, hook, 评测, multi-agent, subagent, rag, 混合检索, bm25, 水平扩展, prompt-cache, 算法]
 ---
@@ -16,7 +16,7 @@ tags: [agent, agent-infra, memory, hook, 评测, multi-agent, subagent, rag, 混
 **面试官：** 「我是商业化这边的研发」——反问环节自述是 **agent 规划组**，服务十几个业务 agent
 **时长：** 1 小时 29 分 42 秒（19:32–21:02）
 **流程：** 自我介绍 → 职业规划 → 谷歌 Memory 深挖（~22 min）→ 字节答疑 Bot 深挖（~25 min）→ 简历细节（连接池 / prompt cache）→ 西门子 RAG 深挖（~10 min）→ **代码题 context manager（26 min）** → 反问
-**结果：** 未知（当天面完）
+**结果：** 通过，进三面
 
 > ⏱️ **重要时间线：这场是「裸考」。** 阿里星一面（当天 13:59）的复盘产物落库时间是 **19:31**，[[字节答疑Bot]] / [[谷歌Memory]] 两份追问库的更新时间是 **19:35 / 19:36**——**而这场 19:32 就开始了。**
 > 也就是说：**下午那场踩的坑、以及为它准备好的正解，这场一句都没吃到。** 下面凡是标「阿里星那场同款」的，都不是「教了还犯」，是**同一个洞被两家连着踩了两遍**。这两份追问库现在已经写好了，下一场再犯才是真的教了不改。
@@ -1073,4 +1073,4 @@ class ContextManager:
 
 ---
 
-**双链复习：** [[字节答疑Bot]] · [[谷歌Memory]] · [[西门子RAG]] · [[Agent记忆系统]] · [[Agent记忆三家实现对比]] · [[Agent上下文压缩链路]] · [[Agent设计模式与MCP]] · [[LangGraph工程实践]] · [[LLM多协议网关适配]] · [[RAG优化全链路]] · [[幻觉与事实性评测]] · [[Python并发与GIL]] · [[公司/字节/中国商业化/字节商业化AgentInfra一面_2026-07-30]] · [[公司/阿里国际/Agent Infra/阿里星一面_2026-08-06]] · [[公司/快手/DataAgent方向/快手数据平台DataAgent一面_2026-07-29]] · [[公司/字节]]
+**双链复习：** [[字节答疑Bot]] · [[谷歌Memory]] · [[西门子RAG]] · [[Agent记忆系统]] · [[Agent记忆四家实现对比]] · [[Agent上下文压缩链路]] · [[Agent设计模式与MCP]] · [[LangGraph工程实践]] · [[LLM多协议网关适配]] · [[RAG优化全链路]] · [[幻觉与事实性评测]] · [[Python并发与GIL]] · [[公司/字节/中国商业化/字节商业化AgentInfra一面_2026-07-30]] · [[公司/阿里国际/Agent Infra/阿里星一面_2026-08-06]] · [[公司/快手/DataAgent方向/快手数据平台DataAgent一面_2026-07-29]] · [[公司/字节]]

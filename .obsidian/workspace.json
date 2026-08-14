@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wiki/技术主题/Agent记忆三家实现对比.md",
+                "file": "公司/米哈游/米哈游提前批二面_约2026-08.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Agent记忆三家实现对比"
+              "title": "米哈游提前批二面_约2026-08"
             }
           },
           {
@@ -76,9 +76,21 @@
               "icon": "lucide-file",
               "title": "字节商业化AgentInfra一面_2026-07-30"
             }
+          },
+          {
+            "id": "eaf5717ca261b747",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/看思维导图.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "看思维导图"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -220,7 +232,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "wiki/技术主题/Agent上下文压缩链路.md",
+                "file": "Excalidraw/看思维导图.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -268,7 +280,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 323.5
+    "width": 323.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -285,44 +298,44 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "d60dd82d46ca4839",
+  "active": "eaf5717ca261b747",
   "lastOpenFiles": [
-    "公司/字节/中国商业化/字节商业化AgentInfra二面_2026-08-06.md",
-    "wiki/公司/阿里国际.md",
-    "公司/阿里国际/Agent Infra/阿里星一面_2026-08-06.md",
+    "wiki/技术主题/Agent状态持久化与数据库选型.md",
+    "发帖/点点互动AI-Agent二面_发帖.md",
+    "发帖/字节商业化AgentInfra三面_发帖.md",
+    "wiki/技术主题/Agent记忆四家实现对比.md",
+    "公司/字节/中国商业化/字节商业化AgentInfra三面_2026-08-14.md",
+    "发帖/星河觉醒Agent二面_发帖.md",
+    "公司/星河觉醒/Agent方向/星河觉醒Agent二面_2026-08-07.md",
+    "发帖/星河觉醒Agent一面_发帖.md",
+    "公司/星河觉醒/Agent方向/银河智学Agent二面_2026-08-07.md",
+    "公司/星河觉醒/Agent方向/星河觉醒Agent一面_2026-07-20.md",
+    "公司/星河觉醒/Agent方向",
+    "公司/星河觉醒",
+    "wiki/技术主题/Agent服务扩容与多租户.md",
+    "发帖/字节商业化AgentInfra二面_发帖.md",
+    "发帖/银河智学Agent二面_发帖.md",
+    "发帖/懂车帝AIGC创作一面_发帖.md",
+    "发帖/阿里星一面_发帖.md",
+    "发帖/快手数据平台DataAgent二面_发帖.md",
+    "公司/字节/中国商业化/字节商业化AgentInfra一面_2026-07-30.md",
+    "公司/快手/DataAgent方向/快手数据平台DataAgent二面_2026-08-10.md",
+    "公司/懂车帝/AIGC创作方向/懂车帝AIGC创作一面_2026-08-10.md",
+    "公司/懂车帝/AIGC创作方向",
+    "公司/懂车帝",
+    "Excalidraw/看思维导图.md",
+    "Excalidraw/数据库.md",
+    "wiki/技术主题/Agent记忆三家实现对比.md",
+    "wiki/技术主题/Agent记忆系统.md",
+    "wiki/技术主题/Agent上下文压缩链路.md",
+    "公司/银河智学/Agent方向/银河智学Agent二面_2026-08-07.md",
+    "发帖/银河智学Agent一面_发帖.md",
+    "公司/银河智学/Agent方向",
+    "公司/银河智学",
     "公司/阿里国际/Agent Infra",
     "公司/阿里国际",
-    "wiki/技术主题/Agent记忆三家实现对比.md",
-    "公司/点点互动/AI Agent方向/点点互动AI Agent二面_2026-08-05.md",
-    "wiki/技术主题/Agent设计模式与MCP.md",
-    "wiki/技术主题/Agent上下文压缩链路.md",
-    "wiki/技术主题/消息队列不丢不重.md",
-    "公司/米哈游/米哈游提前批二面_约2026-08.md",
-    "wiki/技术主题/Agent记忆系统.md",
-    "公司/字节/中国商业化/字节商业化AgentInfra一面_2026-07-30.md",
-    "Excalidraw/看思维导图.md",
-    "wiki/技术主题/JVM内存与GC.md",
-    "wiki/技术主题/LangGraph工程实践.md",
-    "wiki/技术主题/缓存一致性.md",
-    "专栏/Agent/Claude Code Context管理.md",
-    "发帖/米哈游一面_发帖.md",
-    "wiki/技术主题/AI-Coding工程实践.md",
-    "wiki/技术主题/幻觉与事实性评测.md",
-    "公司/米哈游/米哈游一面（我面试）_约2026-08.md",
-    "wiki/技术主题/LLM多协议网关适配.md",
-    "公司/米哈游/米哈游提前批一面_约2026-08.md",
-    "wiki/公司/米哈游.md",
     "公司/米哈游",
-    "wiki/公司/其他公司.md",
-    "备注.md",
-    "wiki/索引/主题.md",
     "公司/上海AI Lab/后训练数据",
-    "公司/上海AI Lab",
-    "发帖",
-    "公司/淘天/AI Agent",
-    "公司/淘天",
-    "公司/快手/DataAgent方向",
-    "公司/点点互动/AI Agent方向",
     "image/Pasted image 20260515220626.png",
     "img/Pasted image 20260312235921.png",
     "img/Pasted image 20260208151010.png",

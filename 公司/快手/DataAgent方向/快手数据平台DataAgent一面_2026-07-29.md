@@ -5,7 +5,7 @@ company: 快手
 bu: 数据平台（数据中台）
 round: 一面
 date: 2026-07-29
-verdict: 未知
+verdict: 通过
 source: 我面试
 tags: [agent, data-agent, context压缩, skill, harness, 幻觉, 算法, 快手]
 ---
@@ -15,7 +15,7 @@ tags: [agent, data-agent, context压缩, skill, harness, 幻觉, 算法, 快手]
 **岗位方向：** Data Agent · 数据平台（原数据中台）· **人才计划**
 **时长：** 1 小时 1 分 33 秒
 **流程（面试官开场明说）：** 自我介绍 → 问答 + 算法 → 5 分钟反问
-**结果：** 未知（当天面完）
+**结果：** 通过，进二面
 
 > 我自己的面试，录音转录整理。结构：**自我介绍（2.5 min）→ 字节 DeerFlow 深挖（~30 min）→ 算法题两道（~20 min）→ 反问 + 部门介绍（~5 min）**。
 > **零八股、零数据库、零 Java**——全场只考 Agent 工程 + 算法。跟点点互动那场同类型，但**追问更硬**：面试官会连续否掉你的方案逼你给下一个。
@@ -227,7 +227,7 @@ tags: [agent, data-agent, context压缩, skill, harness, 幻觉, 算法, 快手]
 >
 > **Claude Code 的真实机制**：模型在 **turn 内同步**判断并直接写 `~/.claude/projects/<slug>/memory/<主题>.md`，**没有任何后台整合**——整理靠 `consolidate-memory` skill 用户手动触发。**它是三家里唯一没有定时/idle 后台任务的。**
 >
-> 完整三家对比见 [[Agent记忆三家实现对比]]，压缩链路见 [[Agent上下文压缩链路]]。
+> 完整三家对比见 [[Agent记忆四家实现对比]]，压缩链路见 [[Agent上下文压缩链路]]。
 
 ### Q：它这个记忆里分短期记忆和长期记忆吗？
 

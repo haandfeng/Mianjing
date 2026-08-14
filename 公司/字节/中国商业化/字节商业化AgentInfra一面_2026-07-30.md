@@ -5,7 +5,7 @@ company: 字节
 bu: 中国商业化 / Commercial AI · Agent Infra
 round: 一面
 date: 2026-07-30
-verdict: 未知
+verdict: 通过
 source: 我面试
 tags: [agent, memory, 自进化memory, skillopt, 决策树, review-agent, agent-infra, 算法]
 ---
@@ -15,7 +15,7 @@ tags: [agent, memory, 自进化memory, skillopt, 决策树, review-agent, agent-
 **岗位方向：** Agent Infra · 中国商业化 Commercial AI · **提前批**
 **时长：** 48 分 40 秒
 **流程：** 自我介绍 → 谷歌 Memory 深挖（~13 min）→ 字节 DeerFlow 深挖（~13 min）→ 算法题一道（~16 min）→ AI coding 占比 → 反问（~3 min）
-**结果：** 未知（当天面完）
+**结果：** 通过，进二面
 
 > 我自己的面试，录音转录整理。**零八股、零数据库、零 Java**——跟 [[公司/快手/DataAgent方向/快手数据平台DataAgent一面_2026-07-29]]（隔一天）同类型，但**考法完全不同**：
 > - 快手是**追问式**——连续否定你的方案，逼你往下一层走
@@ -297,7 +297,7 @@ tags: [agent, memory, 自进化memory, skillopt, 决策树, review-agent, agent-
   - **结构上**：看树建得对不对、有没有遗漏，**沿着树去代码里做验证**——包括 source file 可能是乱填的、引用是错的，这些也要验
   - **事实上**：解决 summary 阶段的以偏概全和幻觉，典型是**张冠李戴**——B 节点本来只能走到 D 和 E，它说 B 能走到 F。发现这种明显错误就把错误情况告诉生成 agent，让它重新生成
 
-> ✅ **[[追问/字节答疑Bot]] Q2d 记着「两场说法不一致，必须统一口径」**（星河说「自己重新读代码验证」、点点互动说「只提供单一的骨架」）。**这场统一到了正确的那一版——明确说了「沿着树去代码里做验证」。口径修复生效了，保持。**
+> ✅ **[[追问/字节答疑Bot]] Q2d 记着「两场说法不一致，必须统一口径」**（银河说「自己重新读代码验证」、点点互动说「只提供单一的骨架」）。**这场统一到了正确的那一版——明确说了「沿着树去代码里做验证」。口径修复生效了，保持。**
 
 ### Q19（27:33）：引入 review agent 之后的效果，做过评测吗？
 

@@ -1,5 +1,5 @@
 > 📌 **2026-08-04 复核并补写**。原笔记（约 2026-05 记的）只覆盖了「文件结构 + 检索」，**缺了整个 dreaming 子系统**，且有两个数字在新官方文档里查不到。补写部分来源：[OpenClaw 官方 memory 文档](https://docs.openclaw.ai/concepts/memory)、[memory-config 参考](https://docs.openclaw.ai/reference/memory-config)、dreaming 配置 gist、GitHub issue。
-> 三家横向对比见 [[Agent记忆三家实现对比]]。
+> 三家横向对比见 [[Agent记忆四家实现对比]]。
 
 ## 1.1 工作区
 
@@ -141,6 +141,6 @@ dreaming 把 Light Sleep / REM Sleep 阶段的块**直接写进 `memory/YYYY-MM-
 
 ## 双链
 
-- wiki 主题：[[Agent记忆三家实现对比]]（Claude Code / Codex / OpenClaw 五维对比）· [[Agent记忆系统]]（七个设计维度）· [[Agent上下文压缩链路]]
+- wiki 主题：[[Agent记忆四家实现对比]]（Claude Code / Codex / OpenClaw 五维对比）· [[Agent记忆系统]]（七个设计维度）· [[Agent上下文压缩链路]]
 - 追问库：[[追问/谷歌Memory]]
 - raw：[[专栏/Agent/OpenClaw 笔记]]（Tool System / Skill Router / JSONL 与 MD 协作全文）· [[专栏/Agent/记忆压缩]]

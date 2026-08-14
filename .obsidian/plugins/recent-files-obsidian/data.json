@@ -1,12 +1,24 @@
 {
   "recentFiles": [
     {
-      "basename": "Agent上下文压缩链路",
-      "path": "wiki/技术主题/Agent上下文压缩链路.md"
+      "basename": "看思维导图",
+      "path": "Excalidraw/看思维导图.md"
     },
     {
-      "basename": "Agent记忆三家实现对比",
-      "path": "wiki/技术主题/Agent记忆三家实现对比.md"
+      "basename": "字节商业化AgentInfra一面_2026-07-30",
+      "path": "公司/字节/中国商业化/字节商业化AgentInfra一面_2026-07-30.md"
+    },
+    {
+      "basename": "数据库",
+      "path": "Excalidraw/数据库.md"
+    },
+    {
+      "basename": "Agent记忆系统",
+      "path": "wiki/技术主题/Agent记忆系统.md"
+    },
+    {
+      "basename": "Agent上下文压缩链路",
+      "path": "wiki/技术主题/Agent上下文压缩链路.md"
     },
     {
       "basename": "Agent设计模式与MCP",
@@ -19,18 +31,6 @@
     {
       "basename": "米哈游提前批二面_约2026-08",
       "path": "公司/米哈游/米哈游提前批二面_约2026-08.md"
-    },
-    {
-      "basename": "Agent记忆系统",
-      "path": "wiki/技术主题/Agent记忆系统.md"
-    },
-    {
-      "basename": "字节商业化AgentInfra一面_2026-07-30",
-      "path": "公司/字节/中国商业化/字节商业化AgentInfra一面_2026-07-30.md"
-    },
-    {
-      "basename": "看思维导图",
-      "path": "Excalidraw/看思维导图.md"
     },
     {
       "basename": "JVM内存与GC",
@@ -95,10 +95,6 @@
     {
       "basename": "NIO BIO AIO Block",
       "path": "Excalidraw/NIO BIO AIO Block.md"
-    },
-    {
-      "basename": "数据库",
-      "path": "Excalidraw/数据库.md"
     },
     {
       "basename": "三次握手四次挥手 TCP可靠传输",

@@ -221,6 +221,42 @@ flowchart LR
 配置在 `settings.json`，`matcher` 按工具名或子 agent 类型过滤；hook 类型除 `command`（stdin 收 JSON、stdout 回 JSON、exit 2 表示拦截）外，还有 `http` / `mcp_tool` / `prompt`（让模型判一次）/ `agent`（起子 agent 验证）。
 <!-- 来源: Claude Code 官方 hooks 文档 code.claude.com/docs/en/hooks ・ 查证于 2026-08-06 ・ 谷歌内部框架的事件名未公开，此处为公开对标物 -->
 
+#### 🔴 但在**字节**面试里报上面这张表是错的口径（2026-08-14 新增）
+
+**你在字节做的 [[字节答疑Bot]] 架在 DeerFlow 上，而 DeerFlow 是 LangChain / LangGraph 系——它的扩展点不叫 hook，叫 `AgentMiddleware`，事件名跟 Claude Code 完全不同。** 拿 `SessionStart` / `PreToolUse` 这套词去描述一个 LangChain 系统，**面试官（DeerFlow 是字节自家开源项目）一听就知道你在套别人的词。**
+
+**LangChain `AgentMiddleware` 的钩子点（这才是你系统的说明书）：**
+
+| 钩子 | 什么时候跑 | 能干什么 |
+|---|---|---|
+| `before_agent` / `after_agent` | **一次调用只跑一次** | 加载 memory、连资源、校验初始输入 |
+| **`before_model`** | **每次模型调用前** | **memory 注入挂这里**；裁剪历史、PII 清洗 |
+| `after_model` | 每次模型调用后 | 检查输出。**注意它按注册的倒序执行** |
+| `wrap_model_call` | **包住整次模型调用** | 缓存、重试、**动态换模型 / 动态改可用工具集** |
+| `wrap_tool_call` | 包住工具执行 | 注入上下文、拦截结果、**决定哪些工具真的能跑** |
+
+**执行顺序**：所有 `before_*` 顺序跑 → 每个 `wrap_model_call` 逐层套住真正的调用 → `after_model` **倒序**回来。
+
+**DeerFlow 自己的扩展机制（源码实锤，`config.example.yaml`）：**
+
+- **插入位置**：自定义 middleware 挂在「**内置 runtime middleware 之后、safety/clarification 尾部之前**」
+- **同一份列表同时作用于 lead 和 subagent runtime**；配置注释明说 **lead-only / subagent-only 还不支持**（"not expressible yet"）
+- **两条注册路径，刻意分开**——这是个安全设计，值得单独说：
+
+| 路径 | 背后是什么 | 能不能被 HTTP 改 |
+|---|---|---|
+| `extensions:` | `extensions_config.json` | ✅ Gateway 有端点能改写 |
+| `plugins:` | **只能改这个 operator 控制的文件** | ❌ **因为它会导致代码被 import** |
+
+> **收口：「能被 HTTP 改的东西，不允许触发代码导入」——这条边界本身就是答案的一部分。** 注释原话是 middleware classes execute code，所以整个文件被当作 trusted operator config。
+
+- **plugin 可贡献五类**：语义化放置的 middleware / **task-lifecycle hooks** / system-model observers / Gateway 生命周期服务 / FastAPI HTTP 路由。**列表顺序决定贡献顺序。**
+- **已知内置 middleware**（点名能加分）：`ThreadDataMiddleware`（建每 thread 的隔离目录）、`SandboxMiddleware`、`DeerFlowSummarizationMiddleware`（逼近 token 上限时压缩）、**`MemoryMiddleware`（把会话排队送去异步抽记忆——就是 [[Agent记忆四家实现对比]] §2.4 的 `mode: middleware`）**、`ClarificationMiddleware`（拦截澄清请求并中断执行）、`ToolErrorHandlingMiddleware`（常开）、`UploadsMiddleware`、`ViewImageMiddleware`
+
+<!-- 来源: DeerFlow config.example.yaml 源码（extensions/plugins 段）+ LangChain AgentMiddleware 官方文档 ・ 查证于 2026-08-14 ・ ⚠️ 内置 middleware 名单来自 DeepWiki 二手分析，「14+ 条链」的数字未在一手源核到，别报具体数字 -->
+
+> ⚠️ **口径规则**：问「你的 memory hook 挂在哪」→ 答 **`before_model`**；问「这个系统还支持哪些扩展点」→ 报 **`AgentMiddleware` 五个钩子 + DeerFlow 的两条注册路径**；**只有面试官主动提 Claude Code 时，才拿上面那张 Claude Code 表做横向对照。**
+
 **⭐ 收口必须给出设计判断，而不是背清单：**
 > 「**我的自进化门禁不该挂在注入那个点上。** 注入点每轮都跑，只适合做读；而『改完 memory 跑验证集、变差回滚』**属于一轮任务闭环之后**——该挂在**一轮回答结束**那个点，或者干脆走**离线定时任务**，不占用户等待时间。
 > **再往前一步，我最想挂的其实是「工具调用后」**：testing agent 的价值信号不在最终回复里，**在中间那些工具结果里**——哪条命令失败了、哪个断言挂了。**要做从轨迹学习，就得在轨迹产生的那一刻取，而不是等对话结束了回头猜。**」

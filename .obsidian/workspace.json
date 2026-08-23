@@ -90,9 +90,21 @@
               "icon": "lucide-file",
               "title": "上海AILab后训练数据一面_发帖"
             }
+          },
+          {
+            "id": "dc9b979b67a541c2",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.13.7"
+              },
+              "icon": "lucide-book-up",
+              "title": "版本说明 1.13.7"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -299,7 +311,7 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "eaf5717ca261b747",
+  "active": "dc9b979b67a541c2",
   "lastOpenFiles": [
     "发帖/星河觉醒Agent二面_发帖.md",
     "发帖/点点互动AI-Agent二面_发帖.md",

@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/ha/Documents/study/面经/.codex/hooks/wiki_refresh_hint.sh'"
+          }
+        ]
+      }
+    ]
+  }
+}

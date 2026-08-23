@@ -1,6 +1,30 @@
 {
   "recentFiles": [
     {
+      "basename": "上海AILab后训练数据一面_发帖",
+      "path": "发帖/上海AILab后训练数据一面_发帖.md"
+    },
+    {
+      "basename": "星河觉醒Agent二面_发帖",
+      "path": "发帖/星河觉醒Agent二面_发帖.md"
+    },
+    {
+      "basename": "点点互动AI-Agent二面_发帖",
+      "path": "发帖/点点互动AI-Agent二面_发帖.md"
+    },
+    {
+      "basename": "腾讯微信支付一面_发帖",
+      "path": "发帖/腾讯微信支付一面_发帖.md"
+    },
+    {
+      "basename": "懂车帝AIGC创作一面_发帖",
+      "path": "发帖/懂车帝AIGC创作一面_发帖.md"
+    },
+    {
+      "basename": "字节商业化AgentInfra一面_发帖",
+      "path": "发帖/字节商业化AgentInfra一面_发帖.md"
+    },
+    {
       "basename": "看思维导图",
       "path": "Excalidraw/看思维导图.md"
     },
@@ -175,26 +199,6 @@
     {
       "basename": "README",
       "path": "README.md"
-    },
-    {
-      "basename": "TT-TikTok",
-      "path": "wiki/公司/TT-TikTok.md"
-    },
-    {
-      "basename": "README",
-      "path": "wiki/README.md"
-    },
-    {
-      "basename": "CLAUDE",
-      "path": "CLAUDE.md"
-    },
-    {
-      "basename": "PingCAP",
-      "path": "wiki/公司/PingCAP.md"
-    },
-    {
-      "basename": "公司爱考什么",
-      "path": "wiki/dashboard/公司爱考什么.md"
     }
   ],
   "omittedPaths": [],

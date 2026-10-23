@@ -1,7 +1,7 @@
 ---
 title: Dashboard 入口
 type: dashboard-root
-updated: 2026-05-05
+updated: 2026-10-23
 note: 依赖 Dataview 插件 — 见 [[插件设置#1. Dataview ★]]
 ---
 
@@ -15,14 +15,14 @@ note: 依赖 Dataview 插件 — 见 [[插件设置#1. Dataview ★]]
 |---|---|
 | [[面试历史]] | 所有面经按时间 / 公司 / 通过状态排表（主要看近一年）|
 | [[公司爱考什么]] | 每家公司高频考点 tag 频次 |
-| [[主题统计]] | 主题文章被引用次数 + raw 来源密度 |
+| [[主题统计]] | 主题文章被引用次数 + 来源材料密度 |
 
 ## Dataview 极简语法
 
 ```
 \`\`\`dataview
 TABLE company, date, verdict
-FROM "公司"
+FROM "资料/面经"
 WHERE date >= date(today) - dur(365 days)
 SORT date DESC
 \`\`\`

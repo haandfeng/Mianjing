@@ -7,7 +7,7 @@ updated: 2026-05-04
 # Agent 设计（项目背景 / 推理模式 / 调用流程 / 多 Agent / 范式）
 
 > 涵盖：Q1、Q3、Q4、Q10、Q13、Q16、Q18、Q22、Q30、Q31。
-> 主参考：[[专栏/Agent/OpenClaw 笔记]]、[[Agent设计模式与MCP]]、[[西门子RAG]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]。
+> 主参考：[[资料/学习材料/Agent/OpenClaw 笔记]]、[[Agent设计模式与MCP]]、[[项目追问/西门子RAG]]、[[资料/面经/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]。
 
 ---
 
@@ -22,7 +22,7 @@ updated: 2026-05-04
 - **个人路径**：在用友做完后端 + 数据迁移后想往 LLM / Agent 方向延伸，已有的 RAG 框架（基于 LangChain Chat）正好是入口。
 - **价值闭环**：上线到学城后月访问几千次，准确率从 76% 提到 92%，能形成一个 STAR 完整闭环的简历项目。
 
-**拓展双链**：[[西门子RAG]]、[[wiki/我的简历/西门子实习]]
+**拓展双链**：[[项目追问/西门子RAG]]、[[wiki/我的简历/西门子实习]]
 
 ---
 
@@ -42,7 +42,7 @@ updated: 2026-05-04
   - Query Refine 中英文同义词改写解决术语 gap。
 - **R 结果**：准确率 76% → 92%，相关度 / 忠实度 99%+，已上线学城。
 
-**拓展双链**：[[西门子RAG]]、[[wiki/我的简历/西门子实习]]、[[Agent问题答案/RAG]]
+**拓展双链**：[[项目追问/西门子RAG]]、[[wiki/我的简历/西门子实习]]、[[Agent问题答案/RAG]]
 
 ---
 
@@ -58,7 +58,7 @@ updated: 2026-05-04
 - **MCP**：用 OpenManus 的 MCP Client / Server 实现，工具被重命名为 `mcp_<server_id>_<tool>` 加进 Agent 工具集。
 - 经验：复杂生产系统通常自己控制底层实现，框架只用来快速搭原型 / 状态管理。
 
-**拓展双链**：[[Agent设计模式与MCP]]（LangChain vs LangGraph 对比表）、[[西门子RAG]]（Q16）
+**拓展双链**：[[Agent设计模式与MCP]]（LangChain vs LangGraph 对比表）、[[项目追问/西门子RAG]]（Q16）
 
 ---
 
@@ -74,7 +74,7 @@ updated: 2026-05-04
 - **上线场景**：内部学城（培训系统），日活 / 月活属于内部规模，月几千次。
 - **合规约束**：医疗行业数据不能出公网，模型必须开源自部署（最终选 DeepSeek 671B）。
 
-**拓展双链**：[[西门子RAG]]、[[公司/小红书]]（同领域参考）、[[wiki/我的简历/西门子实习]]
+**拓展双链**：[[项目追问/西门子RAG]]、[[公司画像/小红书]]（同领域参考）、[[wiki/我的简历/西门子实习]]
 
 ---
 
@@ -90,7 +90,7 @@ updated: 2026-05-04
 - **ToT / Self-Refine**：树搜索 / 反思迭代，适合需要尝试多个解的难题。
 - **差异化原则**：用最简单能解决问题的模式；准确性敏感场景优先确定性流程（写死调用 RAG），灵活性场景才放权给模型。
 
-**拓展双链**：[[Agent问题答案/Agent设计#Q16]]、[[专栏/Agent/OpenClaw 笔记]]（Skill Router 决策框架）
+**拓展双链**：[[Agent问题答案/Agent设计#Q16]]、[[资料/学习材料/Agent/OpenClaw 笔记]]（Skill Router 决策框架）
 
 ---
 
@@ -110,7 +110,7 @@ updated: 2026-05-04
 - **防卡死**：检测连续多轮无新增信息（is_stuck）就强制结束并兜底。
 - **观察存储**：所有 tool_call 与 result 都进 Memory.messages，下一轮 think 拿到完整对话历史。
 
-**拓展双链**：[[专栏/Agent/OpenClaw 笔记]]（Agentic Loop 节）、[[Agent设计模式与MCP]]、[[Agent问题答案/Agent设计#Q13]]
+**拓展双链**：[[资料/学习材料/Agent/OpenClaw 笔记]]（Agentic Loop 节）、[[Agent设计模式与MCP]]、[[Agent问题答案/Agent设计#Q13]]
 
 ---
 
@@ -125,9 +125,9 @@ updated: 2026-05-04
 - **切换机制**：sub-agent 输出 final_answer 或 handoff 时把控制权交回 Supervisor；状态由 LangGraph 持久化，支持中断后从 checkpoint 恢复。
 - **默认串行**：参考 Cognition "Don't Build Multi-Agents"，并行只在显式低风险任务（定时任务、独立子查询）开启。
 - **失败兜底**：sub-agent 失败 N 次自动降级到 fallback 简单链路，避免无限循环。
-> 来源说明：Supervisor 模式来自 LangGraph 文档与 [[专栏/Agent/MCP与Tool管理]]；"切换机制"对蔚来项目的具体落地系推测。
+> 来源说明：Supervisor 模式来自 LangGraph 文档与 [[资料/学习材料/Agent/MCP与Tool管理]]；"切换机制"对蔚来项目的具体落地系推测。
 
-**拓展双链**：[[Agent设计模式与MCP]]（5. 多级 Agent 架构）、[[专栏/Agent/OpenClaw 笔记]]（lane / 串行默认）
+**拓展双链**：[[Agent设计模式与MCP]]（5. 多级 Agent 架构）、[[资料/学习材料/Agent/OpenClaw 笔记]]（lane / 串行默认）
 
 ---
 
@@ -145,7 +145,7 @@ updated: 2026-05-04
 - **步骤 5 LLM 生成**：温度 0，prompt 强制要求引用 source；如果没找到 → 回"无法回答"。
 - **步骤 6 trace**：LangSmith 记录每节点输入输出 + 耗时，失败 case 反查。
 
-**拓展双链**：[[西门子RAG]]、[[Agent问题答案/RAG#Q14]]
+**拓展双链**：[[项目追问/西门子RAG]]、[[Agent问题答案/RAG#Q14]]
 
 ---
 
@@ -166,7 +166,7 @@ updated: 2026-05-04
 - **运行**：`agent = await Manus.create()` → `agent.run(prompt)` → 内部循环 think / act 直到完成或 max_steps。
 - **观察**：trace / log 写到本地 jsonl + LangSmith。
 
-**拓展双链**：[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]（OpenManus 代码示例最详）、[[专栏/Agent/OpenClaw 笔记]]
+**拓展双链**：[[资料/面经/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]（OpenManus 代码示例最详）、[[资料/学习材料/Agent/OpenClaw 笔记]]
 
 ---
 
@@ -184,7 +184,7 @@ updated: 2026-05-04
 - **Anthropic Skill**：能力包打包格式，按 description 触发。
 - **Cognition Devin**：长期任务 + 沙箱执行，强调"默认串行"和可回放转录。
 
-**拓展双链**：[[Agent设计模式与MCP]]、[[专栏/Agent/OpenClaw 笔记]]、[[专栏/Agent/Skills]]
+**拓展双链**：[[Agent设计模式与MCP]]、[[资料/学习材料/Agent/OpenClaw 笔记]]、[[资料/学习材料/Agent/Skills]]
 
 ---
 

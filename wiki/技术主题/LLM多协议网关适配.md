@@ -13,11 +13,11 @@ updated: 2026-07-30
 
 ## 高频问法
 
-- 「网关适配 Gemini/Anthropic/OpenAI 多协议，**为什么不能只替换请求地址**？」—— 出处 [[公司/点点互动/AI Agent方向/点点互动AI Agent一面_2026-07-27]]
+- 「网关适配 Gemini/Anthropic/OpenAI 多协议，**为什么不能只替换请求地址**？」—— 出处 [[资料/面经/点点互动/AI Agent方向/点点互动AI Agent一面_2026-07-27]]
 - 「**token 在不同协议中有哪些差异**？」—— 同上（⚠️ 当场答崩，说「没细究」）
 - 「**流式输出和普通响应都适配了吗**？多做哪些处理？」—— 同上
 - 「**prompt cache 为什么能生效**？一般缓存哪些内容？」—— 同上
-- 「MCP 协议是什么？它的传输协议有哪些？」—— 出处 [[公司/蔚来/面试问题参考答案]]
+- 「MCP 协议是什么？它的传输协议有哪些？」—— 出处 [[资料/面经/蔚来/面试问题参考答案]]
 
 ---
 
@@ -212,7 +212,7 @@ flowchart LR
 
 ## 深入阅读
 
-- [[追问/字节答疑Bot]] Q7 —— 统一思考模式的工程量、我的项目里具体怎么做的
+- [[项目追问/字节答疑Bot]] Q7 —— 统一思考模式的工程量、我的项目里具体怎么做的
 - [[Agent设计模式与MCP]] —— MCP 传输协议（蔚来考过）
 - [[Agent记忆系统]] · [[LangGraph工程实践]]
 - 官方文档（**用前先核最新版**）：Anthropic [Thinking](https://platform.claude.com/docs/en/build-with-claude/thinking) / [Prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching)；Google [Thought signatures](https://ai.google.dev/gemini-api/docs/generate-content/thought-signatures)；OpenAI [Reasoning items](https://developers.openai.com/cookbook/examples/responses_api/reasoning_items)

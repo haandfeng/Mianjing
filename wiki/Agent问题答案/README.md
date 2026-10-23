@@ -10,8 +10,8 @@ updated: 2026-05-04
 > **Q44 起是后续真题增补**（不在原 43 题清单里），来源见每题的「原题」行。
 >
 > 来源：
-> - 真题：_Agent相关问题_（已移除）；增补真题：[[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]（Q44-Q52）
-> - 参考：[[专栏/Agent/OpenClaw 笔记]]、[[专栏/Agent/MCP_SSE_文档]]、[[专栏/Agent/MCP与Tool管理]]、[[专栏/Agent/Skills]]、[[wiki/技术主题/Agent设计模式与MCP]]、[[wiki/技术主题/RAG优化全链路]]、[[LangGraph工程实践]]、[[追问/西门子RAG]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]
+> - 真题：_Agent相关问题_（已移除）；增补真题：[[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]（Q44-Q52）
+> - 参考：[[资料/学习材料/Agent/OpenClaw 笔记]]、[[资料/学习材料/Agent/MCP_SSE_文档]]、[[资料/学习材料/Agent/MCP与Tool管理]]、[[资料/学习材料/Agent/Skills]]、[[wiki/技术主题/Agent设计模式与MCP]]、[[wiki/技术主题/RAG优化全链路]]、[[LangGraph工程实践]]、[[项目追问/西门子RAG]]、[[资料/面经/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]
 
 ## 5 个主题
 
@@ -92,4 +92,4 @@ updated: 2026-05-04
 ## 标记说明
 
 - 部分问题 raw 来源覆盖不充分（如 Q15 推理模型不支持 MCP 的"技术原因"、Q27 A2A 协议、Q33 NL2SQL 安全），文中以 `> 来源说明：...` 行注明，答案基于通用知识 / 官方文档 / 社区共识；遇真题再补具体细节。
-- 双链命名约定：项目内 wiki = 裸名；raw 专栏 = 全路径（如 `[[专栏/Agent/OpenClaw 笔记]]`）。
+- 双链命名约定：项目内 wiki = 裸名；raw 专栏 = 全路径（如 `[[资料/学习材料/Agent/OpenClaw 笔记]]`）。

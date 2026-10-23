@@ -1,7 +1,7 @@
 ---
 title: LangGraph 工程实践（State / Checkpoint / 流式 / 重试降级）
 type: topic
-updated: 2026-07-30
+updated: 2026-10-23
 note: 本文是工程实践骨架。概念地图见 [[Agent设计模式与MCP]]，具体问答见 [[Agent问题答案/工程化]]。
 ---
 
@@ -151,7 +151,7 @@ async for chunk in graph.astream(
 
 ### ④ FastAPI + SSE 的五个坑
 
-（SSE = Server-Sent Events，一个永不结束的 HTTP 响应体，服务端可以持续往里追加数据；详见 [[专栏/Agent/MCP_SSE_文档]]）
+（SSE = Server-Sent Events，一个永不结束的 HTTP 响应体，服务端可以持续往里追加数据；详见 [[资料/学习材料/Agent/MCP_SSE_文档]]）
 
 | 坑 | 后果 | 处理 |
 |---|---|---|
@@ -237,19 +237,22 @@ builder.add_edge("relax_query", "fetch")               # 回环
 
 ## 五、为什么用 LangGraph 而不是 LangChain
 
-**先纠正问题前提：这不是二选一。** LangGraph 本身就是 LangChain 生态的一部分，`create_agent` 就构建在 LangGraph 上，middleware 的钩子也跑在它返回的编译图里。真正的对比是 **LCEL 链式编排 vs 图编排**。
+**先纠正问题前提：这不是二选一。** LangGraph 本身就是 LangChain 生态的一部分，`create_agent` 就构建在 LangGraph 上。middleware 不是独立运行时，它的钩子跑在 `create_agent` 返回的编译图里。真正的对比是 **LCEL 链式编排 vs 图编排**。
 
-| LCEL 做不到 | LangGraph 的机制 |
-|---|---|
-| **循环**（agent 本质是 while 循环） | 节点回环 + `recursion_limit` 兜底 |
-| **分支后再汇合** | 条件边 / `Command` |
-| **跨步骤共享状态** | State + reducer |
-| **中断和恢复** | Checkpointer + `interrupt()` |
-| **自定义并行归并**（`RunnableParallel` 只有固定字典合并） | reducer |
-| **动态并行**（运行时才知道开几路） | `Send` |
-| **多粒度流式** | 七种 `stream_mode` |
+| 对比点 | LCEL 链式 | LangGraph 图编排 |
+|---|---|---|
+| 形状 | 有向无环管道，数据单向流 | 图：节点 + 条件边 + 环 |
+| 循环 | 管道本身不能表达 agent 的 while 循环 | 节点回环 + `recursion_limit` 兜底 |
+| 分支后再汇合 | `RunnableBranch` 能分支，但分支后再合流很别扭 | 条件边 / `Command` |
+| 跨步骤共享状态 | 每步拿上一步输出；第 5 步要访问第 2 步的中间产物，需一路手动透传字典 | 全图共享 State + reducer |
+| 自定义并行归并 | `RunnableParallel` 是固定字典合并，不能定义「两个节点都往 `docs` 写怎么合」 | reducer 声明归并规则；并发机制见第一节 |
+| 动态并行 | 不提供图式的动态并行机制 | `Send`，运行时决定开几路 |
+| 中断和恢复 | 没有暂停执行的概念 | Checkpointer + `interrupt()`；断点续跑、多轮对话和 time travel 见第二节 |
+| 流式粒度 | token | 七种 `stream_mode`，节点 / token / 自定义 / checkpoint / task 等，详见第三节 |
 
 **判据**：需要环、需要跨步骤共享状态、需要中途暂停 → LangGraph；单向数据变换管道 → LCEL 够了。
+
+**代价**：固定的 `prompt → model → parse` 使用 LangGraph 是过度设计；图的调试成本比链高，节点多了，追一条执行路径不容易。简单 ReAct agent 可以直接用 `create_agent()`，不必手写 `StateGraph`。
 
 **收尾金句**：
 
@@ -281,14 +284,14 @@ builder.add_node("analyze", analyze)         # 节点之间：LangGraph
 
 | 问法 | 出处 |
 |---|---|
-| State 管理和 Checkpoint 怎么实现？多 agent 并行的状态竞争怎么避免？ | [[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]] |
-| LangGraph 图里怎么捕获每个节点结果实时推前端？ | [[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]] |
-| 子任务失败（数据抓回来是空的）怎么重试降级？ | [[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]] |
-| 为什么用 LangGraph 而不是简单的 LangChain？ | [[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]] · [[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]] · [[其他/PingCAP/面试问题总结]] |
-| 你对 LangChain / LangGraph 的理解？框架解决了什么、不解决什么？ | [[微软/Bing图像视频业务实习一面面经]] |
-| 你们当时为什么选择用 LangGraph 去写？对比过哪些框架？ | [[其他/PingCAP/面试问题总结]] |
-| LangGraph 复用连接池 + 事件循环被外部 SDK 关掉，导致跨 loop 报错 | [[公司/点点互动/AI Agent方向/点点互动AI Agent一面_2026-07-27]] |
-| 想借 LangGraph 的 human-in-the-loop 让人审核模型计划 | [[微软/Bing图像视频业务实习一面面经]] |
+| State 管理和 Checkpoint 怎么实现？多 agent 并行的状态竞争怎么避免？ | [[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]] |
+| LangGraph 图里怎么捕获每个节点结果实时推前端？ | [[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]] |
+| 子任务失败（数据抓回来是空的）怎么重试降级？ | [[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]] |
+| 为什么用 LangGraph 而不是简单的 LangChain？ | [[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]] · [[资料/面经/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]] · [[资料/面经/其他/PingCAP/面试问题总结]] |
+| 你对 LangChain / LangGraph 的理解？框架解决了什么、不解决什么？ | [[资料/面经/微软/Bing图像视频业务实习一面面经]] |
+| 你们当时为什么选择用 LangGraph 去写？对比过哪些框架？ | [[资料/面经/其他/PingCAP/面试问题总结]] |
+| LangGraph 复用连接池 + 事件循环被外部 SDK 关掉，导致跨 loop 报错 | [[资料/面经/点点互动/AI Agent方向/点点互动AI Agent一面_2026-07-27]] |
+| 想借 LangGraph 的 human-in-the-loop 让人审核模型计划 | [[资料/面经/微软/Bing图像视频业务实习一面面经]] |
 
 ## 易错点（高频追问）
 
@@ -307,5 +310,5 @@ builder.add_node("analyze", analyze)         # 节点之间：LangGraph
 - 概念地图：[[Agent设计模式与MCP]]
 - 答题分册：[[Agent问题答案/工程化]]（Q48 流式 / Q49 重试降级 / Q50 选型）· [[Agent问题答案/Agent设计]]
 - 相关主题：[[RAG优化全链路]] · [[限流熔断容错]] · [[消息队列不丢不重]]（幂等）· [[Python并发与GIL]]（事件循环 / 协程）
-- raw 专栏：[[专栏/Agent/RAG到Agent进阶]] —— RAG → ReAct → Plan-Execute → LangGraph State 演化路径 · [[专栏/Agent/什么时候选择多智能体]] —— Anthropic 多 Agent 决策准则 · [[专栏/Agent/MCP_SSE_文档]] —— SSE 与流式
-- 公司画像：[[公司/淘天]] · [[蔚来]] · [[微软]] · [[PingCAP]]
+- raw 专栏：[[资料/学习材料/Agent/RAG到Agent进阶]] —— RAG → ReAct → Plan-Execute → LangGraph State 演化路径 · [[资料/学习材料/Agent/什么时候选择多智能体]] —— Anthropic 多 Agent 决策准则 · [[资料/学习材料/Agent/MCP_SSE_文档]] —— SSE 与流式
+- 公司画像：[[公司画像/淘天]] · [[公司画像/蔚来]] · [[公司画像/微软]] · [[公司画像/PingCAP]]

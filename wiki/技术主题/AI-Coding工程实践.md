@@ -365,5 +365,5 @@ Veracode 最关键的一条不是「45% 有漏洞」，是**更新更大的模�
 
 - 姊妹篇：[[AI-Coding面试题]]（现场怎么走）· [[AI-Coding笔试题]]（投递前看）
 - 相邻主题：[[幻觉与事实性评测]]（为什么它的错误长这样）· [[测试设计方法论]]（用例怎么推导）· [[Agent上下文压缩链路]] · [[Agent设计模式与MCP]]
-- 一手素材：[[公司/其他/PingCAP/面试问题总结]] · [[追问/字节答疑Bot]]（harness 视角 + 评测飞轮）
+- 一手素材：[[资料/面经/其他/PingCAP/面试问题总结]] · [[项目追问/字节答疑Bot]]（harness 视角 + 评测飞轮）
 - 厂商一手（**用前重核，这块变化快**）：[Claude Code best practices](https://code.claude.com/docs/en/best-practices) · [OpenAI Codex best practices](https://learn.chatgpt.com/guides/best-practices) · [Cursor agent best practices](https://cursor.com/blog/agent-best-practices) · [GitHub Copilot agent best practices](https://docs.github.com/copilot/how-tos/agents/copilot-coding-agent/best-practices-for-using-copilot-to-work-on-tasks) · [apache/airflow AGENTS.md](https://github.com/apache/airflow/blob/main/AGENTS.md)

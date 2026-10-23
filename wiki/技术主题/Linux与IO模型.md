@@ -9,14 +9,14 @@ updated: 2026-05-04
 > select / poll / epoll 是 IO 多路复用三代演进；零拷贝靠 sendfile / mmap / splice 跳过用户态拷贝；SRE 排查靠 top / vmstat / iostat / ss / netstat 一套组合拳。
 
 ## 高频问法
-- "select / poll / epoll 区别；epoll 数据结构（红黑树 + 就绪链表）" — [[TT/SRE/TT SRE]]、[[京东/京东零售一面]]
-- "BIO / NIO / AIO；Reactor / Proactor" — [[TT/SRE/TT SRE]]、[[字节/中国商业化/字节跳动中国商业化一面面经]]
-- "零拷贝（read+write / sendfile / mmap / splice）" — [[TT/SRE/TT SRE 牛客]]
-- "Linux 排查命令：top / vmstat / iostat / ss / strace / netstat" — [[TT/SRE/TT SRE]]、[[TT/SRE/TT SRE 牛客]]
-- "进程 vs 线程 vs 协程" — [[TT/SRE/TT SRE 牛客]]、[[字节/中国商业化/字节跳动中国商业化一面面经]]
-- "网站访问慢怎么排查；502 怎么排查" — [[TT/SRE/TT SRE 牛客]]
-- "CPU 占用不高但系统慢怎么排查" — [[TT/SRE/TT SRE 牛客]]
-- "Redis 用什么 IO 模型" — [[京东/京东零售一面]]
+- "select / poll / epoll 区别；epoll 数据结构（红黑树 + 就绪链表）" — [[资料/面经/字节/TikTok/SRE/TT SRE]]、[[资料/面经/京东/京东零售一面]]
+- "BIO / NIO / AIO；Reactor / Proactor" — [[资料/面经/字节/TikTok/SRE/TT SRE]]、[[资料/面经/字节/中国商业化/字节跳动中国商业化一面面经]]
+- "零拷贝（read+write / sendfile / mmap / splice）" — [[资料/面经/字节/TikTok/SRE/TT SRE 牛客]]
+- "Linux 排查命令：top / vmstat / iostat / ss / strace / netstat" — [[资料/面经/字节/TikTok/SRE/TT SRE]]、[[资料/面经/字节/TikTok/SRE/TT SRE 牛客]]
+- "进程 vs 线程 vs 协程" — [[资料/面经/字节/TikTok/SRE/TT SRE 牛客]]、[[资料/面经/字节/中国商业化/字节跳动中国商业化一面面经]]
+- "网站访问慢怎么排查；502 怎么排查" — [[资料/面经/字节/TikTok/SRE/TT SRE 牛客]]
+- "CPU 占用不高但系统慢怎么排查" — [[资料/面经/字节/TikTok/SRE/TT SRE 牛客]]
+- "Redis 用什么 IO 模型" — [[资料/面经/京东/京东零售一面]]
 
 ## 答题骨架
 
@@ -132,5 +132,5 @@ updated: 2026-05-04
 - TIME_WAIT 大量积累会耗尽端口，调 `net.ipv4.tcp_tw_reuse=1`
 
 ## 深入阅读
-- 原始专栏 [[专栏/后端/Netty]]（select/poll/epoll、零拷贝、Reactor 章节）
-- 真题来源 [[TT/SRE/TT SRE]]、[[TT/SRE/TT SRE 二面]]、[[TT/SRE/TT SRE 牛客]]
+- 原始专栏 [[资料/学习材料/后端/Netty]]（select/poll/epoll、零拷贝、Reactor 章节）
+- 真题来源 [[资料/面经/字节/TikTok/SRE/TT SRE]]、[[资料/面经/字节/TikTok/SRE/TT SRE 二面]]、[[资料/面经/字节/TikTok/SRE/TT SRE 牛客]]

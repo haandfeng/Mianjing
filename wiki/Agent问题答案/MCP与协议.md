@@ -7,7 +7,7 @@ updated: 2026-05-04
 # MCP 与协议（FC / SSE / A2A / Skill 区分 / 推理模型支持 / 工具封装 / 流式）
 
 > 涵盖：Q7、Q12、Q15、Q21、Q23、Q27、Q37、Q41、**Q44、Q45、Q46、Q47**（后四题来自淘天一面，2026-07 新增）。
-> 主参考：[[专栏/Agent/MCP_SSE_文档]]、[[专栏/Agent/MCP与Tool管理]]、[[专栏/Agent/Skills]]、[[Agent设计模式与MCP]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]、[[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]。
+> 主参考：[[资料/学习材料/Agent/MCP_SSE_文档]]、[[资料/学习材料/Agent/MCP与Tool管理]]、[[资料/学习材料/Agent/Skills]]、[[Agent设计模式与MCP]]、[[资料/面经/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]、[[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]。
 
 ---
 
@@ -23,7 +23,7 @@ updated: 2026-05-04
 - 类比：FC 是函数指针，MCP 是 USB-C 接口标准；之前每接入一个工具就要写一遍适配，MCP 让工具方实现一次 Server，所有 Host 都能用。
 - 与 LangChain Tool：LangChain 是框架内抽象，MCP 是跨框架协议；LangChain 也已经支持接 MCP Server。
 
-**拓展双链**：[[Agent设计模式与MCP]]、[[专栏/Agent/MCP与Tool管理]]、[[专栏/Agent/MCP_SSE_文档]]
+**拓展双链**：[[Agent设计模式与MCP]]、[[资料/学习材料/Agent/MCP与Tool管理]]、[[资料/学习材料/Agent/MCP_SSE_文档]]
 
 ---
 
@@ -40,7 +40,7 @@ updated: 2026-05-04
 - **传输层**：stdio（本地子进程）/ SSE（HTTP 长连接）/ Streamable HTTP（新增），后两者支持远程。
 - 实战：OpenManus 实现了完整 Client + Server，工具会被重命名为 `mcp_<server_id>_<tool>` 加进 Agent 工具集。
 
-**拓展双链**：[[专栏/Agent/MCP_SSE_文档]]（图示完整流程）、[[Agent设计模式与MCP]]
+**拓展双链**：[[资料/学习材料/Agent/MCP_SSE_文档]]（图示完整流程）、[[Agent设计模式与MCP]]
 
 ---
 
@@ -59,7 +59,7 @@ updated: 2026-05-04
 - 解决：要么换支持 FC 的模型；要么用轻量包装层把 MCP 工具描述塞进 system prompt 让模型 zero-shot；要么 fine-tune 一个 tool-use head。
 > 来源说明：无直接面试出处，答案基于通用知识 + 行业代表系统（Cursor / Cody / Copilot Workspace）。可在专门面经里补"R1 / o1 系列对 tool use 支持差"等具体例子。
 
-**拓展双链**：[[专栏/Agent/MCP与Tool管理]]、[[Agent设计模式与MCP]]
+**拓展双链**：[[资料/学习材料/Agent/MCP与Tool管理]]、[[Agent设计模式与MCP]]
 
 ---
 
@@ -79,7 +79,7 @@ updated: 2026-05-04
 
 > ⚠ **2026-07 更新**：MCP 已经用 **Streamable HTTP** 取代了旧的双端点 HTTP+SSE，正是为了绕开上面「必须常驻长连接 → 无法水平扩展」这一条。详见 Q23。
 
-**拓展双链**：[[专栏/Agent/MCP_SSE_文档]]（fetch + ReadableStream 突破 GET-only 限制）、[[Agent问题答案/MCP与协议#Q23]]、[[LangGraph工程实践]]（FastAPI + SSE 五个坑）
+**拓展双链**：[[资料/学习材料/Agent/MCP_SSE_文档]]（fetch + ReadableStream 突破 GET-only 限制）、[[Agent问题答案/MCP与协议#Q23]]、[[LangGraph工程实践]]（FastAPI + SSE 五个坑）
 
 ---
 
@@ -106,7 +106,7 @@ updated: 2026-05-04
 - **Streamable HTTP 最大的收益**：不需要 session 和推送时，它就是**纯 POST/response 的无状态 HTTP API** —— 能直接上 serverless、能多实例负载均衡、滚动发布无感。旧 SSE 只有"必须常驻长连接"这一种模式，socket fd 锁在某个进程里，做不到。
 - **选型**：本地工具默认 stdio（凭证走环境变量）；远程走 Streamable HTTP。要兼容老 client 就双协议并存。
 
-**拓展双链**：[[专栏/Agent/MCP_SSE_文档]]、[[Agent设计模式与MCP]]、[[Agent问题答案/MCP与协议#Q21]]、[[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]
+**拓展双链**：[[资料/学习材料/Agent/MCP_SSE_文档]]、[[Agent设计模式与MCP]]、[[Agent问题答案/MCP与协议#Q21]]、[[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]
 
 ---
 
@@ -139,7 +139,7 @@ updated: 2026-05-04
 - **执行环境**：MCP 工具跑在 Server 端进程；Skill 由 Agent 在本地按 SKILL.md 步骤执行（可以调脚本、读模板）。
 - **类比**：MCP = "外部 API 服务"；Skill = "内置技能包 / 插件"。两者可以并存：Skill 调脚本 → 脚本里再走 MCP 拿外部数据。
 
-**拓展双链**：[[专栏/Agent/Skills]]、[[专栏/Agent/MCP与Tool管理]]、[[Agent设计模式与MCP]]
+**拓展双链**：[[资料/学习材料/Agent/Skills]]、[[资料/学习材料/Agent/MCP与Tool管理]]、[[Agent设计模式与MCP]]
 
 ---
 
@@ -184,7 +184,7 @@ updated: 2026-05-04
   2. **传输层换代** —— 老 client 只会旧双端点 SSE、新 server 只开 Streamable HTTP，直接连不上（见 Q23）
   3. **版本协商** —— HTTP 下每个请求要带 `MCP-Protocol-Version`，缺了 server 会假定 `2025-03-26`
 
-**拓展双链**：[[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]、[[Agent设计模式与MCP]]、[[专栏/Agent/MCP与Tool管理]]
+**拓展双链**：[[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]、[[Agent设计模式与MCP]]、[[资料/学习材料/Agent/MCP与Tool管理]]
 
 ---
 
@@ -211,7 +211,7 @@ updated: 2026-05-04
 - **本质：N 个应用 × M 个工具的重复集成 → N+M**。附带红利：进程隔离（工具崩了不拖垮主应用、可以用别的语言写）、动态发现（`notifications/tools/list_changed` 不用重启）、生态复用。
 - **加分点**：MCP 有四类原语且**控制权归属不同** —— Tools（模型决定）、Resources（应用/用户决定的只读上下文）、Prompts（用户显式触发，如 slash command）、Sampling/Elicitation（server 反向发起）。**后三类在 function calling 里根本没有对应物**，能提这句说明读过 spec 而不只是用过 SDK。
 
-**拓展双链**：[[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]、[[Agent问题答案/MCP与协议#Q7]]、[[Agent设计模式与MCP]]
+**拓展双链**：[[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]、[[Agent问题答案/MCP与协议#Q7]]、[[Agent设计模式与MCP]]
 
 ---
 
@@ -237,7 +237,7 @@ updated: 2026-05-04
 - **⑤ 长任务和分页缺标准**：结果是一次性的 `CallToolResult`；`tasks` 原语很新、支持面窄；**分页每个 server 自己发明 cursor / offset / limit**，模型得现学每家的分页方式。
 - **⑥ 可观测性差**：**stdio 下 server 往 stdout 打一行日志就把协议弄坏了**；跨进程链路长，难定位是模型选错 / 参数翻译错 / server 内部错 / 上游挂了；没有标准 trace 传播约定，要自己往 `_meta` 塞 trace id；stdio 下每个 server 一个常驻进程。
 
-**拓展双链**：[[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]、[[专栏/Agent/MCP与Tool管理]]、[[Agent设计模式与MCP]]
+**拓展双链**：[[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]、[[资料/学习材料/Agent/MCP与Tool管理]]、[[Agent设计模式与MCP]]
 
 ---
 
@@ -258,7 +258,7 @@ updated: 2026-05-04
 - **真要流式内容的三种绕法**：① 返回 `resource_link`，客户端自己 `resources/read` 或 `subscribe`；② 返回 job id + 轮询另一个工具；③ 用 progress 的 `message` 推给 UI（**流式展示，不是流式结果 —— 模型只在最后拿到完整结果**）。
 - **别跟"应用层流式"搞混**：「FastAPI + SSE 把 LangGraph 每个节点结果推前端」是**你的应用 → 浏览器**那一段（见 [[Agent问题答案/工程化#Q48]]），和 MCP client ↔ server 是两个层次，流的东西也不一样。
 
-**拓展双链**：[[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]、[[Agent问题答案/工程化#Q48]]、[[Agent问题答案/MCP与协议#Q23]]
+**拓展双链**：[[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]、[[Agent问题答案/工程化#Q48]]、[[Agent问题答案/MCP与协议#Q23]]
 
 ---
 

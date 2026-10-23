@@ -12,9 +12,9 @@ updated: 2026-08-04
 
 ## 高频问法
 
-- **「上下文膨胀怎么办？token 超限了怎么处理？」** — [[公司/快手/DataAgent方向/快手数据平台DataAgent一面_2026-07-29]]、[[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]、[[公司/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]
-- **「压缩怎么保证不丢原意 / 压得准？」** — [[公司/快手/DataAgent方向/快手数据平台DataAgent一面_2026-07-29]]、[[公司/微软/Bing图像视频业务实习一面面经]]
-- **「长期记忆、短期记忆、大文档处理、token 超限这些异常场景怎么处理？」** — [[公司/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]
+- **「上下文膨胀怎么办？token 超限了怎么处理？」** — [[资料/面经/快手/DataAgent方向/快手数据平台DataAgent一面_2026-07-29]]、[[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]、[[资料/面经/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]
+- **「压缩怎么保证不丢原意 / 压得准？」** — [[资料/面经/快手/DataAgent方向/快手数据平台DataAgent一面_2026-07-29]]、[[资料/面经/微软/Bing图像视频业务实习一面面经]]
+- **「长期记忆、短期记忆、大文档处理、token 超限这些异常场景怎么处理？」** — [[资料/面经/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]
 
 ---
 
@@ -107,7 +107,7 @@ flowchart TD
 
 另有一个 `<analysis>` 草稿块：模型先在里面推理哪些该留哪些能扔，**输出正式摘要后草稿被剥掉不进上下文**——拿推理质量，但不为草稿付 token。
 
-> ⚠️ [[专栏/Agent/记忆压缩]] 里那张 `goal / latest_instruction / constraints / …` 九字段表**不是** Claude Code 的官方模板，来源不明。上表才是。
+> ⚠️ [[资料/学习材料/Agent/记忆压缩]] 里那张 `goal / latest_instruction / constraints / …` 九字段表**不是** Claude Code 的官方模板，来源不明。上表才是。
 > <!-- 来源: openedclaude.github.io 第 11 章 + harness-engineering ch.9（两处独立确认）・ 查证于 2026-08-04 -->
 
 ---
@@ -247,5 +247,5 @@ flowchart TD
 ## 深入阅读
 
 - 相邻主题：[[Agent记忆四家实现对比]]（跨会话持久层）· [[Agent记忆系统]]（七个设计维度）· [[Agent设计模式与MCP]]
-- raw 专栏：[[专栏/Agent/Claude Code Context管理]]（只有 11 行，本文是它的展开）· [[专栏/Agent/记忆压缩]]（那张九字段表来源存疑，见 §2.2）· [[专栏/Agent/Harness Engineering]]
-- 项目追问库：[[追问/谷歌Memory]]
+- raw 专栏：[[资料/学习材料/Agent/Claude Code Context管理]]（只有 11 行，本文是它的展开）· [[资料/学习材料/Agent/记忆压缩]]（那张九字段表来源存疑，见 §2.2）· [[资料/学习材料/Agent/Harness Engineering]]
+- 项目追问库：[[项目追问/谷歌Memory]]

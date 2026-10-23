@@ -1,13 +1,13 @@
 ---
 title: Agent问题答案 / Prompt工程
 type: answers
-updated: 2026-05-04
+updated: 2026-10-23
 ---
 
 # Prompt 工程（写法 / 多轮对话 / 关键词提取 / 实践 / 示例）
 
 > 涵盖：Q8、Q9、Q19、Q25、Q40。
-> 主参考：[[专栏/Agent/OpenClaw 笔记]]、[[西门子RAG]]、[[微软/Bing图像视频业务实习一面面经]]、[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]。
+> 主参考：[[资料/学习材料/Agent/OpenClaw 笔记]]、[[项目追问/西门子RAG]]、[[资料/面经/微软/Bing图像视频业务实习一面面经]]、[[资料/面经/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]]。
 
 ---
 
@@ -24,7 +24,7 @@ updated: 2026-05-04
 - **动态拼装**：检索 / 工具结果作为 Context 注入，不要一股脑塞 system prompt；注意 token 预算。
 - **可观测**：把 prompt 模板版本化，A/B 测试，配合 LangSmith 看哪个版本准确率更高。
 
-**拓展双链**：[[Agent问题答案/Prompt工程#Q25]]、[[专栏/Agent/OpenClaw 笔记]]（System Prompt Builder）
+**拓展双链**：[[Agent问题答案/Prompt工程#Q25]]、[[资料/学习材料/Agent/OpenClaw 笔记]]（System Prompt Builder）
 
 ---
 
@@ -32,16 +32,18 @@ updated: 2026-05-04
 
 > 原题：多轮对话的实现方案
 
-**答题骨架**
+**30 秒短答**
 
-- **简单方案**：把历史 messages 拼进 LLM 调用，按角色（user / assistant / tool）顺序排好；轮次少时直接喂。
-- **窗口压缩**：达到 N 轮（西门子项目里是 10 轮）触发 summary，把前面所有对话压成一条 summary message + 保留最近 K 轮原文。
-- **双层记忆**：window memory（最近 K 轮原文）+ summary memory（更早的总结）+ 长期 memory（向量库）。
-- **OpenClaw 模式**（[[专栏/Agent/OpenClaw 笔记]]）：JSONL 转录 + MEMORY.md / `memory/*.md` 沉淀；`/new` / `/reset` 时 hook 把最近 N 条对话总结成新的 memory md。
-- **Context Window Guard**：上下文快满时显式压缩 / 降级 / 优雅停，不能撑爆才知道。
-- **token 估算**：单轮约 5000 token、10 轮 5 万（西门子真实数据），结合模型上下文窗选阈值。
+> 「多轮对话先把历史消息按 user、assistant、tool 角色顺序拼进模型请求。轮次少时保留原文，历史增长后保留最近 K 轮，并把更早内容压成摘要；请求前检查上下文余量，必要时压缩、降级或停止。跨会话需要复用的信息再持久保存，按需取回。会话内压缩和跨会话记忆分开设计。」
 
-**拓展双链**：[[专栏/Agent/OpenClaw 笔记]]（Memory 章）、[[微软/Bing图像视频业务实习一面面经]]（多轮压缩 Q）、[[西门子RAG]]（Q13）
+**本题保留的项目与笔记例子**：
+
+- 原问答中的西门子项目记录：达到 10 轮触发摘要；单轮约 5000 token、10 轮约 5 万 token，结合模型上下文窗口选阈值。项目口径仍以 [[项目追问/西门子RAG]] Q13 为准。
+- [[资料/学习材料/Agent/OpenClaw 笔记]] 的历史例子：JSONL 转录 + `MEMORY.md` / `memory/*.md`；`/new` / `/reset` 时通过 hook 把最近 N 条对话总结成新的记忆文件。这是原笔记记录，具体机制从原笔记进入核对。
+
+**详细机制**：[[Agent上下文压缩链路]] 维护会话内的窗口、摘要与超限处理；[[Agent记忆系统]] 维护记忆分层、存储和取回。本文只保留答题短稿与上述项目例子。
+
+**拓展双链**：[[资料/面经/微软/Bing图像视频业务实习一面面经]]（多轮压缩 Q）、[[项目追问/西门子RAG]]（Q13）
 
 ---
 
@@ -76,7 +78,7 @@ updated: 2026-05-04
 - **模板版本化**：和代码一起进 git，prompt 模板是工程资产不是 magic string。
 - **观测 + 评估**：LangSmith trace + LLM judge + 人工抽样 double check。
 
-**拓展双链**：[[Agent问题答案/Prompt工程#Q8]]、[[西门子RAG]]、[[专栏/Agent/OpenClaw 笔记]]
+**拓展双链**：[[Agent问题答案/Prompt工程#Q8]]、[[项目追问/西门子RAG]]、[[资料/学习材料/Agent/OpenClaw 笔记]]
 
 ---
 
@@ -109,7 +111,7 @@ updated: 2026-05-04
 - 温度 0、structured output（DeepSeek / 千问 都支持），减少格式偏移。
 - 进阶：可以加 `<example>` 段做 few-shot，例子覆盖"找到答案"和"找不到答案"两种 case。
 
-**拓展双链**：[[西门子RAG]]、[[Agent问题答案/Prompt工程#Q8]]
+**拓展双链**：[[项目追问/西门子RAG]]、[[Agent问题答案/Prompt工程#Q8]]
 
 ---
 

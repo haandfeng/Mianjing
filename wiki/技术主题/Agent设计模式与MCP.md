@@ -1,7 +1,7 @@
 ---
 title: Agent设计模式与MCP（概念骨架）
 type: topic
-updated: 2026-08-04
+updated: 2026-10-23
 note: 本文是概念骨架。具体问答见 [[Agent问题答案/README]] 5 个分册。
 ---
 
@@ -61,7 +61,7 @@ Agent
 
 > 📌 字段限制 / 三级 token 成本 / 沙箱限制来自 [Anthropic 官方文档](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) + [官方工程博客](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)；`allowed-tools` 不强制来自 [claude-code issue #37683](https://github.com/anthropics/claude-code/issues/37683)（社区 issue，未见官方确认）・ 查证于 2026-08-04
 
-→ 详细问答 [[Agent问题答案/MCP与协议]]（Q37 MCP vs Skill）；真题见 [[公司/米哈游/米哈游一面（我面试）_约2026-08]] Q7/Q8
+→ 详细问答 [[Agent问题答案/MCP与协议]]（Q37 MCP vs Skill）；真题见 [[资料/面经/米哈游/米哈游一面（我面试）_约2026-08]] Q7/Q8
 
 ### 3. Agent 设计模式
 - **ReAct**：Reasoning → Action → Observation 循环
@@ -75,30 +75,14 @@ Agent
 
 ### LCEL 链式 vs LangGraph 图编排
 
-> ⚠ **别把它说成"LangChain vs LangGraph 二选一"** —— LangGraph 本身就是 LangChain 生态的一部分，`create_agent` 就构建在 LangGraph 上。真正的对比是 **LCEL（`prompt | model | parser` 链式写法）vs 图编排**。
+LCEL（LangChain Expression Language，LangChain 表达式语言）用 `prompt | model | parser` 串联组件；LangGraph 用节点、条件边和共享状态组织执行流程。LangGraph 属于 LangChain 生态，节点内部也可以使用 LCEL。
 
-| | LCEL 链式 | LangGraph 图 |
-|---|---|---|
-| 形状 | 有向无环管道，单向流 | 图（节点 + 条件边 + 环）|
-| 每步能看到什么 | 只有上一步的输出 | 全图共享的 State |
-| 循环 | ✗（DAG 表达不了 agent 的 while 循环）| ✅ 节点回环 + `recursion_limit` |
-| 并行归并 | 固定字典合并 | ✅ 自定义 reducer |
-| 动态并行 | ✗ | ✅ `Send`（运行时决定开几路）|
-| 可恢复 | ✗ | ✅ Checkpointer 断点续跑 + time travel |
-| Human-in-loop | ✗ | ✅ `interrupt()` 任意节点暂停 |
-| 流式粒度 | token | ✅ 七种 `stream_mode`（节点/token/自定义/checkpoint/task）|
-
-**判据**：需要环、需要跨步骤共享状态、需要中途暂停 → 图；单向数据变换管道 → LCEL 够了。
-**金句**：**LCEL 管「一步怎么算」，LangGraph 管「步与步之间怎么走」** —— 节点内部照样写 `chain = prompt | model | parser`。
-
-**v1 之后的选型阶梯**：单步变换 → LCEL；标准 ReAct agent → `create_agent()` + Middleware（内置摘要 / 人工确认 / 工具重试 / 模型 fallback / 限流 / PII 检测）；复杂多 agent 编排 → 手写 `StateGraph`。
-
-→ 工程细节（State/BSP/Checkpoint/流式/重试降级）见 [[LangGraph工程实践]]
+**定位**：单向数据变换管道用 LCEL；需要循环、跨步骤共享状态或中途暂停时，考虑图编排。完整对比、选型阶梯和代价统一见 [[LangGraph工程实践#五、为什么用 LangGraph 而不是 LangChain]]；面试短答见 [[Agent问题答案/工程化#Q50 — 为什么用 LangGraph 而不是简单的 LangChain]]。
 
 ### 旧范式（workflow 编排）vs 新范式（agent loop）—— 比 LCEL/LangGraph 更高一层的选型
 
 > ⚠️ 这是**范式层面**的对比，跟上面"LCEL vs LangGraph"不是一回事——上面讨论的是**同一代框架内部**的编排方式选择；这里讨论的是**编排权归谁**。LangGraph 属于旧范式的工程实现之一；Claude Code / Codex 这类 harness 属于新范式。
-> 出处：[[公司/上海AI Lab/后训练数据/上海AI Lab后训练数据一面_2026-07-31]]（被连问 6 轮没答出，面试官最后自己给了答案）
+> 出处：[[资料/面经/上海AI Lab/后训练数据/上海AI Lab后训练数据一面_2026-07-31]]（被连问 6 轮没答出，面试官最后自己给了答案）
 
 #### 有官方口径，直接引用能终结拉锯
 
@@ -204,12 +188,12 @@ Anthropic《Building Effective Agents》（2024-12-19）做了正式二分：
 - 答题分册：[[Agent问题答案/README]]（43 题 + Q44-Q52 增补，分主题）
 - 工程实践：[[LangGraph工程实践]] —— State/BSP/Checkpoint/流式/重试降级/选型
 - raw 笔记本：
-  - [[专栏/Agent/OpenClaw 笔记]] —— Agent 调用链 / Skill Router / Task Planner
-  - [[专栏/Agent/MCP_SSE_文档]] —— MCP 协议详解
-  - [[专栏/Agent/MCP与Tool管理]] —— Tool 太多怎么办
-  - [[专栏/Agent/Skills]] —— Skill 包格式
-  - [[专栏/Agent/Harness Engineering]] —— OpenAI / Anthropic 的 Harness 实战（上下文管理 / 验证器 / 生成-评估循环）
-  - [[专栏/Agent/RAG到Agent进阶]] —— RAG → ReAct / Plan-Execute / LangGraph State 的演化路径
-  - [[专栏/Agent/什么时候选择多智能体]] —— Anthropic 多 Agent 设计指南
+  - [[资料/学习材料/Agent/OpenClaw 笔记]] —— Agent 调用链 / Skill Router / Task Planner
+  - [[资料/学习材料/Agent/MCP_SSE_文档]] —— MCP 协议详解
+  - [[资料/学习材料/Agent/MCP与Tool管理]] —— Tool 太多怎么办
+  - [[资料/学习材料/Agent/Skills]] —— Skill 包格式
+  - [[资料/学习材料/Agent/Harness Engineering]] —— OpenAI / Anthropic 的 Harness 实战（上下文管理 / 验证器 / 生成-评估循环）
+  - [[资料/学习材料/Agent/RAG到Agent进阶]] —— RAG → ReAct / Plan-Execute / LangGraph State 的演化路径
+  - [[资料/学习材料/Agent/什么时候选择多智能体]] —— Anthropic 多 Agent 设计指南
 - 原始 Q 清单：_Agent相关问题_（已移除）
-- 真题来源：[[蔚来/蔚来CICD组AI agent实习生一面面经-详细版]] · [[小红书/小红书产品工程师一面面经]] · [[微软/Bing图像视频业务实习一面面经]] · [[字节/国际商业化/面经记录_国际商业化创业_3.9]] · [[公司/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]（MCP 五连问 + LangGraph 四连问）· [[公司/上海AI Lab/后训练数据/上海AI Lab后训练数据一面_2026-07-31]]（旧范式 vs 新范式选型）· [[公司/米哈游/米哈游一面（我面试）_约2026-08]]（**Skill vs MCP + Skill 特性**两连问）
+- 真题来源：[[资料/面经/蔚来/蔚来CICD组AI agent实习生一面面经-详细版]] · [[资料/面经/小红书/小红书产品工程师一面面经]] · [[资料/面经/微软/Bing图像视频业务实习一面面经]] · [[资料/面经/字节/国际商业化/面经记录_国际商业化创业_3.9]] · [[资料/面经/淘天/AI Agent/淘天AI-Agent一面_2026-07-30]]（MCP 五连问 + LangGraph 四连问）· [[资料/面经/上海AI Lab/后训练数据/上海AI Lab后训练数据一面_2026-07-31]]（旧范式 vs 新范式选型）· [[资料/面经/米哈游/米哈游一面（我面试）_约2026-08]]（**Skill vs MCP + Skill 特性**两连问）
